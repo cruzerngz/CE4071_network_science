@@ -5,6 +5,6 @@
 make
 ```
 
-Code lives in `./code`.
+Code lives in `./networkscience`.
 [`pinliner`](https://github.com/Akrog/pinliner) (a python script bundler) is used to bundle all code into a single file.
-The bundler cannot accept docstrings with single quotes `'''`, so double quotes need to be used for docstrings.
+Due to the way the bundler works, all top-level strings must be delimited with double quotes `"`. Nested strings can use single quotes and alternate as per.
