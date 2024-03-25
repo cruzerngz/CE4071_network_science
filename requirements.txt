@@ -1,0 +1,10 @@
+# pip3 install -r requirements.txt
+
+# this is a patched version of pinliner
+git+https://github.com/jaskaur18/pinliner/
+
+pandas
+seaborn
+numpy
+matplotlib
+networkx
