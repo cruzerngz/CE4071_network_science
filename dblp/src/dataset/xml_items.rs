@@ -50,18 +50,18 @@ pub struct RawDblp {
 
 /// Common internal representation of a publication record.
 #[derive(Debug, Serialize, Deserialize)]
-struct PublicationRecord {
+pub struct PublicationRecord {
     /// Unique key for the record
     #[serde(rename = "@key")]
-    key: String,
+    pub key: String,
 
     /// Date last modified
     #[serde(rename = "@mdate")]
-    mdate: Option<chrono::NaiveDate>,
+    pub mdate: Option<chrono::NaiveDate>,
 
     /// Space separated tags specifying the type of record
     #[serde(rename = "@publtype")]
-    publtype: Option<String>,
+    pub publtype: Option<String>,
 
     // start of elements
     /// Year of publication
@@ -95,18 +95,18 @@ struct PublicationRecord {
 pub struct WebPage {
     /// The path to the author's profile. unique to each author.
     #[serde(rename = "@key")]
-    key: String,
+    pub key: String,
 
     /// For person records, this is always "Home Page".
-    title: Option<String>,
+    pub title: Option<String>,
 
     /// Url of the page
-    url: Option<String>,
+    pub url: Option<String>,
 
     /// Author may have multiple aliases, cause idk.
     /// The first element is the current name.
     #[serde(default)]
-    author: Vec<String>,
+    pub author: Vec<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -146,33 +146,29 @@ pub struct Relation {
     pub sort: Option<u32>,
 }
 
-/// A citation
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Citation {}
+pub struct Article(pub(crate) PublicationRecord);
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Article(PublicationRecord);
+pub struct InProceeding(pub(crate) PublicationRecord);
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct InProceeding(PublicationRecord);
+pub struct Proceeding(pub(crate) PublicationRecord);
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Proceeding(PublicationRecord);
+pub struct Book(pub(crate) PublicationRecord);
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Book(PublicationRecord);
+pub struct InCollection(pub(crate) PublicationRecord);
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct InCollection(PublicationRecord);
+pub struct PhdThesis(pub(crate) PublicationRecord);
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct PhdThesis(PublicationRecord);
+pub struct MastersThesis(pub(crate) PublicationRecord);
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct MastersThesis(PublicationRecord);
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct Data(PublicationRecord);
+pub struct Data(pub(crate) PublicationRecord);
 
 #[cfg(test)]
 mod tests {
@@ -183,7 +179,7 @@ mod tests {
     fn test_deserialize_sample() {
         let contents = std::fs::read_to_string("dblp_trunc.xml").unwrap();
 
-        let filtered = super::super::Dblp::strip_references(&contents);
+        let filtered = super::super::strip_references(&contents);
 
         let dblp: RawDblp = quick_xml::de::from_str(&filtered).unwrap();
         // println!("{:#?}", dblp);
@@ -197,8 +193,10 @@ mod tests {
         println!("num masters theses: {}", dblp.masters_theses.len());
         println!("num web pages: {}", dblp.web_pages.len());
 
-        println!("{:#?}", dblp.inproceedings);
-        println!("{:#?}", dblp.articles);
+        // println!("{:#?}", dblp.inproceedings);
+        // println!("{:#?}", dblp.articles);
+
+        // println!("{:#?}", dblp.web_pages);
 
         let x = dblp
             .incollections
@@ -206,6 +204,6 @@ mod tests {
             .filter(|incol| incol.0.citations.len() != 0)
             .collect::<Vec<_>>();
 
-        println!("{:#?}", x);
+        // println!("{:#?}", x);
     }
 }

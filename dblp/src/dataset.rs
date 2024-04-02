@@ -1,7 +1,7 @@
 #![allow(unused)]
 
-mod xml_items;
-mod db_items;
+pub mod db_items;
+pub mod xml_items;
 
 use std::{
     fs,
@@ -20,6 +20,20 @@ const DBLP_FILE: &str = "dblp.xml.gz";
 const XML_REF_REGEX: &str = "&[[:alpha:]]+;";
 
 pub static DBLP_DATABASE: OnceLock<Dblp> = OnceLock::new();
+
+/// This method ingests the entire XML dataset and strips all
+/// references "$Agrage;" from it. This is performed before deserialization.
+///
+/// We will use the .dtd file to determine which references to strip.
+///
+/// Gawddamn pesky
+pub fn strip_references(input_xml: &str) -> String {
+    let regex = Regex::new(XML_REF_REGEX).expect("regex compilation must not fail");
+
+    let res = regex.replace_all(input_xml, "");
+
+    res.into_owned()
+}
 
 #[derive(Debug)]
 pub struct Dblp {
@@ -48,20 +62,6 @@ impl Dblp {
 
         Ok(Self { data: unzipped })
     }
-
-    /// This method ingests the entire XML dataset and strips all
-    /// references "$Agrage;" from it. This is performed before deserialization.
-    ///
-    /// We will use the .dtd file to determine which references to strip.
-    ///
-    /// Gawddamn pesky
-    fn strip_references(input_xml: &str) -> String {
-        let regex = Regex::new(XML_REF_REGEX).expect("regex compilation must not fail");
-
-        let res = regex.replace_all(input_xml, "");
-
-        res.into_owned()
-    }
 }
 
 #[cfg(test)]
@@ -81,7 +81,7 @@ mod tests {
     fn test_strip_dblp_refs() {
         let contents = fs::read_to_string("dblp_head.xml").unwrap();
 
-        let stripped = Dblp::strip_references(&contents);
+        let stripped = strip_references(&contents);
 
         fs::write("dblp_head_stripped.xml", stripped).unwrap()
     }
