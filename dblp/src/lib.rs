@@ -11,39 +11,64 @@ use std::{
 };
 
 use dataset::xml_items::RawDblp;
-use db::dump_into_database;
+use db::{create_tables, dump_into_database};
 use pyo3::{exceptions::PyTypeError, prelude::*};
 
 const DB_DEFAULT_PATH: &str = "dblp.sqlite";
 const GZIP_DEFAULT_PATH: &str = "dblp.xml.gz";
+const XML_DEFAULT_PATH: &str = "dblp.xml";
 
 static DB_PATH: OnceLock<String> = OnceLock::new();
 
 /// Initialize the DBLP database from a local file.
 ///
-/// The file must be a gzipped xml file: `*.xml.gz`.
+/// The file can be an xml file or a gzipped xml file `*.xml`, `*.xml.gz`.
+///
+/// If no file is specified, the default gzipped file `dblp.xml.gz` is used.
 #[pyfunction]
 pub fn init_from_xml(path: Option<String>) -> PyResult<()> {
-    let zipped_xml = fs::read(path.as_deref().unwrap_or(GZIP_DEFAULT_PATH))
-        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+    let actual_path = path.as_deref().unwrap_or(GZIP_DEFAULT_PATH);
 
-    let mut decoder = flate2::read::GzDecoder::new(zipped_xml.as_slice());
+    let xml_file = fs::read(actual_path).map_err(PyTypeError::new_err)?;
 
-    let mut xml_bytes = Vec::new();
-    decoder.read_to_end(&mut xml_bytes).unwrap();
+    let xml_data = match actual_path.ends_with(".gz") {
+        true => {
+            log::info!("Decompressing the gzipped file");
 
-    let xml_contents =
-        std::str::from_utf8(&xml_bytes).map_err(|e| PyTypeError::new_err(e.to_string()))?;
+            let mut xml_bytes = Vec::new();
+            let mut decoder = flate2::read::GzDecoder::new(xml_file.as_slice());
+            decoder
+                .read_to_end(&mut xml_bytes)
+                .map_err(PyTypeError::new_err)?;
 
-    let filtered_xml = dataset::strip_references(&xml_contents);
+            let raw_xml_str = std::str::from_utf8(&xml_bytes).map_err(PyTypeError::new_err)?;
+            let filtered_xml_str = dataset::strip_references(raw_xml_str);
+
+            // fs::write(XML_DEFAULT_PATH, &filtered_xml_str).map_err(PyTypeError::new_err)?;
+
+            filtered_xml_str
+        }
+        false => {
+            log::info!("Reading the xml file");
+            let raw_xml = std::str::from_utf8(&xml_file).map_err(PyTypeError::new_err)?;
+            let filt_xml = dataset::strip_references(raw_xml);
+
+            // filter out the references
+            // fs::write(actual_path, &filt_xml).map_err(PyTypeError::new_err)?;
+
+            filt_xml
+        }
+    };
+
     let raw_dataset: RawDblp =
-        quick_xml::de::from_str(&filtered_xml).map_err(|e| PyTypeError::new_err(e.to_string()))?;
+        quick_xml::de::from_str(&xml_data).map_err(|e| PyTypeError::new_err(e.to_string()))?;
 
     let (publications, persons): (Vec<_>, Vec<_>) = raw_dataset.into();
 
     let mut conn = rusqlite::Connection::open(DB_DEFAULT_PATH)
         .map_err(|e| PyTypeError::new_err(e.to_string()))?;
 
+    create_tables(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
     dump_into_database(&mut conn, &publications, &persons)
         .map_err(|e| PyTypeError::new_err(e.to_string()))?;
 

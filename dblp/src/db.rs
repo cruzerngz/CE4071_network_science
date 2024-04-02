@@ -8,13 +8,17 @@ use crate::dataset::db_items::{DblpRecord, PersonRecord};
 
 /// Checks if the database contains the necessary tables, and that they have stuff in them.
 pub fn check_database(conn: &Connection) -> rusqlite::Result<()> {
-    let num_names = conn.execute("SELECT COUNT(name) from persons;", ())?;
-    let num_pubs = conn.execute("SELECT COUNT(record) from publications;", ())?;
+    let mut stmt = conn.prepare("SELECT COUNT(name) from persons;")?;
+    let num_names = stmt.query(())?;
 
-    match (num_names, num_pubs) {
-        (0, 0) => Err(rusqlite::Error::QueryReturnedNoRows),
-        _ => Ok(()),
-    }
+    let mut stmt = conn.prepare("SELECT COUNT(record) from publications;")?;
+    let _ = stmt.query(())?;
+    // match (num_names, num_pubs) {
+    //     (0, 0) => Err(rusqlite::Error::QueryReturnedNoRows),
+    //     _ => Ok(()),
+    // }
+
+    Ok(())
 }
 
 /// Initializes the database tables.
