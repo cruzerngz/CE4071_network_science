@@ -1,8 +1,8 @@
-//! Concrete definitions of the data items that are used in `dblp`.
+//! Concrete definitions for parsing the DBLP dataset.
 //!
 //! XML schema description found here: https://dblp.org/faq/16154937.html
 
-use std::str::SplitTerminator;
+use std::{collections::HashMap, str::SplitTerminator};
 
 use serde::{Deserialize, Serialize};
 
@@ -35,6 +35,11 @@ pub struct RawDblp {
     #[serde(default)]
     pub masters_theses: Vec<MastersThesis>,
 
+    /// wtf is this??? Not mentioned in DBLP at all.
+    #[serde(default)]
+    pub data: Vec<Data>,
+
+    /// Web pages. Also happens to contain person records due to "BACKWARDS COMPATIBILITY"
     #[serde(rename = "www")]
     #[serde(default)]
     pub web_pages: Vec<WebPage>,
@@ -43,9 +48,9 @@ pub struct RawDblp {
     pub mdate: Option<chrono::NaiveDate>,
 }
 
-/// Common XML attributes and elements shared between all publication records
+/// Common internal representation of a publication record.
 #[derive(Debug, Serialize, Deserialize)]
-pub struct CommonAttrs {
+struct PublicationRecord {
     /// Unique key for the record
     #[serde(rename = "@key")]
     key: String,
@@ -53,22 +58,33 @@ pub struct CommonAttrs {
     /// Date last modified
     #[serde(rename = "@mdate")]
     mdate: Option<chrono::NaiveDate>,
+
     /// Space separated tags specifying the type of record
     #[serde(rename = "@publtype")]
     publtype: Option<String>,
-    // pub year: Option<String>
-}
 
-/// Common items shared between all publication records.
-/// Note that attributes and elements are not the same thing.
-#[derive(Debug, Serialize, Deserialize)]
-pub struct CommonElements {
-    /// Year document was published
-    // #[serde(rename = "year")]
-    // year: Option<String>,
-    /// Any related documents
+    // start of elements
+    /// Year of publication
+    pub year: Option<u32>,
+
+    /// List of authors
+    #[serde(rename = "author")]
+    #[serde(default)]
+    pub authors: Vec<Author>,
+
+    /// Relation to other records
     #[serde(rename = "rel")]
-    relation: Option<Relation>,
+    pub relation: Option<Relation>,
+
+    /// School where the work was done
+    pub school: Option<String>,
+
+    pub publisher: Option<String>,
+
+    /// Citations in record
+    #[serde(rename = "cite")]
+    #[serde(default)]
+    pub citations: Vec<String>,
 }
 
 /// These are the `www` items in the DBLP dataset.
@@ -115,7 +131,6 @@ pub struct Author {
     pub orcid: Option<String>,
     #[serde(rename = "@label")]
     pub label: Option<String>,
-    // pub author_type: Option<Vec<String>>,
 }
 
 /// Any related items to the publication record.
@@ -128,91 +143,36 @@ pub struct Relation {
     #[serde(rename = "@label")]
     pub label: Option<String>,
     #[serde(rename = "@sort")]
-    pub sort: Option<String>,
+    pub sort: Option<u32>,
 }
+
+/// A citation
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Citation {}
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Article {
-    /// Common attributes shared between all publication records
-    #[serde(flatten)]
-    common_attrs: CommonAttrs,
-
-    #[serde(flatten)]
-    common_elems: CommonElements,
-
-    #[serde(rename = "@reviewid")]
-    pub reviewid: Option<String>,
-    #[serde(rename = "@rating")]
-    pub rating: Option<String>,
-    #[serde(rename = "@cdate")]
-    pub cdate: Option<String>,
-
-
-    // #[serde(rename = "author")]
-    // #[serde(default)]
-    // pub authors: Vec<Author>,
-    // pub fields: Vec<Field>,
-}
+pub struct Article(PublicationRecord);
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct InProceeding {
-    /// Common attributes shared between all publication records
-    #[serde(flatten)]
-    common_attrs: CommonAttrs,
-
-    // reviewid: Option<String>,
-    // rating: Option<String>,
-    // cdate: Option<String>,
-    #[serde(rename = "author")]
-    #[serde(default)]
-    authors: Vec<Author>,
-}
-#[derive(Debug, Serialize, Deserialize)]
-pub struct Proceeding {
-    /// Common attributes shared between all publication records
-    #[serde(flatten)]
-    common_attrs: CommonAttrs,
-
-    #[serde(default)]
-    #[serde(rename = "author")]
-    authors: Vec<Author>,
-}
-#[derive(Debug, Serialize, Deserialize)]
-pub struct Book {
-    /// Common attributes shared between all publication records
-    #[serde(flatten)]
-    common_attrs: CommonAttrs,
-}
+pub struct InProceeding(PublicationRecord);
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct InCollection {
-    /// Common attributes shared between all publication records
-    #[serde(flatten)]
-    common_attrs: CommonAttrs,
-
-    // reviewid: Option<String>,
-    // rating: Option<String>,
-    // cdate: Option<String>,
-
-    // title: String,
-    #[serde(default)]
-    #[serde(rename = "author")]
-    authors: Vec<Author>,
-}
+pub struct Proceeding(PublicationRecord);
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct PhdThesis {
-    /// Common attributes shared between all publication records
-    #[serde(flatten)]
-    common_attrs: CommonAttrs,
-}
+pub struct Book(PublicationRecord);
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct MastersThesis {
-    /// Common attributes shared between all publication records
-    #[serde(flatten)]
-    common_attrs: CommonAttrs,
-}
+pub struct InCollection(PublicationRecord);
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct PhdThesis(PublicationRecord);
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct MastersThesis(PublicationRecord);
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Data(PublicationRecord);
 
 #[cfg(test)]
 mod tests {
@@ -238,5 +198,14 @@ mod tests {
         println!("num web pages: {}", dblp.web_pages.len());
 
         println!("{:#?}", dblp.inproceedings);
+        println!("{:#?}", dblp.articles);
+
+        let x = dblp
+            .incollections
+            .iter()
+            .filter(|incol| incol.0.citations.len() != 0)
+            .collect::<Vec<_>>();
+
+        println!("{:#?}", x);
     }
 }
