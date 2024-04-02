@@ -8,3 +8,6 @@ seaborn
 numpy
 matplotlib
 networkx
+xlrd # for reading excel files
+requests
+beautifulsoup4
