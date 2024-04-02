@@ -1,0 +1,3126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE dblp SYSTEM "dblp.dtd">
+<dblp>
+    <incollection mdate="2017-07-12" key="reference/crypt/Canteaut11" publtype="encyclopedia">
+        <author>Anne Canteaut</author>
+        <title>A5/1.</title>
+        <pages>1-2</pages>
+        <year>2011</year>
+        <booktitle>Encyclopedia of Cryptography and Security (2nd Ed.)</booktitle>
+        <ee>https://doi.org/10.1007/978-1-4419-5906-5_332</ee>
+        <crossref>reference/crypt/2011</crossref>
+        <url>db/reference/crypt/crypt2011.html#Canteaut11</url>
+        <cite>conf/crypto/BarkanBK03</cite>
+        <cite>conf/sacrypt/BarkanB05</cite>
+        <cite>journals/joc/BarkanBK08</cite>
+        <cite>conf/indocrypt/BihamD00</cite>
+        <cite>conf/fse/BiryukovSW00</cite>
+        <cite>journals/tit/EkdahlJ03</cite>
+        <cite>conf/sacrypt/MaximovJB04</cite>
+        <cite>...</cite>
+        <cite>...</cite>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14bd" publtype="encyclopedia">
+        <title>Curvedness.</title>
+        <pages>159</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100117</ee>
+        <url>db/reference/vision/vision2014.html#X14bd</url>
+    </incollection>
+    <incollection mdate="2019-01-09" key="reference/vision/Singh14" publtype="encyclopedia">
+        <author>Manish Singh 0001</author>
+        <title>Transparency and Translucency.</title>
+        <pages>815-819</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_559</ee>
+        <url>db/reference/vision/vision2014.html#Singh14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14ii" publtype="encyclopedia">
+        <title>Surface Orientation Histogram (Discrete Version of EGI).</title>
+        <pages>781</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100229</ee>
+        <url>db/reference/vision/vision2014.html#X14ii</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14m" publtype="encyclopedia">
+        <title>Appearance Scanning.</title>
+        <pages>36</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100189</ee>
+        <url>db/reference/vision/vision2014.html#X14m</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Wong14" publtype="encyclopedia">
+        <author>Tien-Tsin Wong</author>
+        <title>Image-Based Lighting.</title>
+        <pages>387-390</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_14</ee>
+        <url>db/reference/vision/vision2014.html#Wong14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14gt" publtype="encyclopedia">
+        <title>Radiometric Camera Calibration.</title>
+        <pages>658</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100172</ee>
+        <url>db/reference/vision/vision2014.html#X14gt</url>
+    </incollection>
+    <incollection mdate="2018-11-02" key="reference/vision/Pont14b" publtype="encyclopedia">
+        <author orcid="0000-0002-9834-9600">Sylvia C. Pont</author>
+        <title>Surface Roughness.</title>
+        <pages>781-782</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_539</ee>
+        <url>db/reference/vision/vision2014.html#Pont14b</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Alexander14" publtype="encyclopedia">
+        <author>Daniel C. Alexander</author>
+        <title>Image Registration.</title>
+        <pages>380-385</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_194</ee>
+        <url>db/reference/vision/vision2014.html#Alexander14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Fukui14" publtype="encyclopedia">
+        <author>Kazuhiro Fukui</author>
+        <title>Subspace Methods.</title>
+        <pages>777-781</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_708</ee>
+        <url>db/reference/vision/vision2014.html#Fukui14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14if" publtype="encyclopedia">
+        <title>Structure-from-Motion (SfM).</title>
+        <pages>775</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100254</ee>
+        <url>db/reference/vision/vision2014.html#X14if</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14w" publtype="encyclopedia">
+        <title>Body Configuration Recovery.</title>
+        <pages>59</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100211</ee>
+        <url>db/reference/vision/vision2014.html#X14w</url>
+    </incollection>
+    <incollection mdate="2020-03-11" key="reference/vision/SrivastavaPKTA14" publtype="encyclopedia">
+        <author>Gaurav Srivastava 0004</author>
+        <author>Johnny Park</author>
+        <author>Avinash C. Kak</author>
+        <author>Birgi Tamersoy</author>
+        <author>J. K. Aggarwal</author>
+        <title>Multi-camera Human Action Recognition.</title>
+        <pages>501-511</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_776</ee>
+        <url>db/reference/vision/vision2014.html#SrivastavaPKTA14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Zhang14q" publtype="encyclopedia">
+        <author>Zhengyou Zhang</author>
+        <title>Iterative Closest Point (ICP).</title>
+        <pages>433-434</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_179</ee>
+        <url>db/reference/vision/vision2014.html#Zhang14q</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Gall14" publtype="encyclopedia">
+        <author>Juergen Gall</author>
+        <title>Simulated Annealing.</title>
+        <pages>737-741</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_680</ee>
+        <url>db/reference/vision/vision2014.html#Gall14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14ew" publtype="encyclopedia">
+        <title>Multisensor Data Fusion.</title>
+        <pages>516</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100091</ee>
+        <url>db/reference/vision/vision2014.html#X14ew</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14hp" publtype="encyclopedia">
+        <title>Semidefinite Optimization.</title>
+        <pages>716</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100253</ee>
+        <url>db/reference/vision/vision2014.html#X14hp</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Hartley14" publtype="encyclopedia">
+        <author>Richard I. Hartley</author>
+        <title>Projective Reconstruction.</title>
+        <pages>640-651</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_784</ee>
+        <url>db/reference/vision/vision2014.html#Hartley14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14au" publtype="encyclopedia">
+        <title>Computer Vision.</title>
+        <pages>145</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100073</ee>
+        <url>db/reference/vision/vision2014.html#X14au</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14ay" publtype="encyclopedia">
+        <title>Conditional Random Fields.</title>
+        <pages>146</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100233</ee>
+        <url>db/reference/vision/vision2014.html#X14ay</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14je" publtype="encyclopedia">
+        <title>Underwater Radiative Transfer Processes.</title>
+        <pages>837</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100197</ee>
+        <url>db/reference/vision/vision2014.html#X14je</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/PoggioU14" publtype="encyclopedia">
+        <author>Tomaso A. Poggio</author>
+        <author>Shimon Ullman</author>
+        <title>Machine Recognition of Objects.</title>
+        <pages>469-472</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_793</ee>
+        <url>db/reference/vision/vision2014.html#PoggioU14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14fz" publtype="encyclopedia">
+        <title>Partitioning.</title>
+        <pages>589</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100059</ee>
+        <url>db/reference/vision/vision2014.html#X14fz</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14gv" publtype="encyclopedia">
+        <title>Recognition-By-Components (RBC) Theory.</title>
+        <pages>663</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100121</ee>
+        <url>db/reference/vision/vision2014.html#X14gv</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14gb" publtype="encyclopedia">
+        <title>Perspective Projection.</title>
+        <pages>592</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100003</ee>
+        <url>db/reference/vision/vision2014.html#X14gb</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14gn" publtype="encyclopedia">
+        <title>Projection Matrix.</title>
+        <pages>639</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100004</ee>
+        <url>db/reference/vision/vision2014.html#X14gn</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14av" publtype="encyclopedia">
+        <title>Computing Architectures for Machine Perception.</title>
+        <pages>145</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100298</ee>
+        <url>db/reference/vision/vision2014.html#X14av</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14in" publtype="encyclopedia">
+        <title>Surveillance Camera.</title>
+        <pages>782</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100162</ee>
+        <url>db/reference/vision/vision2014.html#X14in</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14ez" publtype="encyclopedia">
+        <title>Network Camera.</title>
+        <pages>523</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100161</ee>
+        <url>db/reference/vision/vision2014.html#X14ez</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Zickler14" publtype="encyclopedia">
+        <author>Todd E. Zickler</author>
+        <title>Photometric Invariants.</title>
+        <pages>599-603</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_544</ee>
+        <url>db/reference/vision/vision2014.html#Zickler14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14dl" publtype="encyclopedia">
+        <title>Interface Reflection.</title>
+        <pages>422</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100181</ee>
+        <url>db/reference/vision/vision2014.html#X14dl</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Beyerer14" publtype="encyclopedia">
+        <author>J&uuml;rgen Beyerer</author>
+        <title>Mirrors.</title>
+        <pages>483-486</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100</ee>
+        <url>db/reference/vision/vision2014.html#Beyerer14</url>
+    </incollection>
+    <incollection mdate="2018-11-02" key="reference/vision/Rusinkiewicz14" publtype="encyclopedia">
+        <author orcid="0000-0002-4253-2588">Szymon Rusinkiewicz</author>
+        <title>Reflectance Models.</title>
+        <pages>674-677</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_537</ee>
+        <url>db/reference/vision/vision2014.html#Rusinkiewicz14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Agrawal14" publtype="encyclopedia">
+        <author>Amit K. Agrawal</author>
+        <title>Multi-focus Images.</title>
+        <pages>511-513</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_445</ee>
+        <url>db/reference/vision/vision2014.html#Agrawal14</url>
+    </incollection>
+    <incollection mdate="2019-10-17" key="reference/vision/ShenGCB14" publtype="encyclopedia">
+        <author>Rui Shen</author>
+        <author>Gaopeng Gou</author>
+        <author>Irene Cheng 0001</author>
+        <author>Anup Basu</author>
+        <title>Active Calibration.</title>
+        <pages>5</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_283</ee>
+        <url>db/reference/vision/vision2014.html#ShenGCB14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Pietikainen14" publtype="encyclopedia">
+        <author>Matti Pietik&auml;inen</author>
+        <title>Texture Recognition.</title>
+        <pages>789-793</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_328</ee>
+        <url>db/reference/vision/vision2014.html#Pietikainen14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14jv" publtype="encyclopedia">
+        <title>Volumetric Texture.</title>
+        <pages>874</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100072</ee>
+        <url>db/reference/vision/vision2014.html#X14jv</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Agrawal14a" publtype="encyclopedia">
+        <author>Amit K. Agrawal</author>
+        <title>Vignetting.</title>
+        <pages>854-856</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_563</ee>
+        <url>db/reference/vision/vision2014.html#Agrawal14a</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Basri14" publtype="encyclopedia">
+        <author>Ronen Basri</author>
+        <title>Photometric Stereo.</title>
+        <pages>603-608</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_254</ee>
+        <url>db/reference/vision/vision2014.html#Basri14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Zach14" publtype="encyclopedia">
+        <author>Christopher Zach</author>
+        <title>Dense Reconstruction.</title>
+        <pages>179-181</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_197</ee>
+        <url>db/reference/vision/vision2014.html#Zach14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14dh" publtype="encyclopedia">
+        <title>Implicit Polynomial Surface.</title>
+        <pages>399</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100120</ee>
+        <url>db/reference/vision/vision2014.html#X14dh</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14ax" publtype="encyclopedia">
+        <title>Concurrent Mapping and Localization (CML).</title>
+        <pages>146</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100077</ee>
+        <url>db/reference/vision/vision2014.html#X14ax</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Koenderink14c" publtype="encyclopedia">
+        <author>Jan J. Koenderink</author>
+        <title>Osculating Paraboloids.</title>
+        <pages>575-580</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_781</ee>
+        <url>db/reference/vision/vision2014.html#Koenderink14c</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14s" publtype="encyclopedia">
+        <title>Backscattering.</title>
+        <pages>43</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100957</ee>
+        <url>db/reference/vision/vision2014.html#X14s</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14bm" publtype="encyclopedia">
+        <title>Diffusely Scattered Reflectance.</title>
+        <pages>210</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100959</ee>
+        <url>db/reference/vision/vision2014.html#X14bm</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Tappen14a" publtype="encyclopedia">
+        <author>Marshall F. Tappen</author>
+        <title>Intrinsic Images.</title>
+        <pages>424-425</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_245</ee>
+        <url>db/reference/vision/vision2014.html#Tappen14a</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14bf" publtype="encyclopedia">
+        <title>Deconvolution.</title>
+        <pages>171</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100166</ee>
+        <url>db/reference/vision/vision2014.html#X14bf</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14dm" publtype="encyclopedia">
+        <title>Interpretation of Line Drawings.</title>
+        <pages>423</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100113</ee>
+        <url>db/reference/vision/vision2014.html#X14dm</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Tai14" publtype="encyclopedia">
+        <author>Yu-Wing Tai</author>
+        <title>Blur Estimation.</title>
+        <pages>57-59</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_509</ee>
+        <url>db/reference/vision/vision2014.html#Tai14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14cy" publtype="encyclopedia">
+        <title>Heterogeneous Parallel Computing.</title>
+        <pages>358</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100299</ee>
+        <url>db/reference/vision/vision2014.html#X14cy</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14bq" publtype="encyclopedia">
+        <title>Dimension Reduction.</title>
+        <pages>218</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100232</ee>
+        <url>db/reference/vision/vision2014.html#X14bq</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14ev" publtype="encyclopedia">
+        <title>Multiplexed Sensing.</title>
+        <pages>516</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100188</ee>
+        <url>db/reference/vision/vision2014.html#X14ev</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14dq" publtype="encyclopedia">
+        <title>Kalman-Bucy Filter.</title>
+        <pages>437</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100269</ee>
+        <url>db/reference/vision/vision2014.html#X14dq</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14hm" publtype="encyclopedia">
+        <title>Second Order Approximation.</title>
+        <pages>713</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100295</ee>
+        <url>db/reference/vision/vision2014.html#X14hm</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Chan14a" publtype="encyclopedia">
+        <author>Shing-Chow Chan</author>
+        <title>Light Field.</title>
+        <pages>447-453</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_5</ee>
+        <url>db/reference/vision/vision2014.html#Chan14a</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14dt" publtype="encyclopedia">
+        <title>KF.</title>
+        <pages>437</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100270</ee>
+        <url>db/reference/vision/vision2014.html#X14dt</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Sturm14a" publtype="encyclopedia">
+        <author>Peter F. Sturm</author>
+        <title>Fisheye Lens.</title>
+        <pages>300-301</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_487</ee>
+        <url>db/reference/vision/vision2014.html#Sturm14a</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/DickinsonSS14" publtype="encyclopedia">
+        <author>Sven J. Dickinson</author>
+        <author>Ali Shokoufandeh</author>
+        <author>Kaleem Siddiqi</author>
+        <title>Shock Graph.</title>
+        <pages>729-737</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_655</ee>
+        <url>db/reference/vision/vision2014.html#DickinsonSS14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Wu14b" publtype="encyclopedia">
+        <author>Ying Nian Wu</author>
+        <title>Histogram.</title>
+        <pages>361-362</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_742</ee>
+        <url>db/reference/vision/vision2014.html#Wu14b</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14gu" publtype="encyclopedia">
+        <title>Rao Metric.</title>
+        <pages>660</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100236</ee>
+        <url>db/reference/vision/vision2014.html#X14gu</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14gy" publtype="encyclopedia">
+        <title>Relation Between Objects and Their Digital Images.</title>
+        <pages>677</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100223</ee>
+        <url>db/reference/vision/vision2014.html#X14gy</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14el" publtype="encyclopedia">
+        <title>Monte Carlo Annealing.</title>
+        <pages>492</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100245</ee>
+        <url>db/reference/vision/vision2014.html#X14el</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14iq" publtype="encyclopedia">
+        <title>Symmetry-Based X.</title>
+        <pages>788</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100218</ee>
+        <url>db/reference/vision/vision2014.html#X14iq</url>
+    </incollection>
+    <incollection mdate="2018-11-14" key="reference/vision/Koppal14a" publtype="encyclopedia">
+        <author>Sanjeev J. Koppal</author>
+        <title>Lambertian Reflectance.</title>
+        <pages>441-443</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_534</ee>
+        <ee>https://www.wikidata.org/entity/Q56431771</ee>
+        <url>db/reference/vision/vision2014.html#Koppal14a</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14cg" publtype="encyclopedia">
+        <title>Face Reconstruction.</title>
+        <pages>288</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100104</ee>
+        <url>db/reference/vision/vision2014.html#X14cg</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Zhang14n" publtype="encyclopedia">
+        <author>Zhengyou Zhang</author>
+        <title>Fundamental Matrix.</title>
+        <pages>307-308</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_131</ee>
+        <url>db/reference/vision/vision2014.html#Zhang14n</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/RamanathD14b" publtype="encyclopedia">
+        <author>Rajeev Ramanath</author>
+        <author>Mark S. Drew</author>
+        <title>Gamut Mapping.</title>
+        <pages>318-325</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_456</ee>
+        <url>db/reference/vision/vision2014.html#RamanathD14b</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14et" publtype="encyclopedia">
+        <title>Multiple View Geometry.</title>
+        <pages>513</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100010</ee>
+        <url>db/reference/vision/vision2014.html#X14et</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14hz" publtype="encyclopedia">
+        <title>SPDE.</title>
+        <pages>749</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100249</ee>
+        <url>db/reference/vision/vision2014.html#X14hz</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14fx" publtype="encyclopedia">
+        <title>Pan-Tilt Camera Calibration.</title>
+        <pages>581</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100082</ee>
+        <url>db/reference/vision/vision2014.html#X14fx</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14fy" publtype="encyclopedia">
+        <title>Pan-Tilt Camera Calibration.</title>
+        <pages>586</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100083</ee>
+        <url>db/reference/vision/vision2014.html#X14fy</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Hasinoff14a" publtype="encyclopedia">
+        <author>Samuel W. Hasinoff</author>
+        <title>Saturation (Imaging).</title>
+        <pages>699-701</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_483</ee>
+        <url>db/reference/vision/vision2014.html#Hasinoff14a</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Tominaga14" publtype="encyclopedia">
+        <author>Shoji Tominaga</author>
+        <title>Color Model.</title>
+        <pages>116-120</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_449</ee>
+        <url>db/reference/vision/vision2014.html#Tominaga14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14ge" publtype="encyclopedia">
+        <title>Picture Understanding.</title>
+        <pages>610</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100115</ee>
+        <url>db/reference/vision/vision2014.html#X14ge</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14db" publtype="encyclopedia">
+        <title>ICP.</title>
+        <pages>371</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100030</ee>
+        <url>db/reference/vision/vision2014.html#X14db</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14gd" publtype="encyclopedia">
+        <title>Photometric Consistency Function.</title>
+        <pages>599</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100042</ee>
+        <url>db/reference/vision/vision2014.html#X14gd</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14bw" publtype="encyclopedia">
+        <title>Distance Estimation.</title>
+        <pages>229</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100007</ee>
+        <url>db/reference/vision/vision2014.html#X14bw</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14gm" publtype="encyclopedia">
+        <title>Probabilistic Hill Climbing.</title>
+        <pages>639</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100246</ee>
+        <url>db/reference/vision/vision2014.html#X14gm</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14u" publtype="encyclopedia">
+        <title>Blackbody Radiator.</title>
+        <pages>52</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100202</ee>
+        <url>db/reference/vision/vision2014.html#X14u</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Wang14" publtype="encyclopedia">
+        <author>Xiaogang Wang</author>
+        <title>Face Identification.</title>
+        <pages>279-285</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_354</ee>
+        <url>db/reference/vision/vision2014.html#Wang14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14cb" publtype="encyclopedia">
+        <title>Environment Mapping.</title>
+        <pages>247</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100016</ee>
+        <url>db/reference/vision/vision2014.html#X14cb</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14fl" publtype="encyclopedia">
+        <title>Object Segmentation.</title>
+        <pages>542</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100065</ee>
+        <url>db/reference/vision/vision2014.html#X14fl</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Vernon14a" publtype="encyclopedia">
+        <author>David Vernon</author>
+        <title>Cognitive Vision.</title>
+        <pages>106-109</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_83</ee>
+        <url>db/reference/vision/vision2014.html#Vernon14a</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14jc" publtype="encyclopedia">
+        <title>Two Dimensional Conditional Random Fields.</title>
+        <pages>829</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100234</ee>
+        <url>db/reference/vision/vision2014.html#X14jc</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14gq" publtype="encyclopedia">
+        <title>PTZ Camera Calibration.</title>
+        <pages>654</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100084</ee>
+        <url>db/reference/vision/vision2014.html#X14gq</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Wu14" publtype="encyclopedia">
+        <author>Ying Nian Wu</author>
+        <title>Cross Entropy.</title>
+        <pages>154</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_743</ee>
+        <url>db/reference/vision/vision2014.html#Wu14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/RamanathD14a" publtype="encyclopedia">
+        <author>Rajeev Ramanath</author>
+        <author>Mark S. Drew</author>
+        <title>Color Spaces.</title>
+        <pages>123-132</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_452</ee>
+        <url>db/reference/vision/vision2014.html#RamanathD14a</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Tan14d" publtype="encyclopedia">
+        <author>Robby T. Tan</author>
+        <title>Specularity, Specular Reflectance.</title>
+        <pages>750-752</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_538</ee>
+        <url>db/reference/vision/vision2014.html#Tan14d</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14di" publtype="encyclopedia">
+        <title>Inexact Matching.</title>
+        <pages>401</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100287</ee>
+        <url>db/reference/vision/vision2014.html#X14di</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14dn" publtype="encyclopedia">
+        <title>Intrinsic Parameters.</title>
+        <pages>426</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100023</ee>
+        <url>db/reference/vision/vision2014.html#X14dn</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14du" publtype="encyclopedia">
+        <title>Kinematic Chain Motion Models.</title>
+        <pages>437</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100212</ee>
+        <url>db/reference/vision/vision2014.html#X14du</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14bz" publtype="encyclopedia">
+        <title>Ellipse Matching.</title>
+        <pages>247</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100095</ee>
+        <url>db/reference/vision/vision2014.html#X14bz</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Lindeberg14" publtype="encyclopedia">
+        <author orcid="0000-0002-9081-2170">Tony Lindeberg</author>
+        <title>Scale Selection.</title>
+        <pages>701-713</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_242</ee>
+        <url>db/reference/vision/vision2014.html#Lindeberg14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Vernon14b" publtype="encyclopedia">
+        <author>David Vernon</author>
+        <title>Visual Cognition.</title>
+        <pages>860-862</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_785</ee>
+        <url>db/reference/vision/vision2014.html#Vernon14b</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Neumann14" publtype="encyclopedia">
+        <author>Bernd Neumann</author>
+        <title>Description Logics.</title>
+        <pages>189-191</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_706</ee>
+        <url>db/reference/vision/vision2014.html#Neumann14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14fb" publtype="encyclopedia">
+        <title>Non-central Camera Calibration.</title>
+        <pages>523</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100025</ee>
+        <url>db/reference/vision/vision2014.html#X14fb</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14br" publtype="encyclopedia">
+        <title>Dimensional Compression.</title>
+        <pages>218</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100230</ee>
+        <url>db/reference/vision/vision2014.html#X14br</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14dc" publtype="encyclopedia">
+        <title>Image Alignment.</title>
+        <pages>373</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100038</ee>
+        <url>db/reference/vision/vision2014.html#X14dc</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Joshi14a" publtype="encyclopedia">
+        <author>Neel Joshi</author>
+        <title>Motion Blur.</title>
+        <pages>492-495</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_512</ee>
+        <url>db/reference/vision/vision2014.html#Joshi14a</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14cx" publtype="encyclopedia">
+        <title>Hazard Detection.</title>
+        <pages>358</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100174</ee>
+        <url>db/reference/vision/vision2014.html#X14cx</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14cp" publtype="encyclopedia">
+        <title>Gait Analysis.</title>
+        <pages>309</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100109</ee>
+        <url>db/reference/vision/vision2014.html#X14cp</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Koch14" publtype="encyclopedia">
+        <author>Reinhard Koch</author>
+        <title>Depth Estimation.</title>
+        <pages>183-186</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_125</ee>
+        <url>db/reference/vision/vision2014.html#Koch14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/PereraBZ14" publtype="encyclopedia">
+        <author>Samunda Perera</author>
+        <author>Nick Barnes</author>
+        <author>Alexander Zelinsky</author>
+        <title>Exploration: Simultaneous Localization and Mapping (SLAM).</title>
+        <pages>268-275</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_280</ee>
+        <url>db/reference/vision/vision2014.html#PereraBZ14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14gx" publtype="encyclopedia">
+        <title>Reflectometry.</title>
+        <pages>677</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100191</ee>
+        <url>db/reference/vision/vision2014.html#X14gx</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/LangguthG14a" publtype="encyclopedia">
+        <author>Fabian Langguth</author>
+        <author>Michael Goesele</author>
+        <title>Radiance.</title>
+        <pages>655-656</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_526</ee>
+        <url>db/reference/vision/vision2014.html#LangguthG14a</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14bc" publtype="encyclopedia">
+        <title>Coplanarity Constraint.</title>
+        <pages>152</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100009</ee>
+        <url>db/reference/vision/vision2014.html#X14bc</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14jb" publtype="encyclopedia">
+        <title>Transportation Problem.</title>
+        <pages>827</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100288</ee>
+        <url>db/reference/vision/vision2014.html#X14jb</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14p" publtype="encyclopedia">
+        <title>Automatic Gait Recognition.</title>
+        <pages>42</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100108</ee>
+        <url>db/reference/vision/vision2014.html#X14p</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14gf" publtype="encyclopedia">
+        <title>Piecewise Polynomial.</title>
+        <pages>610</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100118</ee>
+        <url>db/reference/vision/vision2014.html#X14gf</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Bonaiuto14" publtype="encyclopedia">
+        <author>James Bonaiuto</author>
+        <title>Affordances and Action Recognition.</title>
+        <pages>25-27</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_772</ee>
+        <url>db/reference/vision/vision2014.html#Bonaiuto14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Zhang14g" publtype="encyclopedia">
+        <author>Zhengyou Zhang</author>
+        <title>Camera Parameters (Intrinsic, Extrinsic).</title>
+        <pages>81-85</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_152</ee>
+        <url>db/reference/vision/vision2014.html#Zhang14g</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/RamanathD14d" publtype="encyclopedia">
+        <author>Rajeev Ramanath</author>
+        <author>Mark S. Drew</author>
+        <title>Planckian Locus.</title>
+        <pages>613-616</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_566</ee>
+        <url>db/reference/vision/vision2014.html#RamanathD14d</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Wu14c" publtype="encyclopedia">
+        <author>Ying Nian Wu</author>
+        <title>Statistical Independence.</title>
+        <pages>759-760</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_744</ee>
+        <url>db/reference/vision/vision2014.html#Wu14c</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14l" publtype="encyclopedia">
+        <title>Aperture Ghosting.</title>
+        <pages>36</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100146</ee>
+        <url>db/reference/vision/vision2014.html#X14l</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14bu" publtype="encyclopedia">
+        <title>Discrete AdaBoost.</title>
+        <pages>221</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100239</ee>
+        <url>db/reference/vision/vision2014.html#X14bu</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Ackermann14" publtype="encyclopedia">
+        <author>Hanno Ackermann</author>
+        <title>Factorization.</title>
+        <pages>288-291</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_689</ee>
+        <url>db/reference/vision/vision2014.html#Ackermann14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14bj" publtype="encyclopedia">
+        <title>Depth Imaging.</title>
+        <pages>186</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100006</ee>
+        <url>db/reference/vision/vision2014.html#X14bj</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14ft" publtype="encyclopedia">
+        <title>Out of Focus Blur.</title>
+        <pages>580</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100167</ee>
+        <url>db/reference/vision/vision2014.html#X14ft</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14af" publtype="encyclopedia">
+        <title>CIE Standard Illuminant.</title>
+        <pages>100</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100123</ee>
+        <url>db/reference/vision/vision2014.html#X14af</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14ek" publtype="encyclopedia">
+        <title>MoCap.</title>
+        <pages>488</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100047</ee>
+        <url>db/reference/vision/vision2014.html#X14ek</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Chaumette14" publtype="encyclopedia">
+        <author>Fran&ccedil;ois Chaumette</author>
+        <title>Visual Servoing.</title>
+        <pages>869-874</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_281</ee>
+        <url>db/reference/vision/vision2014.html#Chaumette14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14jd" publtype="encyclopedia">
+        <title>Underwater Light Field.</title>
+        <pages>837</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100196</ee>
+        <url>db/reference/vision/vision2014.html#X14jd</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Zhang14a" publtype="encyclopedia">
+        <author>Zhengyou Zhang</author>
+        <title>Affine Projection.</title>
+        <pages>22</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_791</ee>
+        <url>db/reference/vision/vision2014.html#Zhang14a</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/SrivastavaKK14" publtype="encyclopedia">
+        <author>Anuj Srivastava</author>
+        <author>Sebastian Kurtek</author>
+        <author>Eric Klassen</author>
+        <title>Statistical Shape Analysis.</title>
+        <pages>760-770</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_778</ee>
+        <url>db/reference/vision/vision2014.html#SrivastavaKK14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Maire14" publtype="encyclopedia">
+        <author>Michael Maire</author>
+        <title>Corner Detection.</title>
+        <pages>152-154</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_216</ee>
+        <url>db/reference/vision/vision2014.html#Maire14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14ig" publtype="encyclopedia">
+        <title>Superresolution.</title>
+        <pages>781</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100036</ee>
+        <url>db/reference/vision/vision2014.html#X14ig</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14gg" publtype="encyclopedia">
+        <title>Pinhole Camera.</title>
+        <pages>610</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100001</ee>
+        <url>db/reference/vision/vision2014.html#X14gg</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14fe" publtype="encyclopedia">
+        <title>Numerical Partial Differential Equations.</title>
+        <pages>531</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100262</ee>
+        <url>db/reference/vision/vision2014.html#X14fe</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Maeda14" publtype="encyclopedia">
+        <author>Eisaku Maeda</author>
+        <title>Dimensionality Reduction.</title>
+        <pages>218-221</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_652</ee>
+        <url>db/reference/vision/vision2014.html#Maeda14</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/X14cw" publtype="encyclopedia">
+        <title>GVF.</title>
+        <pages>354</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_100267</ee>
+        <url>db/reference/vision/vision2014.html#X14cw</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Atkinson14a" publtype="encyclopedia">
+        <author>Gary A. Atkinson</author>
+        <title>Polarized Light in Computer Vision.</title>
+        <pages>630-634</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_571</ee>
+        <url>db/reference/vision/vision2014.html#Atkinson14a</url>
+    </incollection>
+    <incollection mdate="2017-07-12" key="reference/vision/Vernon14" publtype="encyclopedia">
+        <author>David Vernon</author>
+        <title>Cognitive System.</title>
+        <pages>100-106</pages>
+        <year>2014</year>
+        <booktitle>Computer Vision, A Reference Guide</booktitle>
+        <ee>https://doi.org/10.1007/978-0-387-31439-6_82</ee>
+        <url>db/reference/vision/vision2014.html#Vernon14</url>
+    </incollection>
+    <!-- </inproceedings> -->
+    <inproceedings mdate="2011-05-29" key="conf/usab/Lindner06">
+        <author>Martin Lindner</author>
+        <title>Human-centered Design for 'Casual' Information and Learning in Micromedia
+            Environments.</title>
+        <pages>97-120</pages>
+        <year>2006</year>
+        <booktitle>USAB</booktitle>
+        <crossref>conf/usab/2006</crossref>
+        <url>db/conf/usab/usab2006.html#Lindner06</url>
+    </inproceedings>
+    <inproceedings mdate="2011-05-29" key="conf/usab/Wenninger06">
+        <author>Barbara Wenninger</author>
+        <title>Practice Research for Teacher Students in a 'Professional Community'.</title>
+        <pages>175-188</pages>
+        <year>2006</year>
+        <booktitle>USAB</booktitle>
+        <crossref>conf/usab/2006</crossref>
+        <url>db/conf/usab/usab2006.html#Wenninger06</url>
+    </inproceedings>
+    <inproceedings mdate="2017-06-05" key="conf/usab/EspositoRB09">
+        <author orcid="0000-0002-7268-1795">Anna Esposito</author>
+        <author>Maria Teresa Riviello</author>
+        <author>Nikolaos G. Bourbakis</author>
+        <title>Cultural Specific Effects on the Recognition of Basic Emotions: A Study on Italian
+            Subjects.</title>
+        <pages>135-148</pages>
+        <year>2009</year>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-642-10308-7_9</ee>
+        <crossref>conf/usab/2009</crossref>
+        <url>db/conf/usab/usab2009.html#EspositoRB09</url>
+    </inproceedings>
+    <inproceedings mdate="2018-11-14" key="conf/usab/ArraisLO11">
+        <author orcid="0000-0003-4937-2334">Joel Arrais</author>
+        <author orcid="0000-0001-5330-6562">Pedro Lopes 0002</author>
+        <author orcid="0000-0002-6672-6176">Jos&eacute; Lu&iacute;s Oliveira</author>
+        <title>Challenges Storing and Representing Biomedical Data.</title>
+        <pages>53-62</pages>
+        <year>2011</year>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-642-25364-5_6</ee>
+        <ee>https://www.wikidata.org/entity/Q56795167</ee>
+        <crossref>conf/usab/2011</crossref>
+        <url>db/conf/usab/usab2011.html#ArraisLO11</url>
+    </inproceedings>
+    <inproceedings mdate="2017-06-21" key="conf/usab/AddasZ11">
+        <author>Rima Addas</author>
+        <author>Ning Zhang 0001</author>
+        <title>An Enhanced Approach to Supporting Controlled Access to EPRs with Three Levels of
+            Identity Privacy Preservations.</title>
+        <pages>547-561</pages>
+        <year>2011</year>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-642-25364-5_38</ee>
+        <crossref>conf/usab/2011</crossref>
+        <url>db/conf/usab/usab2011.html#AddasZ11</url>
+    </inproceedings>
+    <inproceedings mdate="2017-05-26" key="conf/usab/ReussNKN07">
+        <author>Elke Reuss</author>
+        <author>Rahel Naef</author>
+        <author>Rochus Keller</author>
+        <author>Moira C. Norrie</author>
+        <title>Physicians' and Nurses' Documenting Practices and Implications for Electronic Patient
+            Record Design.</title>
+        <pages>113-118</pages>
+        <year>2007</year>
+        <crossref>conf/usab/2007</crossref>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-540-76805-0_9</ee>
+        <url>db/conf/usab/usab2007.html#ReussNKN07</url>
+    </inproceedings>
+    <inproceedings mdate="2023-09-30" key="conf/usab/LeitnerWHHB07">
+        <author orcid="0000-0002-6813-4692">Daniel Leitner</author>
+        <author>Siegfried Wassertheurer</author>
+        <author>Michael Hessinger</author>
+        <author orcid="0000-0002-6786-5194">Andreas Holzinger</author>
+        <author>Felix Breitenecker</author>
+        <title>Modeling Elastic Vessels with the LBGK Method in Three Dimensions.</title>
+        <pages>213-226</pages>
+        <year>2007</year>
+        <crossref>conf/usab/2007</crossref>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-540-76805-0_18</ee>
+        <ee>https://www.wikidata.org/entity/Q58886683</ee>
+        <url>db/conf/usab/usab2007.html#LeitnerWHHB07</url>
+    </inproceedings>
+    <inproceedings mdate="2017-05-26" key="conf/usab/KrajncKFT11">
+        <author>Elmar Krajnc</author>
+        <author>Mathias Knoll</author>
+        <author>Johannes Feiner</author>
+        <author>Mario Traar</author>
+        <title>A Touch Sensitive User Interface Approach on Smartphones for Visually Impaired and
+            Blind Persons.</title>
+        <pages>585-594</pages>
+        <year>2011</year>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-642-25364-5_41</ee>
+        <crossref>conf/usab/2011</crossref>
+        <url>db/conf/usab/usab2011.html#KrajncKFT11</url>
+    </inproceedings>
+    <inproceedings mdate="2005-11-11" key="conf/usab/HolzingerL05">
+        <author>Andreas Holzinger</author>
+        <author>Hubert Leitner</author>
+        <title>Lessons from Real-Life Usability Engineering in Hospital: From Software Usability to
+            Total Workplace Usability.</title>
+        <pages>153-160</pages>
+        <year>2005</year>
+        <crossref>conf/usab/2005</crossref>
+        <booktitle>Usability Symposium</booktitle>
+        <url>db/conf/usab/usab2005.html#HolzingerL05</url>
+    </inproceedings>
+    <inproceedings mdate="2017-05-26" key="conf/usab/Thimbleby07">
+        <author>Harold W. Thimbleby</author>
+        <title>User-Centered Methods Are Insufficient for Safety Critical Systems.</title>
+        <pages>1-20</pages>
+        <year>2007</year>
+        <crossref>conf/usab/2007</crossref>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-540-76805-0_1</ee>
+        <url>db/conf/usab/usab2007.html#Thimbleby07</url>
+    </inproceedings>
+    <inproceedings mdate="2017-06-05" key="conf/usab/LopesR11">
+        <author orcid="0000-0002-4202-791X">Carla Teixeira Lopes</author>
+        <author orcid="0000-0001-6150-0090">Cristina Ribeiro 0001</author>
+        <title>Data Certification Impact on Health Information Retrieval.</title>
+        <pages>31-42</pages>
+        <year>2011</year>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-642-25364-5_4</ee>
+        <crossref>conf/usab/2011</crossref>
+        <url>db/conf/usab/usab2011.html#LopesR11</url>
+    </inproceedings>
+    <inproceedings mdate="2019-10-19" key="conf/usab/AlagozZWV11">
+        <author>Firat Alag&ouml;z</author>
+        <author>Martina Ziefle</author>
+        <author orcid="0000-0002-7163-3492">Wiktoria Wilkowska</author>
+        <author orcid="0000-0002-6214-1461">Andr&eacute; Calero Valdez</author>
+        <title>Openness to Accept Medical Technology - A Cultural View.</title>
+        <pages>151-170</pages>
+        <year>2011</year>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-642-25364-5_14</ee>
+        <crossref>conf/usab/2011</crossref>
+        <url>db/conf/usab/usab2011.html#AlagozZWV11</url>
+    </inproceedings>
+    <inproceedings mdate="2023-09-30" key="conf/usab/StorkHWZS09">
+        <author>Sonja Stork</author>
+        <author>Isabella Hild</author>
+        <author>Mathey Wiesbeck</author>
+        <author orcid="0000-0002-2882-1359">Michael F. Zaeh</author>
+        <author>Anna Schub&ouml;</author>
+        <title>Finding Relevant Items: Attentional Guidance Improves Visual Selection Processes.</title>
+        <pages>69-80</pages>
+        <year>2009</year>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-642-10308-7_5</ee>
+        <crossref>conf/usab/2009</crossref>
+        <url>db/conf/usab/usab2009.html#StorkHWZS09</url>
+    </inproceedings>
+    <inproceedings mdate="2017-06-05" key="conf/usab/LiuOK07">
+        <author>Yuanhua Liu</author>
+        <author>Anna-Lisa Osvalder</author>
+        <author orcid="0000-0001-6336-3878">Mari Anne Karlsson</author>
+        <title>User's Expertise Differences When Interacting with Simple Medical User Interfaces.</title>
+        <pages>441-446</pages>
+        <year>2007</year>
+        <crossref>conf/usab/2007</crossref>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-540-76805-0_39</ee>
+        <url>db/conf/usab/usab2007.html#LiuOK07</url>
+    </inproceedings>
+    <inproceedings mdate="2017-05-26" key="conf/usab/Workman07">
+        <author>Michael Workman</author>
+        <title>Cognitive Load Research and Semantic Apprehension of Graphical Linguistics.</title>
+        <pages>375-388</pages>
+        <year>2007</year>
+        <crossref>conf/usab/2007</crossref>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-540-76805-0_33</ee>
+        <url>db/conf/usab/usab2007.html#Workman07</url>
+    </inproceedings>
+    <inproceedings mdate="2019-10-19" key="conf/usab/WilkowskaGZ10">
+        <author orcid="0000-0002-7163-3492">Wiktoria Wilkowska</author>
+        <author>Sylvia Gaul</author>
+        <author>Martina Ziefle</author>
+        <title>A Small but Significant Difference - The Role of Gender on Acceptance of Medical
+            Assistive Technologies.</title>
+        <pages>82-100</pages>
+        <year>2010</year>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-642-16607-5_6</ee>
+        <crossref>conf/usab/2010</crossref>
+        <url>db/conf/usab/usab2010.html#WilkowskaGZ10</url>
+    </inproceedings>
+    <inproceedings mdate="2017-05-26" key="conf/usab/PalanqueBN07">
+        <author>Philippe A. Palanque</author>
+        <author>Sandra Basnyat</author>
+        <author>David Navarre</author>
+        <title>Improving Interactive Systems Usability Using Formal Description Techniques:
+            Application to HealthCare.</title>
+        <pages>21-40</pages>
+        <year>2007</year>
+        <crossref>conf/usab/2007</crossref>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-540-76805-0_2</ee>
+        <url>db/conf/usab/usab2007.html#PalanqueBN07</url>
+    </inproceedings>
+    <inproceedings mdate="2017-05-26" key="conf/usab/LeitnerAH07">
+        <author>Gerhard Leitner</author>
+        <author>David Ahlstr&ouml;m</author>
+        <author>Martin Hitz</author>
+        <title>Usability of Mobile Computing in Emergency Response Systems - Lessons Learned and
+            Future Directions.</title>
+        <pages>241-254</pages>
+        <year>2007</year>
+        <crossref>conf/usab/2007</crossref>
+        <booktitle>USAB</booktitle>
+        <ee>https://doi.org/10.1007/978-3-540-76805-0_20</ee>
+        <url>db/conf/usab/usab2007.html#LeitnerAH07</url>
+    </inproceedings>
+    <!-- <inproceedings mdate="2017-05-26" key="conf/usab/OtjacquesKFFH10">
+<author>Beno&icirc;t Otjacques</author>
+<author>Marc Krier</author>
+<a --><!--
+    <crossref>conf/stoc/STOC3</crossref>
+<year>1971</year> -->
+    <!-- <booktitle>STOC</booktitle>
+<url>db/conf/stoc/stoc71.html#ConstableH71</url>
+<ee>https://doi.org/10.1145/800157.805053</ee> -->
+    <!-- </inproceedings> -->
+    <inproceedings mdate="2018-11-06" key="conf/stoc/Clarkson97">
+        <author>Kenneth L. Clarkson</author>
+        <title>Nearest Neighbor Queries in Metric Spaces.</title>
+        <pages>609-617</pages>
+        <year>1997</year>
+        <crossref>conf/stoc/1997</crossref>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/258533.258655</ee>
+        <url>db/conf/stoc/stoc1997.html#Clarkson97</url>
+    </inproceedings>
+    <inproceedings mdate="2018-11-06" key="conf/stoc/AggarwalACS87">
+        <title>A Model for Hierarchical Memory</title>
+        <author>Alok Aggarwal</author>
+        <author>Bowen Alpern</author>
+        <author>Ashok K. Chandra</author>
+        <author>Marc Snir</author>
+        <pages>305-314</pages>
+        <crossref>conf/stoc/STOC19</crossref>
+        <year>1987</year>
+        <booktitle>STOC</booktitle>
+        <url>db/conf/stoc/stoc87.html#AggarwalACS87</url>
+        <ee>https://doi.org/10.1145/28395.28428</ee>
+    </inproceedings>
+    <inproceedings mdate="2018-11-06" key="conf/stoc/GuruswamiR07">
+        <author>Venkatesan Guruswami</author>
+        <author>Prasad Raghavendra</author>
+        <title>A 3-query PCP over integers.</title>
+        <pages>198-206</pages>
+        <year>2007</year>
+        <crossref>conf/stoc/2007</crossref>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/1250790.1250819</ee>
+        <url>db/conf/stoc/stoc2007.html#GuruswamiR07</url>
+    </inproceedings>
+    <inproceedings mdate="2020-10-25" key="conf/stoc/HazanK16">
+        <author orcid="0000-0002-1566-3216">Elad Hazan</author>
+        <author>Tomer Koren</author>
+        <title>The computational power of optimization in online learning.</title>
+        <pages>128-141</pages>
+        <year>2016</year>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/2897518.2897536</ee>
+        <crossref>conf/stoc/2016</crossref>
+        <url>db/conf/stoc/stoc2016.html#HazanK16</url>
+    </inproceedings>
+    <inproceedings mdate="2023-06-26" key="conf/stoc/DvirS05">
+        <author>Zeev Dvir</author>
+        <author orcid="0000-0003-2384-425X">Amir Shpilka</author>
+        <title>Locally decodable codes with 2 queries and polynomial identity testing for depth 3
+            circuits.</title>
+        <pages>592-601</pages>
+        <year>2005</year>
+        <crossref>conf/stoc/2005</crossref>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/1060590.1060678</ee>
+        <url>db/conf/stoc/stoc2005.html#DvirS05</url>
+    </inproceedings>
+    <inproceedings mdate="2018-11-06" key="conf/stoc/Basu69">
+        <title>On Classes of Computable Functions</title>
+        <author>Sanat K. Basu</author>
+        <pages>55-59</pages>
+        <crossref>conf/stoc/STOC1</crossref>
+        <year>1969</year>
+        <booktitle>STOC</booktitle>
+        <url>db/conf/stoc/stoc69.html#Basu69</url>
+        <ee>https://doi.org/10.1145/800169.805421</ee>
+    </inproceedings>
+    <inproceedings mdate="2020-06-09" key="conf/stoc/AlevL20">
+        <author>Vedat Levi Alev</author>
+        <author>Lap Chi Lau</author>
+        <title>Improved analysis of higher order random walks and applications.</title>
+        <pages>1198-1211</pages>
+        <year>2020</year>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/3357713.3384317</ee>
+        <crossref>conf/stoc/2020</crossref>
+        <url>db/conf/stoc/stoc2020.html#AlevL20</url>
+    </inproceedings>
+    <inproceedings mdate="2022-12-27" key="conf/stoc/LeonardiR97">
+        <author>Stefano Leonardi 0001</author>
+        <author>Danny Raz</author>
+        <title>Approximating Total Flow Time on Parallel Machines.</title>
+        <pages>110-119</pages>
+        <year>1997</year>
+        <crossref>conf/stoc/1997</crossref>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/258533.258562</ee>
+        <url>db/conf/stoc/stoc1997.html#LeonardiR97</url>
+    </inproceedings>
+    <inproceedings mdate="2018-11-06" key="conf/stoc/BakkerMOZ85">
+        <title>Transition Systems, Infinitary Languages and the Semantics of Uniform Concurrency</title>
+        <author>J. W. de Bakker</author>
+        <author>John-Jules Ch. Meyer</author>
+        <author>Ernst-R&uuml;diger Olderog</author>
+        <author>Jeffery I. Zucker</author>
+        <pages>252-262</pages>
+        <crossref>conf/stoc/STOC17</crossref>
+        <year>1985</year>
+        <booktitle>STOC</booktitle>
+        <url>db/conf/stoc/stoc85.html#BakkerMOZ85</url>
+        <ee>https://doi.org/10.1145/22145.22174</ee>
+    </inproceedings>
+    <inproceedings mdate="2023-05-22" key="conf/stoc/LiuNS023">
+        <author>Qinghua Liu</author>
+        <author>Praneeth Netrapalli</author>
+        <author>Csaba Szepesv&aacute;ri</author>
+        <author>Chi Jin 0001</author>
+        <title>Optimistic MLE: A Generic Model-Based Algorithm for Partially Observable Sequential
+            Decision Making.</title>
+        <pages>363-376</pages>
+        <year>2023</year>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/3564246.3585161</ee>
+        <crossref>conf/stoc/2023</crossref>
+        <url>db/conf/stoc/stoc2023.html#LiuNS023</url>
+    </inproceedings>
+    <inproceedings mdate="2020-06-09" key="conf/stoc/ODonnellST20">
+
+        <author>Ryan O'Donnell</author>
+        <author>Rocco A. Servedio</author>
+        <author>Li-Yang Tan</author>
+        <title>Fooling Gaussian PTFs via local hyperconcentration.</title>
+        <pages>1170-1183</pages>
+        <year>2020</year>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/3357713.3384281</ee>
+        <crossref>conf/stoc/2020</crossref>
+        <url>db/conf/stoc/stoc2020.html#ODonnellST20</url>
+    </inproceedings>
+    <inproceedings mdate="2023-09-30" key="conf/stoc/NarayananR023">
+        <author orcid="0000-0003-0568-7350">Hariharan Narayanan</author>
+        <author>Amit Rajaraman</author>
+        <author>Piyush Srivastava 0001</author>
+        <title>Sampling from Convex Sets with a Cold Start using Multiscale Decompositions.</title>
+        <pages>117-130</pages>
+        <year>2023</year>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/3564246.3585172</ee>
+        <crossref>conf/stoc/2023</crossref>
+        <url>db/conf/stoc/stoc2023.html#NarayananR023</url>
+    </inproceedings>
+    <inproceedings mdate="2018-11-06" key="conf/stoc/Alon85">
+        <title>Expanders, Sorting in Rounds and Superconcentrators of Limited Depth</title>
+        <author>Noga Alon</author>
+        <pages>98-102</pages>
+        <crossref>conf/stoc/STOC17</crossref>
+        <year>1985</year>
+        <booktitle>STOC</booktitle>
+        <url>db/conf/stoc/stoc85.html#Alon85</url>
+        <ee>https://doi.org/10.1145/22145.22156</ee>
+    </inproceedings>
+    <inproceedings mdate="2018-11-06" key="conf/stoc/ImpagliazzoLL89">
+        <title>Pseudo-random Generation from one-way functions (Extended Abstracts)</title>
+        <author>Russell Impagliazzo</author>
+        <author>Leonid A. Levin</author>
+        <author>Michael Luby</author>
+        <pages>12-24</pages>
+        <crossref>conf/stoc/STOC21</crossref>
+        <year>1989</year>
+        <booktitle>STOC</booktitle>
+        <url>db/conf/stoc/stoc89.html#ImpagliazzoLL89</url>
+        <ee>https://doi.org/10.1145/73007.73009</ee>
+    </inproceedings>
+    <inproceedings mdate="2018-11-06" key="conf/stoc/CrescenzoIO98">
+        <author>Giovanni Di Crescenzo</author>
+        <author>Yuval Ishai</author>
+        <author>Rafail Ostrovsky</author>
+        <title>Non-Interactive and Non-Malleable Commitment.</title>
+        <pages>141-150</pages>
+        <year>1998</year>
+        <crossref>conf/stoc/1998</crossref>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/276698.276722</ee>
+        <url>db/conf/stoc/stoc1998.html#CrescenzoIO98</url>
+    </inproceedings>
+    <inproceedings mdate="2023-05-30" key="conf/stoc/ChenOS17">
+        <author>Xi Chen 0001</author>
+        <author>Igor C. Oliveira</author>
+        <author>Rocco A. Servedio</author>
+        <title>Addition is exponentially harder than counting for shallow monotone circuits.</title>
+        <pages>1232-1245</pages>
+        <year>2017</year>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/3055399.3055425</ee>
+        <crossref>conf/stoc/2017</crossref>
+        <url>db/conf/stoc/stoc2017.html#ChenOS17</url>
+    </inproceedings>
+    <inproceedings mdate="2018-11-06" key="conf/stoc/Baker93">
+        <author>Brenda S. Baker</author>
+        <title>A theory of parameterized pattern matching: algorithms and applications.</title>
+        <pages>71-80</pages>
+        <year>1993</year>
+        <crossref>conf/stoc/STOC25</crossref>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/167088.167115</ee>
+        <url>db/conf/stoc/stoc1993.html#Baker93</url>
+    </inproceedings>
+    <inproceedings mdate="2020-10-25" key="conf/stoc/BabaioffGN17">
+        <author>Moshe Babaioff</author>
+        <author>Yannai A. Gonczarowski</author>
+        <author orcid="0000-0003-3106-6304">Noam Nisan</author>
+        <title>The menu-size complexity of revenue approximation.</title>
+        <pages>869-877</pages>
+        <year>2017</year>
+        <booktitle>STOC</booktitle>
+        <ee>https://doi.org/10.1145/3055399.3055426</ee>
+        <crossref>conf/stoc/2017</crossref>
+        <url>db/conf/stoc/stoc2017.html#BabaioffGN17</url>
+    </inproceedings>
+    <!-- <inproceedings mdate="2023-09-30" key="conf/stoc/CanettiH0V15">
+<author>Ran Canetti</author>
+<author>Justin Holmgren</author>
+<author orcid="0000-0002-3572-7643">Abhishek --><!-- <author>Jikang
+    Li</author>
+<title>Home Page</title>
+</www> -->
+    <www mdate="2009-06-10" key="homepages/11/4848">
+        <author>Paul Flea</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-09" key="homepages/11/1605">
+        <author>H. Meraoubi</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/5688">
+        <author>Abdelghani Bellaachia</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/6019">
+        <author>Dirk Kuhlmann</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-09" key="homepages/11/2112">
+        <author>ShiXin Sun</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-09" key="homepages/11/2642">
+        <author>Saurabh A. Chandorkar</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-09" key="homepages/11/2991">
+        <author>Francois Corthay</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2011-05-09" key="homepages/11/9533">
+        <author>Xuan Thao Nguyen</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-09" key="homepages/11/2755">
+        <author>Chengxiang Tan</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-09" key="homepages/11/1694">
+        <author>Hin Bun Chow</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/3820">
+        <author>A. V. Fedorov</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2012-02-01" key="homepages/11/10829">
+        <author>&Aacute;ngel Campo</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2012-05-04" key="homepages/11/11291">
+        <author>Jos&eacute; Mar&ccedil;al Jackson Filho</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-08" key="homepages/11/216">
+        <author>T. Paulpandian</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2020-09-07" key="homepages/11/4605-1">
+        <author>Feng Xie 0001</author>
+        <title>Home Page</title>
+        <note type="affiliation">RMIT University, School of Computer Science and IT, Melbourne,
+            Australia</note>
+        <url>https://www.linkedin.com/in/feng-xie-30668523/</url>
+    </www>
+    <www mdate="2009-06-09" key="homepages/11/1784">
+        <author>Eswar Subramanian</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/6745">
+        <author>Poorav Shah</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/6672">
+        <author>Manuel Goller</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/5278">
+        <author>P. T. Kulkarni</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2010-03-10" key="homepages/11/7904">
+        <author>Carlos M. Nicol&aacute;s</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2022-09-29" key="homepages/11/4636">
+        <author>Carlos M&uuml;ller</author>
+        <title>Home Page</title>
+        <url>https://orcid.org/0000-0001-8157-9146</url>
+    </www>
+    <www mdate="2009-06-09" key="homepages/11/3045">
+        <author>Tariq A. Aldowaisan</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-09" key="homepages/11/2645">
+        <author>Franz Herbert</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-08-20" key="homepages/11/7228">
+        <author>Kwang-Hyuk Lee</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2011-02-22" key="homepages/11/9177">
+        <author>Daniel J. Alfsmann</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/5500">
+        <author>D. C. Misra</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-09" key="homepages/11/2545">
+        <author>Somayeh Sardashti</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/4219">
+        <author>Jae Jong Ryu</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2010-08-18" key="homepages/11/8345">
+        <author>Albert Alonso</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-07-23" key="homepages/11/7178">
+        <author>Daniel Aldman</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/5087">
+        <author>Rajiv Pimplaskar</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-09" key="homepages/11/2924">
+        <author>Ertugrul Saatci</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2021-09-09" key="homepages/11/8109">
+        <author>Ngoc-Son Vu</author>
+        <author>Son Vu 0002</author>
+        <title>Home Page</title>
+        <note type="affiliation">CY Cergy Paris University, ETIS Laboratory UMR 8051, ENSEA, CNRS,
+            Paris, France</note>
+        <url>https://orcid.org/0000-0003-3498-3335</url>
+    </www>
+    <www mdate="2023-05-25" key="homepages/11/5586">
+
+        <author>Oliver Hofmann 0002</author>
+        <title>Home Page</title>
+        <note type="affiliation">University of Erlangen Nuremberg, Department of Information
+            Systems, Nuremberg, Germany</note>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/6921">
+        <author>Francois Kertesz</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2011-10-17" key="homepages/11/10263">
+        <author>Heba Afify</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-09" key="homepages/11/1839">
+        <author>Liang-Chen Lu</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/5763">
+        <author>Thomas Lawrence</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-15" key="homepages/11/7052">
+        <author>David F. Kamm</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2010-09-14" key="homepages/11/8439">
+        <author>Yu. G. Sadofyev</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2011-09-10" key="homepages/11/10089">
+        <author>Sanjeev Neupane</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/4109">
+        <author>Makoto Inoue</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2020-03-20" key="homepages/11/2803">
+        <author>Zolt&aacute;n Bl&aacute;zsik</author>
+        <author>Zolt&aacute;n L. Bl&aacute;zsik</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-11-02" key="homepages/11/7480">
+        <author>Sanjib Kumar Das</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/6282">
+        <author>Alistair J. Edwardes</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/5542">
+        <author>Armando Armaroli</author>
+        <title>Home Page</title>
+    </www>
+    <www mdate="2009-06-10" key="homepages/11/5354">
+        <author>Mohsen Mollanoori</author>
+        <title>Home Page</title>
+    </www>
+    <!-- <www mdate="2009-06-10" key="homepages/11/6663">
+<author>Sui-Xia --><!-- <pages>1359-1372</pages>
+<year>2011</year>
+<volume>23</volume>
+<journal>IEEE Trans. Knowl. Data Eng.</journal>
+<number>9</number>
+<ee>https://doi.org/10.1109/TKDE.2010.184</ee>
+<ee>http://doi.ieeecomputersociety.org/10.1109/TKDE.2010.184</ee>
+<url>db/journals/tkde/tkde23.html#GuWWTL11</url>
+</article> -->
+    <article mdate="2017-06-14" key="journals/tkde/BaralisCG13">
+
+        <author>Elena Baralis</author>
+        <author orcid="0000-0002-7185-5247">Luca Cagliero</author>
+        <author orcid="0000-0002-1263-7522">Paolo Garza</author>
+        <title>EnBay: A Novel Pattern-Based Bayesian Classifier.</title>
+        <pages>2780-2795</pages>
+        <year>2013</year>
+        <volume>25</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>12</number>
+        <ee>https://doi.org/10.1109/TKDE.2012.197</ee>
+        <ee>http://doi.ieeecomputersociety.org/10.1109/TKDE.2012.197</ee>
+        <url>db/journals/tkde/tkde25.html#BaralisCG13</url>
+    </article>
+    <article mdate="2023-08-28" key="journals/tkde/JumonjiSSK23">
+        <author>Seiya Jumonji</author>
+        <author orcid="0000-0003-3929-2533">Kazuya Sakai</author>
+        <author orcid="0000-0002-8911-3831">Min-Te Sun</author>
+        <author orcid="0000-0001-8636-4689">Wei-Shinn Ku</author>
+        <title>Privacy-Preserving Collaborative Filtering Using Fully Homomorphic Encryption.</title>
+        <pages>2961-2974</pages>
+        <year>2023</year>
+        <month>March</month>
+        <volume>35</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>3</number>
+        <ee>https://doi.org/10.1109/TKDE.2021.3115776</ee>
+        <ee>https://www.wikidata.org/entity/Q121162881</ee>
+        <url>db/journals/tkde/tkde35.html#JumonjiSSK23</url>
+    </article>
+    <article mdate="2022-12-07" key="journals/tkde/HuangC05">
+        <author>Kuo-Yu Huang</author>
+        <author orcid="0000-0002-1101-6337">Chia-Hui Chang</author>
+        <title>SMCA: A General Model for Mining Asynchronous Periodic Patterns in Temporal
+            Databases.</title>
+        <pages>774-785</pages>
+        <year>2005</year>
+        <volume>17</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>6</number>
+        <ee>https://doi.org/10.1109/TKDE.2005.98</ee>
+        <ee>http://doi.ieeecomputersociety.org/10.1109/TKDE.2005.98</ee>
+        <url>db/journals/tkde/tkde17.html#HuangC05</url>
+    </article>
+    <article mdate="2019-09-25" key="journals/tkde/WangY13">
+        <author>Shuo Wang 0005</author>
+        <author orcid="0000-0001-8837-4442">Xin Yao 0001</author>
+        <title>Relationships between Diversity of Classification Ensembles and Single-Class
+            Performance Measures.</title>
+        <pages>206-219</pages>
+        <year>2013</year>
+        <volume>25</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>1</number>
+        <ee>https://doi.org/10.1109/TKDE.2011.207</ee>
+        <ee>http://doi.ieeecomputersociety.org/10.1109/TKDE.2011.207</ee>
+        <url>db/journals/tkde/tkde25.html#WangY13</url>
+    </article>
+    <article mdate="2021-06-28" key="journals/tkde/HeLZWH21">
+        <author orcid="0000-0002-3540-3243">Zhicheng He 0001</author>
+        <author>Jie Liu 0007</author>
+        <author orcid="0000-0002-0899-5749">Yuyuan Zeng</author>
+        <author>Lai Wei</author>
+        <author>Yalou Huang</author>
+        <title>Content to Node: Self-Translation Network Embedding.</title>
+        <pages>431-443</pages>
+        <year>2021</year>
+        <volume>33</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>2</number>
+        <ee>https://doi.org/10.1109/TKDE.2019.2932388</ee>
+        <url>db/journals/tkde/tkde33.html#HeLZWH21</url>
+    </article>
+    <article mdate="2017-09-16" key="journals/tkde/PangJK99">
+        <author orcid="0000-0001-7266-5712">HweeHwa Pang</author>
+        <author>Bobby Jose</author>
+        <author>Mayuram S. Krishnan</author>
+        <title>Resource Scheduling In A High-Performance Multimedia Server.</title>
+        <pages>303-320</pages>
+        <year>1999</year>
+        <volume>11</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>2</number>
+        <ee>https://doi.org/10.1109/69.761665</ee>
+        <ee>http://doi.ieeecomputersociety.org/10.1109/69.761665</ee>
+        <url>db/journals/tkde/tkde11.html#PangJK99</url>
+    </article>
+    <article mdate="2023-08-18" key="journals/tkde/GaoZCTZY23">
+        <author orcid="0000-0003-1301-3700">Shen Gao</author>
+        <author orcid="0000-0002-8855-1223">Haotong Zhang 0001</author>
+        <author orcid="0000-0002-6633-0796">Xiuying Chen</author>
+        <author>Chongyang Tao</author>
+        <author>Dongyan Zhao 0001</author>
+        <author orcid="0000-0002-3356-6823">Rui Yan 0001</author>
+        <title>A Trend of AI Conference Convergence in Similarity: An Empirical Study Through
+            Trans-Temporal Heterogeneous Graph.</title>
+        <pages>9642-9655</pages>
+        <year>2023</year>
+        <month>September</month>
+        <volume>35</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>9</number>
+        <ee>https://doi.org/10.1109/TKDE.2023.3243602</ee>
+        <url>db/journals/tkde/tkde35.html#GaoZCTZY23</url>
+    </article>
+    <article mdate="2020-12-29" key="journals/tkde/PahlK09">
+        <author orcid="0000-0002-9049-212X">Claus Pahl</author>
+        <author orcid="0000-0001-5571-6143">Claire Kenny</author>
+        <title>Interactive Correction and Recommendation for Computer Language Learning and
+            Training.</title>
+        <pages>854-866</pages>
+        <year>2009</year>
+        <volume>21</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>6</number>
+        <ee>https://doi.org/10.1109/TKDE.2008.144</ee>
+        <ee>http://doi.ieeecomputersociety.org/10.1109/TKDE.2008.144</ee>
+        <url>db/journals/tkde/tkde21.html#PahlK09</url>
+    </article>
+    <article mdate="2023-08-28" key="journals/tkde/BiggioFR14">
+        <author orcid="0000-0001-7752-509X">Battista Biggio</author>
+        <author>Giorgio Fumera</author>
+        <author orcid="0000-0003-4103-9190">Fabio Roli</author>
+        <title>Security Evaluation of PatternClassifiers under Attack.</title>
+        <pages>984-996</pages>
+        <year>2014</year>
+        <volume>26</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>4</number>
+        <ee>https://doi.org/10.1109/TKDE.2013.57</ee>
+        <ee>http://doi.ieeecomputersociety.org/10.1109/TKDE.2013.57</ee>
+        <ee>https://www.wikidata.org/entity/Q114983411</ee>
+        <url>db/journals/tkde/tkde26.html#BiggioFR14</url>
+    </article>
+    <article mdate="2022-02-08" key="journals/tkde/WuYYZ22">
+        <author orcid="0000-0003-4575-9419">Weichang Wu</author>
+        <author orcid="0000-0001-9639-7679">Junchi Yan</author>
+        <author orcid="0000-0003-4029-3322">Xiaokang Yang</author>
+        <author>Hongyuan Zha</author>
+        <title>Discovering Temporal Patterns for Event Sequence Clustering via Policy Mixture Model.</title>
+        <pages>573-586</pages>
+        <year>2022</year>
+        <volume>34</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>2</number>
+        <ee>https://doi.org/10.1109/TKDE.2020.2986206</ee>
+        <url>db/journals/tkde/tkde34.html#WuYYZ22</url>
+    </article>
+    <article mdate="2022-06-23" key="journals/tkde/LinRCRMR20">
+        <author orcid="0000-0002-2146-0626">Yujie Lin</author>
+        <author>Pengjie Ren</author>
+        <author>Zhumin Chen</author>
+        <author orcid="0000-0002-9076-6565">Zhaochun Ren</author>
+        <author>Jun Ma 0001</author>
+        <author orcid="0000-0002-1086-0202">Maarten de Rijke</author>
+        <title>Explainable Outfit Recommendation with Joint Outfit Matching and Comment Generation.</title>
+        <pages>1502-1516</pages>
+        <year>2020</year>
+        <volume>32</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>8</number>
+        <ee>https://doi.org/10.1109/TKDE.2019.2906190</ee>
+        <url>db/journals/tkde/tkde32.html#LinRCRMR20</url>
+    </article>
+    <article mdate="2020-12-31" key="journals/tkde/KuoCC21">
+        <author orcid="0000-0003-2007-7358">Li-Yen Kuo</author>
+        <author orcid="0000-0002-5162-1849">Chung-Kuang Chou</author>
+        <author orcid="0000-0002-0711-8197">Ming-Syan Chen</author>
+        <title>The Framework of Personalized Ranking on Poisson Factorization.</title>
+        <pages>287-301</pages>
+        <year>2021</year>
+        <volume>33</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>1</number>
+        <ee>https://doi.org/10.1109/TKDE.2019.2924894</ee>
+        <url>db/journals/tkde/tkde33.html#KuoCC21</url>
+    </article>
+    <article mdate="2022-02-24" key="journals/tkde/WangDCCZCH18">
+        <author orcid="0000-0002-8967-8525">Qian Wang 0002</author>
+        <author orcid="0000-0001-6620-6923">Minxin Du</author>
+        <author>Xiuying Chen</author>
+        <author orcid="0000-0002-1382-0679">Yanjiao Chen</author>
+        <author orcid="0000-0002-8629-4622">Pan Zhou</author>
+        <author orcid="0000-0001-5858-5070">Xiaofeng Chen 0001</author>
+        <author orcid="0000-0003-0070-1707">Xinyi Huang 0001</author>
+        <title>Privacy-Preserving Collaborative Model Learning: The Case of Word Vector Training.</title>
+        <pages>2381-2393</pages>
+        <year>2018</year>
+        <volume>30</volume>
+        <journal>IEEE Trans. Knowl. Data Eng.</journal>
+        <number>12</number>
+        <ee>https://doi.org/10.1109/TKDE.2018.2819673</ee>
+        <ee>http://doi.ieeecomputersociety.org/10.1109/TKDE.2018.2819673</ee>
+        <url>db/journals/tkde/tkde30.html#WangDCCZCH18</url>
+    </article>
+    <!-- <article mdate="2024-02-05" key="journals/tkde/ShaoXWWZZ23">
+<author orcid="0000-0002-0815-2768">Zezhi Shao</author>
+<author orcid="0000-0001-6647-0986">Yongjun Xu</author>
+<author orcid="0000-0003-4488-0102">Wei Wei 0002</author>
+<author orcid="0000-0002-3282-0535">Fei Wang 0014</author>
+<author orcid="0000-0001-6680-160X">Zhao Zhang 0011</author>
+<author orcid="0000-0001-6077-4356">Feida Zhu 0001</author>
+<title>Heterogeneous Graph Neural Network With Multi-View Representation Learning.</title>
+<pages>11476-11488</pages>
+<year>2023</year>
+<month>November</month>
+<volume>35</volume>
+<journal>IEEE Trans. Knowl. Data Eng. --><!-- <author>Linlin
+    Shen</author>
+<author>Yefeng Zheng 0001</author>
+<title>TW-GAN: Topology and width aware GAN for retinal artery/vein classification.</title>
+<pages>102340</pages>
+<year>2022</year>
+<volume>77</volume>
+<journal>Medical Image Anal.</journal>
+<ee>https://doi.org/10.1016/j.media.2021.102340</ee>
+<url>db/journals/mia/mia77.html#ChenYMJBCSZ22</url>
+</article> -->
+    <article mdate="2020-12-25" key="journals/mia/HettTOMC21">
+        <author>Kilian Hett</author>
+        <author>Vinh-Thong Ta</author>
+        <author>Ipek Oguz</author>
+        <author>Jos&eacute; V. Manj&oacute;n</author>
+        <author>Pierrick Coup&eacute;</author>
+        <title>Multi-scale graph-based grading for Alzheimer's disease prediction.</title>
+        <pages>101850</pages>
+        <year>2021</year>
+        <volume>67</volume>
+        <journal>Medical Image Anal.</journal>
+        <ee>https://doi.org/10.1016/j.media.2020.101850</ee>
+        <ee>https://www.wikidata.org/entity/Q100733688</ee>
+        <url>db/journals/mia/mia67.html#HettTOMC21</url>
+    </article>
+    <article mdate="2020-02-24" key="journals/mia/FadiliRBM01">
+        <author>Mohamed-Jalal Fadili</author>
+        <author orcid="0000-0001-8785-6917">Su Ruan</author>
+        <author>Daniel Bloyet</author>
+        <author orcid="0000-0003-0970-2837">Bernard Mazoyer</author>
+        <title>On the number of clusters and the fuzziness index for unsupervised FCA application to
+            BOLD fMRI time series.</title>
+        <pages>55-67</pages>
+        <year>2001</year>
+        <volume>5</volume>
+        <journal>Medical Image Anal.</journal>
+        <number>1</number>
+        <ee>https://doi.org/10.1016/S1361-8415(00)00035-9</ee>
+        <ee>https://www.wikidata.org/entity/Q48964193</ee>
+        <url>db/journals/mia/mia5.html#FadiliRBM01</url>
+    </article>
+    <article mdate="2023-09-12" key="journals/mia/YangWGZZX23">
+        <author>Shuxin Yang</author>
+        <author orcid="0000-0003-1118-9710">Xian Wu</author>
+        <author>Shen Ge</author>
+        <author>Zhuozhao Zheng</author>
+        <author orcid="0000-0002-6881-4444">S. Kevin Zhou</author>
+        <author orcid="0000-0002-3063-0869">Li Xiao</author>
+        <title>Radiology report generation with a learned knowledge base and multi-modal alignment.</title>
+        <pages>102798</pages>
+        <year>2023</year>
+        <month>May</month>
+        <volume>86</volume>
+        <journal>Medical Image Anal.</journal>
+        <ee type="oa">https://doi.org/10.1016/j.media.2023.102798</ee>
+        <url>db/journals/mia/mia86.html#YangWGZZX23</url>
+    </article>
+    <article mdate="2020-02-24" key="journals/mia/KokesLGZMRD09">
+        <author>Rebecca Kokes</author>
+        <author>Kevin Lister</author>
+        <author>Rao P. Gullapalli</author>
+        <author>Bao Zhang</author>
+        <author>Alan MacMillan</author>
+        <author>Howard Richard</author>
+        <author>Jaydev P. Desai</author>
+        <title>Towards a teleoperated needle driver robot with haptic feedback for RFA of breast
+            tumors under continuous MRI.</title>
+        <pages>445-455</pages>
+        <year>2009</year>
+        <volume>13</volume>
+        <journal>Medical Image Anal.</journal>
+        <number>3</number>
+        <ee>https://doi.org/10.1016/j.media.2009.02.001</ee>
+        <ee>https://www.wikidata.org/entity/Q30481319</ee>
+        <url>db/journals/mia/mia13.html#KokesLGZMRD09</url>
+    </article>
+    <article mdate="2023-03-21" key="journals/mia/HaoLPLZZYGZZLZ22">
+        <author>Jinkui Hao</author>
+        <author orcid="0000-0001-6281-6505">Jiang Liu 0001</author>
+        <author orcid="0000-0001-7273-3295">Ella Pereira</author>
+        <author>Ri Liu</author>
+        <author>Jiong Zhang</author>
+        <author>Yangfan Zhang</author>
+        <author>Kun Yan</author>
+        <author>Yan Gong</author>
+        <author>Jianjun Zheng</author>
+        <author>Jingfeng Zhang</author>
+        <author>Yonghuai Liu</author>
+        <author>Yitian Zhao</author>
+        <title>Uncertainty-guided graph attention network for parapneumonic effusion diagnosis.</title>
+        <pages>102217</pages>
+        <year>2022</year>
+        <volume>75</volume>
+        <journal>Medical Image Anal.</journal>
+        <ee>https://doi.org/10.1016/j.media.2021.102217</ee>
+        <url>db/journals/mia/mia75.html#HaoLPLZZYGZZLZ22</url>
+    </article>
+    <article mdate="2023-06-15" key="journals/mia/QuLWDMHLWLZJXY23">
+        <author orcid="0000-0001-5058-3433">Taiping Qu</author>
+        <author orcid="0000-0003-3377-892X">Xiuli Li</author>
+        <author>Xiheng Wang</author>
+        <author orcid="0000-0001-7703-1663">Wenyi Deng</author>
+        <author orcid="0000-0002-5383-379X">Li Mao</author>
+        <author>Ming He</author>
+        <author>Xiao Li</author>
+        <author>Yun Wang</author>
+        <author>Zaiyi Liu</author>
+        <author>Longjiang Zhang</author>
+        <author>Zhengyu Jin</author>
+        <author>Huadan Xue</author>
+        <author orcid="0000-0002-0470-5548">Yizhou Yu</author>
+        <title>Transformer guided progressive fusion network for 3D pancreas and pancreatic mass
+            segmentation.</title>
+        <pages>102801</pages>
+        <year>2023</year>
+        <month>May</month>
+        <volume>86</volume>
+        <journal>Medical Image Anal.</journal>
+        <ee>https://doi.org/10.1016/j.media.2023.102801</ee>
+        <url>db/journals/mia/mia86.html#QuLWDMHLWLZJXY23</url>
+    </article>
+    <article mdate="2022-01-08" key="journals/mia/DaiDXYLZL22">
+        <author>Duwei Dai</author>
+        <author>Caixia Dong</author>
+        <author>Songhua Xu</author>
+        <author>Qingsen Yan</author>
+        <author>Zongfang Li</author>
+        <author>Chunyan Zhang</author>
+        <author>Nana Luo</author>
+        <title>Ms RED: A novel multi-scale residual encoding and decoding network for skin lesion
+            segmentation.</title>
+        <pages>102293</pages>
+        <year>2022</year>
+        <volume>75</volume>
+        <journal>Medical Image Anal.</journal>
+        <ee>https://doi.org/10.1016/j.media.2021.102293</ee>
+        <url>db/journals/mia/mia75.html#DaiDXYLZL22</url>
+    </article>
+    <article mdate="2023-03-21" key="journals/mia/ZhuLZWR22">
+        <author orcid="0000-0003-1199-7099">Yean Zhu</author>
+        <author>Wei Lu</author>
+        <author>Ruoqi Zhang</author>
+        <author>Rui Wang</author>
+        <author>Dan Robbins</author>
+        <title>Dual-channel cascade pose estimation network trained on infrared thermal image and
+            groundtruth annotation for real-time gait measurement.</title>
+        <pages>102435</pages>
+        <year>2022</year>
+        <volume>79</volume>
+        <journal>Medical Image Anal.</journal>
+        <ee>https://doi.org/10.1016/j.media.2022.102435</ee>
+        <url>db/journals/mia/mia79.html#ZhuLZWR22</url>
+    </article>
+    <article mdate="2023-11-12" key="journals/mia/AhnTTOMLLSD23">
+        <author orcid="0000-0002-5961-3376">Shawn S. Ahn</author>
+        <author>Kevinminh Ta</author>
+        <author orcid="0000-0003-0020-0814">Stephanie Thorn</author>
+        <author orcid="0000-0002-9432-0448">John A. Onofrey</author>
+        <author>Inga H. Melvinsdottir</author>
+        <author orcid="0000-0002-5017-9032">Supum Lee</author>
+        <author>Jonathan Langdon</author>
+        <author orcid="0000-0003-0972-9589">Albert J. Sinusas</author>
+        <author orcid="0000-0002-5167-9856">James S. Duncan</author>
+        <title>Co-attention spatial transformer network for unsupervised motion tracking and cardiac
+            strain analysis in 3D echocardiography.</title>
+        <pages>102711</pages>
+        <year>2023</year>
+        <volume>84</volume>
+        <journal>Medical Image Anal.</journal>
+        <ee>https://doi.org/10.1016/j.media.2022.102711</ee>
+        <url>db/journals/mia/mia84.html#AhnTTOMLLSD23</url>
+    </article>
+    <article mdate="2020-12-29" key="journals/mia/RocheRCK11">
+        <author orcid="0000-0002-4821-6893">Alexis Roche</author>
+        <author orcid="0000-0001-5527-1076">Delphine Ribes</author>
+        <author orcid="0000-0003-2730-4285">Meritxell Bach Cuadra</author>
+        <author>Gunnar Kr&uuml;ger</author>
+        <title>On the convergence of EM-like algorithms for image segmentation using Markov random
+            fields.</title>
+        <pages>830-839</pages>
+        <year>2011</year>
+        <volume>15</volume>
+        <journal>Medical Image Anal.</journal>
+        <number>6</number>
+        <ee>https://doi.org/10.1016/j.media.2011.05.002</ee>
+        <ee>https://www.wikidata.org/entity/Q33914877</ee>
+        <url>db/journals/mia/mia15.html#RocheRCK11</url>
+    </article>
+    <article mdate="2021-05-28" key="journals/mia/ChenDZLSY19">
+        <author orcid="0000-0001-8350-6581">Geng Chen 0001</author>
+        <author>Bin Dong 0001</author>
+        <author orcid="0000-0002-0238-0719">Yong Zhang 0004</author>
+        <author>Weili Lin</author>
+        <author>Dinggang Shen</author>
+        <author orcid="0000-0003-1489-2102">Pew-Thian Yap</author>
+        <title>XQ-SR: Joint <i>x</i>-<i>q</i> space super-resolution with application to infant
+            diffusion MRI.</title>
+        <pages>44-55</pages>
+        <year>2019</year>
+        <volume>57</volume>
+        <journal>Medical Image Anal.</journal>
+        <ee>https://doi.org/10.1016/j.media.2019.06.010</ee>
+        <ee>https://www.wikidata.org/entity/Q91672984</ee>
+        <url>db/journals/mia/mia57.html#ChenDZLSY19</url>
+    </article>
+    <!-- <article mdate="2023-08-28" key="journals/mia/JalaboiFOJWG23">
+<author orcid="0000-0001-6269-0527">Raluca Jalaboi</author>
+<author>Frederik Faye</author>
+<author>Mauricio Orbes-Arteaga</author>
+<author>Dan Richter J&oslash;rgensen</author>
+<author orcid="0000-0002-1966-3205">Ole Winther</author>
+<author>Alfiia Galimzianova</author>
+<title>DermX: An end-to-end framework for explainable automated dermatological diagnosis.</title>
+<pages>102647</pages>
+<year>2023</year>
+<volume>83</volume>
+<journal>Medical Image Anal.</journal>
+<ee type="oa" -->
+    <phdthesis mdate="2024-03-15" key="books/sp/Pfitzmann90">
+        <author>Andreas Pfitzmann</author>
+        <title>Diensteintegrierende Kommunikationsnetze mit teilnehmer&uuml;berpr&uuml;fbarem
+            Datenschutz</title>
+        <series href="db/series/ifb/index.html">Informatik-Fachberichte</series>
+        <volume>234</volume>
+        <publisher>Springer</publisher>
+        <school>Karlsruhe Institute of Technology, Germany</school>
+        <year>1990</year>
+        <pages>1-343</pages>
+        <isbn>3-540-52327-8</isbn>
+        <ee>https://doi.org/10.1007/978-3-642-75544-6</ee>
+        <ee>https://d-nb.info/900199849</ee>
+        <note type="source">base-search.net (ftubkarlsruhe:oai:EVASTAR-Karlsruhe.de:31590)</note>
+        <ee>https://publikationen.bibliothek.kit.edu/31590</ee>
+        <ee>
+            https://www.base-search.net/Record/c82ba960fc8e5873e5c6143ca82bc508216b358783715150492a1d854528104b</ee>
+    </phdthesis>
+    <book mdate="2021-07-17" key="books/sp/Dittrich83">
+        <author>Klaus R. Dittrich</author>
+        <title>Ein universelles Konzept zum flexiblen Informationsschutz in und mit Rechensystemen</title>
+        <series href="db/series/ifb/index.html">Informatik-Fachberichte</series>
+        <volume>75</volume>
+        <publisher>Springer</publisher>
+        <school>Karlsruhe Institute of Technology, Germany</school>
+        <year>1983</year>
+        <pages>1-246</pages>
+        <isbn>3-540-12697-X</isbn>
+        <ee>https://doi.org/10.1007/978-3-642-69294-9</ee>
+        <ee>https://d-nb.info/831046821</ee>
+    </book>
+    <book mdate="2017-05-16" key="books/sp/Jureta2011">
+        <author>Ivan Jureta</author>
+        <title>Analysis and Design of Advice</title>
+        <year>2011</year>
+        <ee>https://doi.org/10.1007/978-3-642-18059-0</ee>
+        <isbn>978-3-642-18058-3</isbn>
+        <publisher>Springer</publisher>
+    </book>
+    <book mdate="2017-05-16" key="books/sp/Chung04">
+        <author>Woojin Chung</author>
+        <title>Nonholonomic Manipulators</title>
+        <volume>13</volume>
+        <year>2004</year>
+        <pages>1-108</pages>
+        <publisher>Springer</publisher>
+        <series href="db/series/star/index.html">Springer Tracts in Advanced Robotics</series>
+        <ee>https://doi.org/10.1007/b95519</ee>
+        <isbn>978-3-540-22108-1</isbn>
+        <url>db/series/star/index.html#Chung04</url>
+    </book>
+    <incollection mdate="2021-10-14" key="books/sp/cpdp11/RuiterW11">
+        <author>Joep Ruiter</author>
+        <author orcid="0000-0002-4682-6882">Martijn Warnier</author>
+        <title>Privacy Regulations for Cloud Computing: Compliance and Implementation in Theory and
+            Practice.</title>
+        <pages>361-376</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_17</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#RuiterW11</url>
+    </incollection>
+    <incollection mdate="2017-05-16" key="books/sp/cpdp11/Vries11">
+        <author>Katja De Vries</author>
+        <title>Avatars Out of Control: Gazira Babeli, Pose Balls and "Rape" in Second Life.</title>
+        <pages>233-250</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_11</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#Vries11</url>
+    </incollection>
+    <incollection mdate="2017-05-16" key="books/sp/cpdp11/BergL11">
+        <author>Bibi van den Berg</author>
+        <author>Ronald Leenes</author>
+        <title>Keeping Up Appearances: Audience Segregation in Social Network Sites.</title>
+        <pages>211-231</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_10</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#BergL11</url>
+    </incollection>
+    <incollection mdate="2017-05-16" key="books/sp/cpdp11/WeberW11">
+        <author>Arnd Weber</author>
+        <author>Dirk Weber</author>
+        <title>Options for Securing PCs Against Phishing and Espionage: A Report from the EU-Project
+            "Open Trusted Computing".</title>
+        <pages>201-207</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_9</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#WeberW11</url>
+    </incollection>
+    <incollection mdate="2017-05-16" key="books/sp/cpdp11/Blanchette11">
+        <author>Jean-Fran&ccedil;ois Blanchette</author>
+        <title>The Noise in the Archive: Oblivion in the Age of Total Recall.</title>
+        <pages>25-38</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_2</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#Blanchette11</url>
+    </incollection>
+    <incollection mdate="2020-10-25" key="books/sp/cpdp11/CasolaLRV11">
+        <author orcid="0000-0003-0964-7014">Valentina Casola</author>
+        <author>Raffaele Lettiero</author>
+        <author orcid="0000-0001-6708-4032">Massimiliano Rak</author>
+        <author>Umberto Villano</author>
+        <title>Access Control in Cloud-on-Grid Systems: The <i>PerfCloud</i> Case Study.</title>
+        <pages>427-444</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_20</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#CasolaLRV11</url>
+    </incollection>
+    <incollection mdate="2017-05-16" key="books/sp/cpdp11/Boehm11">
+        <author>Franziska Boehm</author>
+        <title>EU PNR: European Flight Passengers Under General Suspicion - The Envisaged European
+            Model of Analyzing Flight Passenger Data.</title>
+        <pages>171-199</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_8</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#Boehm11</url>
+    </incollection>
+    <incollection mdate="2017-05-16" key="books/sp/cpdp11/Andrade11">
+        <author>Norberto Nuno Gomes de Andrade</author>
+        <title>Right to Personal Identity: The Challenges of Ambient Intelligence and the Need for a
+            New Legal Conceptualization.</title>
+        <pages>65-97</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_4</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#Andrade11</url>
+    </incollection>
+    <incollection mdate="2017-05-16" key="books/sp/cpdp11/Borking11">
+        <author>John J. Borking</author>
+        <title>Why Adopting Privacy Enhancing Technologies (PETs) Takes so Much Time.</title>
+        <pages>309-341</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_15</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#Borking11</url>
+    </incollection>
+    <incollection mdate="2022-10-02" key="books/sp/cpdp11/GiannottiLMPW11">
+        <author>Fosca Giannotti</author>
+        <author>Laks V. S. Lakshmanan</author>
+        <author orcid="0000-0001-8541-0284">Anna Monreale</author>
+        <author orcid="0000-0003-4801-3225">Dino Pedreschi</author>
+        <author>Wendy Hui Wang</author>
+        <title>Privacy-Preserving Data Mining from Outsourced Databases.</title>
+        <pages>411-426</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_19</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#GiannottiLMPW11</url>
+    </incollection>
+    <incollection mdate="2020-09-05" key="books/sp/cpdp11/VriesBHG11">
+        <author>Katja De Vries</author>
+        <author orcid="0000-0001-6222-6636">Rocco Bellanova</author>
+        <author>Paul de Hert</author>
+        <author>Serge Gutwirth</author>
+        <title>The German Constitutional Court Judgment on Data Retention: Proportionality Overrides
+            Unlimited Surveillance (Doesn't It?).</title>
+        <pages>3-23</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_1</ee>
+        <ee>https://www.wikidata.org/entity/Q58625835</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#VriesBHG11</url>
+    </incollection>
+    <incollection mdate="2021-10-14" key="books/sp/cpdp11/Cas11">
+        <author orcid="0000-0003-3933-6882">Johann Cas</author>
+        <title>Ubiquitous Computing, Privacy and Data Protection: Options and Limitations to
+            Reconcile the Unprecedented Contradictions.</title>
+        <pages>139-169</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_7</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#Cas11</url>
+    </incollection>
+    <incollection mdate="2017-05-16" key="books/sp/cpdp11/Bernal11">
+        <author>Paul Bernal</author>
+        <title>Rise and Phall: Lessons from the Phorm Saga.</title>
+        <pages>269-283</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_13</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#Bernal11</url>
+    </incollection>
+    <incollection mdate="2017-05-16" key="books/sp/cpdp11/Pieters11">
+        <author>Wolter Pieters</author>
+        <title>Security and Privacy in the Clouds: A Bird's Eye View.</title>
+        <pages>445-457</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_21</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#Pieters11</url>
+    </incollection>
+    <incollection mdate="2017-05-16" key="books/sp/cpdp11/MazanderaniB11">
+        <author>Fadhila Mazanderani</author>
+        <author>Ian Brown</author>
+        <title>Privacy as a Practice: Exploring the Relational and Spatial Dynamics of HIV-Related
+            Information Seeking.</title>
+        <pages>251-268</pages>
+        <year>2011</year>
+        <booktitle>Computers, Privacy and Data Protection</booktitle>
+        <ee>https://doi.org/10.1007/978-94-007-0641-5_12</ee>
+        <crossref>books/sp/cpdp2011</crossref>
+        <url>db/books/collections/cpdp2011.html#MazanderaniB11</url>
+    </incollection>
+    <mastersthesis mdate="2020-03-12" key="ms/Ley2006">
+        <author>Rita Ley</author>
+        <title>Der Einfluss kleiner naturnaher Retentionsma&szlig;nahmen in der Fl&auml;che auf den
+            Hochwasserabfluss - Kleinr&uuml;ckhaltebecken -.</title>
+        <year>2006</year>
+        <school>Diplomarbeit, Universit&auml;t Trier, FB VI, Physische Geographie</school>
+        <ee type="oa">http://dblp.uni-trier.de/papers/DiplomarbeitRitaLey.pdf</ee>
+    </mastersthesis>
+    <mastersthesis mdate="2018-06-13" key="ms/Yurek97">
+        <author>Tolga Yurek</author>
+        <title>Efficient View Maintenance at Data Warehouses.</title>
+        <year>1997</year>
+        <school>University of California at Santa Barbara, Department of Computer Science, CA, USA</school>
+    </mastersthesis>
+
+
+    <mastersthesis mdate="2020-03-12" key="ms/Hoffmann2008">
+        <author>Oliver Hoffmann 0002</author>
+        <title>Regelbasierte Extraktion und asymmetrische Fusion bibliographischer Informationen.</title>
+        <year>2009</year>
+        <school>University of Trier</school>
+        <note>Diplomarbeit, Universit&auml;t Trier, FB IV, DBIS/DBLP</note>
+        <ee type="oa">http://dblp.uni-trier.de/papers/DiplomarbeitOliverHoffmann.pdf</ee>
+    </mastersthesis>
+    <mastersthesis mdate="2018-06-13" key="ms/Vollmer2006">
+        <author>Stephan Vollmer</author>
+        <title>Portierung des DBLP-Systems auf ein relationales Datenbanksystem und Evaluation der
+            Performance.</title>
+        <year>2006</year>
+        <school>Diplomarbeit, Universit&auml;t Trier, FB IV, Informatik</school>
+        <ee>http://dbis.uni-trier.de/Diplomanden/Vollmer/vollmer.shtml</ee>
+    </mastersthesis>
+
+
+    <mastersthesis mdate="2018-06-13" key="ms/Brown92">
+        <author>Kurt P. Brown</author>
+        <title>PRPL: A Database Workload Specification Language, v1.3.</title>
+        <year>1992</year>
+        <school>University of Wisconsin-Madison</school>
+    </mastersthesis>
+
+    <data mdate="2023-07-21" key="data/10/Hettiarachchi23">
+        <author orcid="0009-0008-7109-6835">Nuwan Hettiarachchi</author>
+        <title>Lie Detection using detection, ECG and GSR sensor readings Dataset.</title>
+        <year>2023</year>
+        <month>April</month>
+        <ee>https://doi.org/10.21227/ber8-gc86</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/Cui22a">
+        <author>Chaoran Cui</author>
+        <title>DataForSPAKT.</title>
+        <year>2022</year>
+        <month>April</month>
+        <ee>https://doi.org/10.21227/nd97-g425</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/HasanRR22">
+        <author orcid="0000-0002-8495-0948">Zahid Hasan</author>
+        <author>Sreenivasan Ramasamy Ramamurthy</author>
+        <author>Nirmalya Roy</author>
+        <title>MPSC-rPPG Dataset.</title>
+        <year>2022</year>
+        <month>October</month>
+        <ee>https://doi.org/10.21227/ddgz-tx88</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/Qu21">
+        <author>Luxuan Qu</author>
+        <title>Dataset and resulits of DBN-SP.</title>
+        <year>2021</year>
+        <month>May</month>
+        <ee type="oa">https://doi.org/10.21227/xvrr-jk65</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/LevaNPMO22">
+        <author orcid="0000-0002-7883-0034">Sonia Leva</author>
+        <author>Alfredo Nespoli</author>
+        <author>Silvia Pretto</author>
+        <author orcid="0000-0002-1005-3224">Marco Mussetta</author>
+        <author orcid="0000-0002-2106-0374">Emanuele Ogliari</author>
+        <title>Photovoltaic power and weather parameters.</title>
+        <year>2022</year>
+        <month>May</month>
+        <ee type="oa">https://doi.org/10.21227/42v0-jz14</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/Xie18">
+        <author>Yulai Xie</author>
+        <title>Detection rate and false alarm rate for Pagoda.</title>
+        <year>2018</year>
+        <month>November</month>
+        <ee>https://doi.org/10.21227/c3es-rv63</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/Dodek22">
+        <author orcid="0000-0002-4118-4673">Martin Dodek</author>
+        <title>Identification and validation input-output diabetic dataset (in-silico).</title>
+        <year>2022</year>
+        <month>August</month>
+        <ee>https://doi.org/10.21227/qszf-v124</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/ZiaKHRI20">
+        <author>Jonathan Zia</author>
+        <author>Jacob Kimball</author>
+        <author>Jin-Oh Hahn</author>
+        <author>Christopher Rolfes</author>
+        <author>Omer T. Inan</author>
+        <title>Wearable- and Catheter-Based Cardiovascular Signals during Progressive Exsanguination
+            in a Porcine Model of Hemorrhage.</title>
+        <year>2020</year>
+        <month>June</month>
+        <ee type="oa">https://doi.org/10.21227/qk4m-wy09</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-09-20" key="data/10/SicilianiBLS20c" publtype="concept">
+        <ee>https://doi.org/10.5281/zenodo.3746634</ee>
+    </data>
+    <data mdate="2023-06-23" key="data/10/Sheng23">
+        <author>Andi Sheng</author>
+        <title>wind power data.</title>
+        <year>2023</year>
+        <month>April</month>
+        <ee>https://doi.org/10.21227/1dvd-9s29</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/MontalvaoMD22">
+        <author orcid="0000-0002-6659-6439">Jugurta Montalv&atilde;o</author>
+        <author orcid="0000-0003-0896-5758">Luiz Miranda</author>
+        <author orcid="0000-0002-7502-1418">Bernadette Dorizzi</author>
+        <title>Supplementary Material for paper "Straightforward Working Principles Behind Modern
+            Data Visualization Approaches".</title>
+        <year>2022</year>
+        <month>May</month>
+        <ee>https://doi.org/10.21227/jw4g-je18</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/ShohetKM19">
+        <author>Rony Shohet</author>
+        <author>Mohamed S. Kandil</author>
+        <author orcid="0000-0001-5079-4564">J. J. McArthur</author>
+        <title>Simulated Boiler Fault Data.</title>
+        <year>2019</year>
+        <month>March</month>
+        <ee type="oa">https://doi.org/10.21227/8tq1-wy17</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/Manzoor22">
+        <author>Sohaib Manzoor</author>
+        <title>IEEE 802.11.</title>
+        <year>2022</year>
+        <month>January</month>
+        <ee type="oa">https://doi.org/10.21227/zs23-ta34</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/Mauro22">
+        <author>Mario Di Mauro</author>
+        <title>Multivariate time series prediction of cellular traffic via Machine Learning.</title>
+        <year>2022</year>
+        <month>October</month>
+        <ee>https://doi.org/10.21227/jef5-4w68</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/Liu22v">
+        <author>Xueqing Liu</author>
+        <title>THz_TCAD_model_2019.</title>
+        <year>2022</year>
+        <month>May</month>
+        <ee>https://doi.org/10.21227/71yb-5w75</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/Meunier22">
+        <author orcid="0000-0002-2089-3219">Benjamin Charles Meunier</author>
+        <title>Internet of Radio Light - VLC RSSI dataset &amp; Code.</title>
+        <year>2022</year>
+        <month>January</month>
+        <ee>https://doi.org/10.21227/a4vf-hj47</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/Wang20c">
+        <author orcid="0000-0001-5359-8411">Xianglong Wang</author>
+        <title>Synthesized Atrial Fibrillation-Like ECG Using Generative Adversarial Network.</title>
+        <year>2020</year>
+        <month>July</month>
+        <ee>https://doi.org/10.21227/526v-j619</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/Kim18">
+        <author>Youngjin Kim</author>
+        <title>trainingdataIEEETII_18_1904.</title>
+        <year>2018</year>
+        <month>December</month>
+        <ee>https://doi.org/10.21227/5453-z356</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/Li22c">
+        <author>Kunhom Li</author>
+        <title>RAHG_experiments.</title>
+        <year>2022</year>
+        <month>August</month>
+        <ee>https://doi.org/10.21227/8ms5-gy58</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/MahoutiGBD19">
+        <author orcid="0000-0002-3351-4433">Peyman Mahouti</author>
+        <author>Filiz G&uuml;nes</author>
+        <author>Mehmet A. Belen</author>
+        <author>Salih Demirel</author>
+        <title>Characteristic impedance Result of Microstrip Transmission lines with 3D EM
+            simulation tool.</title>
+        <year>2019</year>
+        <month>May</month>
+        <ee>https://doi.org/10.21227/fy6k-r313</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-03-15" key="data/10/ArbelleCR21">
+        <author>Assaf Arbelle</author>
+        <author>Shaked Cohen</author>
+        <author>Tammy Riklin Raviv</author>
+        <title>BGUSIM.</title>
+        <year>2021</year>
+        <month>October</month>
+        <ee>https://doi.org/10.21227/4m12-m288</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-05-01" key="data/10/GradovMA20a">
+        <author orcid="0000-0001-5118-6261">Oleg Gradov</author>
+        <author>Irene Maclackova</author>
+        <author>Paul Alexandrow</author>
+        <title>Thread-based microfluidics under the electron microscope, including ESEM mode: from
+            programmable microstructures to complex functions. Examples for detection of
+            microbuckling, kinking, swelling, turbulence effects etc. using KSA and other
+            techniques. 2.</title>
+        <year>2020</year>
+        <month>December</month>
+        <ee>https://doi.org/10.21227/ntth-tw94</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+    <data mdate="2023-07-21" key="data/10/GirmayS23">
+        <author orcid="0000-0002-1561-2566">Merkebu Girmay</author>
+        <author orcid="0000-0003-1943-6261">Adnan Shahid</author>
+        <title>Dataset: IQ samples of LTE, 5G NR, Wi-Fi, ITS-G5, and C-V2X PC5.</title>
+        <year>2023</year>
+        <month>May</month>
+        <ee>https://doi.org/10.21227/72qq-z464</ee>
+        <publisher>IEEE DataPort</publisher>
+    </data>
+
+    <proceedings mdate="2021-04-19" key="series/ssw/49">
+        <editor>Giuseppe Cota</editor>
+        <editor>Marilena Daquino</editor>
+        <editor>Gian Luca Pozzato</editor>
+        <title>Applications and Practices in Ontology Design, Extraction, and Reasoning.</title>
+        <publisher>IOS Press</publisher>
+        <year>2020</year>
+        <booktitle>Applications and Practices in Ontology Design, Extraction, and Reasoning</booktitle>
+        <series href="db/series/ssw/index.html">Studies on the Semantic Web</series>
+        <volume>49</volume>
+        <isbn>978-1-64368-142-9</isbn>
+        <isbn>978-1-64368-143-6</isbn>
+        <ee>https://doi.org/10.3233/SSW49</ee>
+        <url>db/series/ssw/ssw49.html</url>
+    </proceedings>
+    <incollection mdate="2021-04-19" key="series/ssw/Penaloza20">
+        <author>Rafael Pe&ntilde;aloza</author>
+        <title>Axiom Pinpointing.</title>
+        <pages>162-177</pages>
+        <year>2020</year>
+        <booktitle>Applications and Practices in Ontology Design, Extraction, and Reasoning</booktitle>
+        <ee>https://doi.org/10.3233/SSW200042</ee>
+        <crossref>series/ssw/49</crossref>
+        <url>db/series/ssw/ssw49.html#Penaloza20</url>
+    </incollection>
+    <incollection mdate="2021-04-19" key="series/ssw/GiordanoGLOP20">
+        <author>Laura Giordano 0001</author>
+        <author>Valentina Gliozzi</author>
+        <author>Antonio Lieto</author>
+        <author>Nicola Olivetti</author>
+        <author>Gian Luca Pozzato</author>
+        <title>Reasoning About Typicality and Probabilities in Preferential Description Logics.</title>
+        <pages>145-161</pages>
+        <year>2020</year>
+        <booktitle>Applications and Practices in Ontology Design, Extraction, and Reasoning</booktitle>
+        <ee>https://doi.org/10.3233/SSW200041</ee>
+        <crossref>series/ssw/49</crossref>
+        <url>db/series/ssw/ssw49.html#GiordanoGLOP20</url>
+    </incollection>
+    <incollection mdate="2021-04-19" key="series/ssw/ShimizuHK20">
+        <author>Cogan Shimizu</author>
+        <author>Pascal Hitzler</author>
+        <author>Adila Krisnadhi</author>
+        <title>Modular Ontology Modeling: A Tutorial.</title>
+        <pages>3-20</pages>
+        <year>2020</year>
+        <booktitle>Applications and Practices in Ontology Design, Extraction, and Reasoning</booktitle>
+        <ee>https://doi.org/10.3233/SSW200032</ee>
+        <crossref>series/ssw/49</crossref>
+        <url>db/series/ssw/ssw49.html#ShimizuHK20</url>
+    </incollection>
+    <book mdate="2023-11-06" key="series/ssw/Saleem18">
+        <author>Muhammad Saleem 0002</author>
+        <title>Efficient Source Selection for SPARQL Endpoint Query Federation</title>
+        <pages>i-xxiv, 1-232</pages>
+        <year>2018</year>
+        <publisher>iospress</publisher>
+        <series href="db/series/ssw/index.html">Studies on the Semantic Web</series>
+        <volume>26</volume>
+        <isbn type="print">978-1-61499-839-6</isbn>
+        <isbn type="online">978-1-61499-840-2</isbn>
+        <ee>
+            http://ebooks.iospress.nl/volume/efficient-source-selection-for-sparql-endpoint-query-federation</ee>
+    </book>
+    <phdthesis mdate="2021-07-17" key="series/ssw/Vougiouklis20">
+        <author>Pavlos Vougiouklis</author>
+        <title>Neural Generation of Textual Summaries from Knowledge Base Triples</title>
+        <publisher>IOS Press</publisher>
+        <year>2020</year>
+        <series href="db/series/ssw/index.html">Studies on the Semantic Web</series>
+        <volume>45</volume>
+        <pages>1-152</pages>
+        <school>University of Southampton, UK</school>
+        <isbn>978-1-64368-066-8</isbn>
+        <isbn>978-1-64368-067-5</isbn>
+        <ee>https://doi.org/10.3233/SSW200006-mono</ee>
+        <ee>https://d-nb.info/1210734702</ee>
+    </phdthesis>
+    <incollection mdate="2022-04-09" key="series/ssw/Dimou20">
+        <author orcid="0000-0003-2138-7972">Anastasia Dimou</author>
+        <title>High-Quality Knowledge Graphs Generation: R2RML and RML Comparison, Rules Validation
+            and Inconsistency Resolution.</title>
+        <pages>55-72</pages>
+        <year>2020</year>
+        <booktitle>Applications and Practices in Ontology Design, Extraction, and Reasoning</booktitle>
+        <ee>https://doi.org/10.3233/SSW200035</ee>
+        <crossref>series/ssw/49</crossref>
+        <url>db/series/ssw/ssw49.html#Dimou20</url>
+    </incollection>
+    <incollection mdate="2020-06-15" key="series/ssw/HoehndorfW0GGDH18">
+        <author>Robert Hoehndorf</author>
+        <author>Claus Weiland</author>
+        <author orcid="0000-0001-6087-6117">Marco Schmidt 0003</author>
+        <author>Quentin Groom</author>
+        <author>George Gosline</author>
+        <author>Stefan Dressler</author>
+        <author>Thomas Hamann</author>
+        <title>The Flora Phenotype Ontology (FLOPO) and the FLOPO Knowledgebase.</title>
+        <pages>107-119</pages>
+        <year>2018</year>
+        <booktitle>Application of Semantic Technology in Biodiversity Science</booktitle>
+        <ee>https://doi.org/10.3233/978-1-61499-854-9-107</ee>
+        <crossref>series/ssw/33</crossref>
+        <url>db/series/ssw/ssw33.html#HoehndorfW0GGDH18</url>
+    </incollection>
+    <book mdate="2021-07-17" key="series/ssw/Lange11">
+        <author>Christoph Lange 0002</author>
+        <title>Enabling Collaboration on Semiformal Mathematical Knowledge by Semantic Web
+            Integration</title>
+        <publisher>IOS Press</publisher>
+        <year>2011</year>
+        <pages>1-592</pages>
+        <series href="db/series/ssw/index.html">Studies on the Semantic Web</series>
+        <volume>11</volume>
+        <isbn>978-1-60750-840-3</isbn>
+        <isbn>978-1-61499-345-2-</isbn>
+        <school>Jacobs University</school>
+        <ee>https://doi.org/10.3233/978-1-61499-345-2-i</ee>
+        <ee>http://www.jacobs-university.de/phd/files/phd20110311_Lange.pdf</ee>
+        <ee>https://nbn-resolving.org/urn:nbn:de:101:1-2013052812125</ee>
+        <ee>https://d-nb.info/1016397836</ee>
+        <ee>https://d-nb.info/1035209772</ee>
+    </book>
+    <book mdate="2021-07-17" key="series/ssw/Kejriwal17">
+        <author>Mayank Kejriwal</author>
+        <title>Populating a Linked Data Entity Name System - A Big Data Solution to Unsupervised
+            Instance Matching</title>
+        <publisher>IOS Press</publisher>
+        <school>University of Texas at Austin, United States of America</school>
+        <year>2017</year>
+        <pages>1-178</pages>
+        <series href="db/series/ssw/index.html">Studies on the Semantic Web</series>
+        <volume>27</volume>
+        <isbn>978-1-61499-691-0</isbn>
+        <isbn>978-1-61499-692-7</isbn>
+        <ee>https://doi.org/10.3233/978-1-61499-692-7-i</ee>
+        <ee>https://d-nb.info/1122580630</ee>
+    </book>
+    <book mdate="2017-05-16" key="series/ssw/Volker09">
+        <author>Johanna V&ouml;lker</author>
+        <title>Learning Expressive Ontologies</title>
+        <publisher>IOS Press</publisher>
+        <year>2009</year>
+        <pages>1-264</pages>
+        <series href="db/series/ssw/index.html">Studies on the Semantic Web</series>
+        <volume>2</volume>
+        <isbn>978-1-60750-033-9</isbn>
+        <isbn>978-1-61499-336-0-</isbn>
+        <ee>https://doi.org/10.3233/978-1-61499-336-0-i</ee>
+    </book>
+    <incollection mdate="2020-09-05" key="series/ssw/AnelliBNS20">
+        <author orcid="0000-0002-5567-4307">Vito Walter Anelli</author>
+        <author>Vito Bellini</author>
+        <author>Tommaso Di Noia</author>
+        <author>Eugenio Di Sciascio</author>
+        <title>Knowledge-Aware Interpretable Recommender Systems.</title>
+        <pages>101-124</pages>
+        <year>2020</year>
+        <booktitle>Knowledge Graphs for eXplainable Artificial Intelligence</booktitle>
+        <ee>https://doi.org/10.3233/SSW200014</ee>
+        <crossref>series/ssw/47</crossref>
+        <url>db/series/ssw/ssw47.html#AnelliBNS20</url>
+    </incollection>
+    <incollection mdate="2020-08-13" key="series/ssw/TiddiR20">
+        <author>Ilaria Tiddi</author>
+        <author>Joe Raad</author>
+        <title>Managing Identity in Knowledge-Based Explainable Systems.</title>
+        <pages>286-300</pages>
+        <year>2020</year>
+        <booktitle>Knowledge Graphs for eXplainable Artificial Intelligence</booktitle>
+        <ee>https://doi.org/10.3233/SSW200025</ee>
+        <ee>https://www.wikidata.org/entity/Q97722001</ee>
+        <crossref>series/ssw/47</crossref>
+        <url>db/series/ssw/ssw47.html#TiddiR20</url>
+    </incollection>
+    <book mdate="2017-05-16" key="series/ssw/Thanh11">
+        <author>Tran Duc Thanh</author>
+        <title>Process-oriented Semantic Web Search</title>
+        <publisher>IOS Press</publisher>
+        <year>2011</year>
+        <pages>1-221</pages>
+        <series href="db/series/ssw/index.html">Studies on the Semantic Web</series>
+        <volume>10</volume>
+        <isbn>978-1-60750-716-1</isbn>
+        <isbn>978-1-61499-344-5-</isbn>
+        <ee>https://doi.org/10.3233/978-1-61499-344-5-i</ee>
+    </book>
+    <book mdate="2023-12-04" key="series/ssw/Kaffee23">
+        <author orcid="0000-0002-1514-8505">Lucie-Aim&eacute;e Kaffee</author>
+        <title>Multilinguality in Knowledge Graphs</title>
+        <publisher>IOS Press</publisher>
+        <year>2023</year>
+        <pages>1-192</pages>
+        <series href="db/series/ssw/index.html">Studies on the Semantic Web</series>
+        <volume>57</volume>
+        <isbn>978-1-64368-454-3</isbn>
+        <isbn>978-1-64368-455-0</isbn>
+        <ee>https://doi.org/10.3233/SSW57</ee>
+    </book>
+    <book mdate="2021-07-17" key="series/ssw/Mountantonakis21">
+        <author orcid="0000-0002-1951-0241">Michalis Mountantonakis</author>
+        <title>Services for Connecting and Integrating Big Numbers of Linked Datasets</title>
+        <publisher>IOS Press</publisher>
+        <year>2021</year>
+        <pages>1-291</pages>
+        <series href="db/series/ssw/index.html">Studies on the Semantic Web</series>
+        <volume>50</volume>
+        <school>University of Crete, Rethymnon, Greece</school>
+        <isbn>978-1-64368-164-1</isbn>
+        <isbn>978-1-64368-165-8</isbn>
+        <isbn>978-3-89838-761-3</isbn>
+        <ee>https://doi.org/10.3233/SSW50</ee>
+        <ee>https://d-nb.info/1229451471</ee>
+    </book>
+    <proceedings mdate="2019-10-16" key="conf/igarss/2018">
+        <title>2018 IEEE International Geoscience and Remote Sensing Symposium, IGARSS 2018,
+            Valencia, Spain, July 22-27, 2018</title>
+        <booktitle>IGARSS</booktitle>
+        <publisher>IEEE</publisher>
+        <year>2018</year>
+        <isbn>978-1-5386-7150-4</isbn>
+        <ee>https://ieeexplore.ieee.org/xpl/conhome/8496405/proceeding</ee>
+        <url>db/conf/igarss/igarss2018.html</url>
+    </proceedings>
+    <inproceedings mdate="2023-03-21" key="conf/igarss/VijayakumarPRL06">
+        <author>Nithya N. Vijayakumar</author>
+        <author orcid="0000-0003-2164-8132">Beth Plale</author>
+        <author orcid="0000-0002-0647-1941">Rahul Ramachandran</author>
+        <author>Xiang Li 0043</author>
+        <title>Dynamic Filtering and Mining Triggers in Mesoscale Meteorology Forecasting.</title>
+        <pages>2449-2452</pages>
+        <year>2006</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2006.634</ee>
+        <crossref>conf/igarss/2006</crossref>
+        <url>db/conf/igarss/igarss2006.html#VijayakumarPRL06</url>
+    </inproceedings>
+    <inproceedings mdate="2017-05-25" key="conf/igarss/CorgneDM14">
+        <author>Samuel Corgne</author>
+        <author>Delphy Dallon</author>
+        <author>Gr&eacute;goire Mercier</author>
+        <title>Land use and land cover monitoring with multitemporal and multipolarization Radarsat
+            data: Application to an intensive agricultural area (France).</title>
+        <pages>4239-4242</pages>
+        <year>2014</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2014.6947424</ee>
+        <crossref>conf/igarss/2014</crossref>
+        <url>db/conf/igarss/igarss2014.html#CorgneDM14</url>
+    </inproceedings>
+    <inproceedings mdate="2017-05-25" key="conf/igarss/CoonPP04">
+        <author>Max D. Coon</author>
+        <author>Matthew J. Pruis</author>
+        <author>Leif Toudal Pedersen</author>
+        <title>Interannual variability of ice production in the Bering Sea.</title>
+        <pages>1314-1317</pages>
+        <year>2004</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2004.1368659</ee>
+        <crossref>conf/igarss/2004</crossref>
+        <url>db/conf/igarss/igarss2004.html#CoonPP04</url>
+    </inproceedings>
+    <inproceedings mdate="2018-01-27" key="conf/igarss/TangLZTX13">
+        <author>Panpan Tang</author>
+        <author>Zhen Li 0001</author>
+        <author>Jianmin Zhou</author>
+        <author>Bangsen Tian</author>
+        <author>Juan Xu</author>
+        <title>Coherence based analysis of distributed scatterers in the Qinghai-Tibet Plateau.</title>
+        <pages>1356-1359</pages>
+        <year>2013</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2013.6723034</ee>
+        <crossref>conf/igarss/2013</crossref>
+        <url>db/conf/igarss/igarss2013.html#TangLZTX13</url>
+    </inproceedings>
+    <inproceedings mdate="2023-11-07" key="conf/igarss/SugiharaWSFKM23">
+        <author>Ahmed Kiyoshi Sugihara</author>
+        <author>Takehisa Wada</author>
+        <author>Tamotsu Suda</author>
+        <author>Masahiro Fujita</author>
+        <author>Shigeo Kawasaki</author>
+        <author>Osamu Mori</author>
+        <title>Wireless Reference Frequency Distribution for Membrane-Deployed Distributed Microwave
+            Interferometer Concept.</title>
+        <pages>4266-4269</pages>
+        <year>2023</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS52108.2023.10282466</ee>
+        <crossref>conf/igarss/2023</crossref>
+        <url>db/conf/igarss/igarss2023.html#SugiharaWSFKM23</url>
+    </inproceedings>
+    <inproceedings mdate="2017-08-15" key="conf/igarss/ZengCYCZ13">
+        <author>Hong-cheng Zeng</author>
+        <author>Jie Chen 0009</author>
+        <author>Wei Yang 0004</author>
+        <author>Zhongma Cui</author>
+        <author>Haojie Zhang</author>
+        <title>A refined Omega-K algorithm for focusing highly squint airborne stripmap SAR data.</title>
+        <pages>934-937</pages>
+        <year>2013</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2013.6721314</ee>
+        <crossref>conf/igarss/2013</crossref>
+        <url>db/conf/igarss/igarss2013.html#ZengCYCZ13</url>
+    </inproceedings>
+    <inproceedings mdate="2022-04-09" key="conf/igarss/HajnsekB15">
+        <author orcid="0000-0002-0926-3283">Irena Hajnsek</author>
+        <author>Thomas Busche</author>
+        <title>TanDEM-X: Science activities.</title>
+        <pages>2892-2894</pages>
+        <year>2015</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2015.7326419</ee>
+        <crossref>conf/igarss/2015</crossref>
+        <url>db/conf/igarss/igarss2015.html#HajnsekB15</url>
+    </inproceedings>
+    <inproceedings mdate="2018-11-27" key="conf/igarss/BasiliBMCMPPD02">
+        <author>Patrizia Basili</author>
+        <author>Stefania Bonafoni</author>
+        <author>Vinia Mattioli</author>
+        <author>Piero Ciotti</author>
+        <author>Frank S. Marzano</author>
+        <author>Nazzareno Pierdicca</author>
+        <author>Luca Pulvirenti</author>
+        <author>Giovanni D'Auria</author>
+        <title>Mapping of precipitable water vapour by integrating measurements of ground-based GPS
+            receivers and satellite-based microwave radiometers.</title>
+        <pages>1275-1277</pages>
+        <year>2002</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2002.1025912</ee>
+        <crossref>conf/igarss/2002</crossref>
+        <url>db/conf/igarss/igarss2002.html#BasiliBMCMPPD02</url>
+    </inproceedings>
+    <inproceedings mdate="2024-02-05" key="conf/igarss/YangLY17">
+        <author orcid="0000-0003-2252-6778">Hsiuhan Lexie Yang</author>
+        <author>Dalton D. Lunga</author>
+        <author>Jiangye Yuan</author>
+        <title>Toward country scale building detection with convolutional neural network using
+            aerial images.</title>
+        <pages>870-873</pages>
+        <year>2017</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2017.8127091</ee>
+        <crossref>conf/igarss/2017</crossref>
+        <url>db/conf/igarss/igarss2017.html#YangLY17</url>
+    </inproceedings>
+    <inproceedings mdate="2022-08-10" key="conf/igarss/YanWM07">
+        <author>Jingye Yan</author>
+        <author>Ji Wu 0001</author>
+        <author>Manuel Mart&iacute;n-Neira</author>
+        <title>FPIR: A one dimensional full polarization interferometric radiometer.</title>
+        <pages>4408-4411</pages>
+        <year>2007</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2007.4423831</ee>
+        <crossref>conf/igarss/2007</crossref>
+        <url>db/conf/igarss/igarss2007.html#YanWM07</url>
+    </inproceedings>
+    <inproceedings mdate="2019-09-25" key="conf/igarss/GarkushaH18">
+        <author>Igor N. Garkusha</author>
+        <author orcid="0000-0003-3140-3788">Volodymyr V. Hnatushenko</author>
+        <title>Modeling the TOA Brightness Temperature on the SWIR-Sensors.</title>
+        <pages>4873-4876</pages>
+        <year>2018</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2018.8519287</ee>
+        <crossref>conf/igarss/2018</crossref>
+        <url>db/conf/igarss/igarss2018.html#GarkushaH18</url>
+    </inproceedings>
+    <inproceedings mdate="2017-05-25" key="conf/igarss/ZhangCH07">
+        <author>Wangchang Zhang</author>
+        <author>Yanhua Chen</author>
+        <author>Shaoying Hu</author>
+        <title>Retrieving LAI in the Heihe and the Hanjiang river basins using landsat images for
+            accuracy evaluation on MODIS LAI product.</title>
+        <pages>3417-3421</pages>
+        <year>2007</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2007.4423579</ee>
+        <crossref>conf/igarss/2007</crossref>
+        <url>db/conf/igarss/igarss2007.html#ZhangCH07</url>
+    </inproceedings>
+    <inproceedings mdate="2024-02-05" key="conf/igarss/WangJ0XYXL003">
+        <author>Jindi Wang</author>
+        <author>Ziti Jiao</author>
+        <author>Feng Gao 0009</author>
+        <author>Liou Xie</author>
+        <author orcid="0000-0001-5030-748X">Guangjian Yan</author>
+        <author>Yueqin Xiang</author>
+        <author>Shunlin Liang</author>
+        <author>Xiaowen Li 0001</author>
+        <title>Validation of MODIS albedo product by using field measurements and airborne
+            multi-angular remote sensing observations.</title>
+        <pages>1888-1890</pages>
+        <year>2003</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2003.1294283</ee>
+        <crossref>conf/igarss/2003</crossref>
+        <url>db/conf/igarss/igarss2003.html#WangJ0XYXL003</url>
+    </inproceedings>
+    <inproceedings mdate="2018-11-08" key="conf/igarss/SangX18">
+        <author>Xuejia Sang</author>
+        <author>Linfu Xue</author>
+        <title>Application of 3D Model from UAV Photogrammetry in Virtual Field Education.</title>
+        <pages>780-782</pages>
+        <year>2018</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2018.8517864</ee>
+        <crossref>conf/igarss/2018</crossref>
+        <url>db/conf/igarss/igarss2018.html#SangX18</url>
+    </inproceedings>
+    <inproceedings mdate="2022-06-09" key="conf/igarss/ZhangSZ04">
+        <author>Zhongjun Zhang 0001</author>
+        <author>Jiancheng Shi 0001</author>
+        <author>Ying Zhu</author>
+        <title>A soil moisture retrieval method for AMSR-E.</title>
+        <pages>2803-2806</pages>
+        <year>2004</year>
+        <booktitle>IGARSS</booktitle>
+        <ee>https://doi.org/10.1109/IGARSS.2004.1369885</ee>
+        <crossref>conf/igarss/2004</crossref>
+        <url>db/conf/igarss/igarss2004.html#ZhangSZ04</url>
+    </inproceedings>
+</dblp>
