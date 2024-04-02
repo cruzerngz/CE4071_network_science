@@ -30,11 +30,11 @@ pub struct DblpRecord {
     pub year: Option<u32>,
 
     /// Authors are referenced by their profile.
-    pub authors: String,
+    pub authors: Option<String>,
 
     /// Other publications referenced by this publication.
     /// Publications are referenced by their key.
-    pub citations: String,
+    pub citations: Option<String>,
 
     /// Publisher of the publication.
     pub publisher: Option<String>,
@@ -81,16 +81,41 @@ macro_rules! try_into_dblp_record {
                     mdate: value.0.mdate.and_then(|d| Some(d.to_string())),
                     publtype: value.0.publtype,
                     year: value.0.year,
-                    authors: value
+                    authors: {
+                        let val = value
                         .0
                         .authors
                         .iter()
                         .map(|a| a.name.clone())
                         .collect::<Vec<_>>()
-                        .join(SEPARATOR),
-                    citations: value.0.citations.join(SEPARATOR),
-                    publisher: value.0.publisher,
-                    school: value.0.school,
+                        .join(SEPARATOR);
+
+                        match val.len() {
+                            0 => None,
+                            _ => Some(val)
+                        }
+                    },
+                    citations: {
+                        let val = value.0.citations.join(SEPARATOR);
+                        match val.len() {
+                            0 => None,
+                            _ => Some(val)
+                        }
+                    },
+                    publisher: {
+                        let val = value.0.publisher.join(SEPARATOR);
+                        match val.len() {
+                            0 => None,
+                            _ => Some(val)
+                        }
+                    },
+                    school: {
+                        let val = value.0.school.join(SEPARATOR);
+                        match val.len() {
+                            0 => None,
+                            _ => Some(val)
+                        }
+                    },
                 })
             }
         }
@@ -132,7 +157,7 @@ impl TryFrom<WebPage> for PersonRecord {
     type Error = ();
 
     fn try_from(value: WebPage) -> Result<Self, Self::Error> {
-        match value.title.as_deref() {
+        match value.title.first().and_then(|t| Some(t.as_str())) {
             Some("Home Page") => (),
             _ => return Err(()),
         }

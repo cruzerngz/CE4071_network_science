@@ -77,9 +77,11 @@ pub struct PublicationRecord {
     pub relation: Option<Relation>,
 
     /// School where the work was done
-    pub school: Option<String>,
+    #[serde(default)]
+    pub school: Vec<String>,
 
-    pub publisher: Option<String>,
+    #[serde(default)]
+    pub publisher: Vec<String>,
 
     /// Citations in record
     #[serde(rename = "cite")]
@@ -98,10 +100,12 @@ pub struct WebPage {
     pub key: String,
 
     /// For person records, this is always "Home Page".
-    pub title: Option<String>,
+    #[serde(default)]
+    pub title: Vec<String>,
 
     /// Url of the page
-    pub url: Option<String>,
+    #[serde(default)]
+    pub url: Vec<String>,
 
     /// Author may have multiple aliases, cause idk.
     /// The first element is the current name.

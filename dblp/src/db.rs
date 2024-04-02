@@ -124,11 +124,11 @@ pub fn chunked_deserialize_insert(conn: &mut Connection, xml_str: &str) -> rusql
         std::io::stdout().flush().unwrap();
         chunk_number += 1;
 
-        // let dblp: crate::dataset::xml_items::RawDblp = quick_xml::de::from_str(&chunk).unwrap();
+        let dblp: crate::dataset::xml_items::RawDblp = quick_xml::de::from_str(&chunk).unwrap();
 
-        // let (publications, persons): (Vec<DblpRecord>, Vec<PersonRecord>) = dblp.into();
+        let (publications, persons): (Vec<DblpRecord>, Vec<PersonRecord>) = dblp.into();
 
-        // dump_into_database(conn, &publications, &persons)?;
+        dump_into_database(conn, &publications, &persons)?;
     }
 
     println!();

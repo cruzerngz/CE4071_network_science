@@ -52,7 +52,6 @@ pub struct ChunkedXmlViewer<'xml> {
 
     re_start: Regex,
     re_end: Regex,
-    re_self_close: Regex,
 
     inner: &'xml str,
 }
@@ -68,7 +67,6 @@ impl Iterator for ChunkedXmlViewer<'_> {
 impl<'xml> ChunkedXmlViewer<'xml> {
     const XML_START_TAG: &'static str = r"<\w+>|<\w+";
     const XML_END_TAG: &'static str = r"</\w+>|/>";
-    const XML_SELF_CLOSE_TAG: &'static str = r"<.*?/>";
 
     /// `num_chunks` specifies the number of level 1 XML elements to read in a single iteration.
     pub fn from_str(input: &'xml str, num_chunks: usize) -> Self {
@@ -76,8 +74,6 @@ impl<'xml> ChunkedXmlViewer<'xml> {
 
         let start_regex = Regex::new(Self::XML_START_TAG).expect("regex compilation must not fail");
         let end_regex = Regex::new(Self::XML_END_TAG).expect("regex compilation must not fail");
-        let self_close_regex =
-            Regex::new(Self::XML_SELF_CLOSE_TAG).expect("regex compilation must not fail");
 
         let pos = start_regex.find(input).expect("no start tag found");
 
@@ -92,7 +88,6 @@ impl<'xml> ChunkedXmlViewer<'xml> {
             root_tag_end: tag_end,
             re_start: start_regex,
             re_end: end_regex,
-            re_self_close: self_close_regex,
 
             // straight to the first level 1 element
             inner: &input[pos.end()..],
@@ -146,53 +141,46 @@ impl<'xml> ChunkedXmlViewer<'xml> {
 
         while depth != 0 {
             // println!("element depth: {}", depth);
-            println!("matching regexes...");
-            println!("remaining length: {}, peek: {}",reference.len(), &reference[..10]);
+            // println!("matching regexes...");
+            // println!(
+            //     "remaining length: {}, peek: {}",
+            //     reference.len(),
+            //     &reference[..10]
+            // );
 
-            let start = self.re_start.find(reference).unwrap();
-            let end = self.re_end.find(reference).unwrap();
-            let self_close = self.re_self_close.find(reference);
+            let start = self.re_start.find(reference);
+            let end = self.re_end.find(reference);
 
-            // handle self closing tags
-            match self_close {
-                Some(s_close) => match (
-                    s_close.start().cmp(&start.start()),
-                    s_close.start().cmp(&end.start()),
-                ) {
-                    // self closing tags only affect the offset
-                    (std::cmp::Ordering::Less, std::cmp::Ordering::Less) => {
-                        println!("self closing tag: {}", s_close.as_str());
+            match (start, end) {
+                // these 2 are not possible
+                (None, None) => None?,
+                (Some(_), None) => None?,
 
-                        // println!("self closing tag: {}", s_close.as_str());
-                        offset += s_close.end();
-                        reference = &reference[s_close.end()..];
-                        continue;
-                    }
-                    _ => (),
-                },
-                None => (),
-            }
-
-            // handle start and end tags
-            println!("handling start and end tags...");
-            match start.start().cmp(&end.start()) {
-                // start tag found
-                std::cmp::Ordering::Less => {
-                    // println!("opening tag: {}", start.as_str());
-                    depth += 1;
-                    offset += start.end();
-                    reference = &reference[start.end()..];
-                }
-                // end tag found
-                std::cmp::Ordering::Greater => {
-                    // println!("closing tag: {}", end.as_str());
+                // only end tag remains
+                (None, Some(e)) => {
                     depth -= 1;
-                    offset += end.end();
-                    reference = &reference[end.end()..];
+                    offset += e.end();
+                    reference = &reference[e.end()..];
                 }
-                std::cmp::Ordering::Equal => {
-                    unimplemented!("both regex cannot match at the same position")
-                }
+                (Some(s), Some(e)) => match s.start().cmp(&e.start()) {
+                    // s tag found
+                    std::cmp::Ordering::Less => {
+                        // println!("opening tag: {}", s.as_str());
+                        depth += 1;
+                        offset += s.end();
+                        reference = &reference[s.end()..];
+                    }
+                    // end tag found
+                    std::cmp::Ordering::Greater => {
+                        // println!("closing tag: {}", end.as_str());
+                        depth -= 1;
+                        offset += e.end();
+                        reference = &reference[e.end()..];
+                    }
+                    std::cmp::Ordering::Equal => {
+                        unimplemented!("both regex cannot match at the same position")
+                    }
+                },
             }
         }
 
@@ -215,7 +203,6 @@ mod tests {
     fn test_match_regex() {
         let re_start = Regex::new(ChunkedXmlViewer::XML_START_TAG).unwrap();
         let re_end = Regex::new(ChunkedXmlViewer::XML_END_TAG).unwrap();
-        let re_self_close = Regex::new(ChunkedXmlViewer::XML_SELF_CLOSE_TAG).unwrap();
 
         let start_tags = &["<open asd='123'>", "<open>"];
         let end_tags = &["</close>", "/>"];
@@ -228,15 +215,11 @@ mod tests {
         for tag in end_tags {
             assert!(re_end.is_match(tag));
         }
-
-        for tag in self_close_tags {
-            assert!(re_self_close.is_match(tag));
-        }
     }
 
     #[test]
     fn test_chunk_viewer() {
-        let xml_file = fs::read_to_string("dblp.xml").unwrap();
+        let xml_file = fs::read_to_string("dblp_trunc.xml").unwrap();
 
         let mut viewer = ChunkedXmlViewer::from_str(&xml_file, 10);
 
@@ -251,8 +234,9 @@ mod tests {
 
     #[test]
     fn test_chunked_write_to_db() {
-        let xml_file = fs::read_to_string("dblp.xml").unwrap();
+        let xml_file = fs::read_to_string("dblp_trunc.xml").unwrap();
         let filtered = strip_references(&xml_file);
+        drop(xml_file);
 
         let mut conn = rusqlite::Connection::open("temp.sqlite").unwrap();
         create_tables(&conn).unwrap();
