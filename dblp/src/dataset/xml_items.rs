@@ -206,4 +206,31 @@ mod tests {
 
         // println!("{:#?}", x);
     }
+
+    #[test]
+    fn test_deserialize_section() {
+        let xml = r#"<dblp><incollection mdate="2017-07-12" key="reference/crypt/Canteaut11" publtype="encyclopedia">
+        <author>Anne Canteaut</author>
+        <title>A5/1.</title>
+        <pages>1-2</pages>
+        <year>2011</year>
+        <booktitle>Encyclopedia of Cryptography and Security (2nd Ed.)</booktitle>
+        <ee>https://doi.org/10.1007/978-1-4419-5906-5_332</ee>
+        <crossref>reference/crypt/2011</crossref>
+        <url>db/reference/crypt/crypt2011.html#Canteaut11</url>
+        <cite>conf/crypto/BarkanBK03</cite>
+        <cite>conf/sacrypt/BarkanB05</cite>
+        <cite>journals/joc/BarkanBK08</cite>
+        <cite>conf/indocrypt/BihamD00</cite>
+        <cite>conf/fse/BiryukovSW00</cite>
+        <cite>journals/tit/EkdahlJ03</cite>
+        <cite>conf/sacrypt/MaximovJB04</cite>
+        <cite>...</cite>
+        <cite>...</cite>
+        </incollection></dblp>"#;
+
+        let dblp: RawDblp = quick_xml::de::from_str(xml).unwrap();
+
+        println!("{:#?}", dblp);
+    }
 }

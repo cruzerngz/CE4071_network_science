@@ -11,7 +11,7 @@ use std::{
 };
 
 use dataset::xml_items::RawDblp;
-use db::{create_tables, dump_into_database};
+use db::{clear_tables, create_tables, dump_into_database};
 use pyo3::{exceptions::PyTypeError, prelude::*};
 
 const DB_DEFAULT_PATH: &str = "dblp.sqlite";
@@ -33,7 +33,7 @@ pub fn init_from_xml(path: Option<String>) -> PyResult<()> {
 
     let xml_data = match actual_path.ends_with(".gz") {
         true => {
-            log::info!("Decompressing the gzipped file");
+            println!("Decompressing the gzipped file");
 
             let mut xml_bytes = Vec::new();
             let mut decoder = flate2::read::GzDecoder::new(xml_file.as_slice());
@@ -49,7 +49,7 @@ pub fn init_from_xml(path: Option<String>) -> PyResult<()> {
             filtered_xml_str
         }
         false => {
-            log::info!("Reading the xml file");
+            println!("Reading xml file");
             let raw_xml = std::str::from_utf8(&xml_file).map_err(PyTypeError::new_err)?;
             let filt_xml = dataset::strip_references(raw_xml);
 
@@ -60,20 +60,19 @@ pub fn init_from_xml(path: Option<String>) -> PyResult<()> {
         }
     };
 
-    let raw_dataset: RawDblp =
-        quick_xml::de::from_str(&xml_data).map_err(|e| PyTypeError::new_err(e.to_string()))?;
-
-    let (publications, persons): (Vec<_>, Vec<_>) = raw_dataset.into();
-
     let mut conn = rusqlite::Connection::open(DB_DEFAULT_PATH)
         .map_err(|e| PyTypeError::new_err(e.to_string()))?;
 
-    create_tables(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
-    dump_into_database(&mut conn, &publications, &persons)
-        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+    db::create_tables(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
+    db::clear_tables(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
+    db::create_tables(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
 
     // initialize the db path
     DB_PATH.get_or_init(|| DB_DEFAULT_PATH.to_string());
+
+    println!("writing chunks to: {}", DB_PATH.get().unwrap());
+    db::chunked_deserialize_insert(&mut conn, &xml_data)
+        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
 
     Ok(())
 }

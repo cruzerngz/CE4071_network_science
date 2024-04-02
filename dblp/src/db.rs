@@ -1,7 +1,9 @@
 #![allow(unused)]
 
 use core::num;
+use std::io::Write;
 
+use pyo3::Python;
 use rusqlite::Connection;
 
 use crate::dataset::db_items::{DblpRecord, PersonRecord};
@@ -52,6 +54,14 @@ pub fn create_tables(conn: &Connection) -> rusqlite::Result<()> {
     Ok(())
 }
 
+/// Drops the tables in the database.
+pub fn clear_tables(conn: &Connection) -> rusqlite::Result<()> {
+    conn.execute("DROP TABLE persons", ())?;
+    conn.execute("DROP TABLE publications", ())?;
+
+    Ok(())
+}
+
 /// Inserts the given records into the database.
 pub fn dump_into_database(
     conn: &mut Connection,
@@ -97,6 +107,35 @@ pub fn dump_into_database(
     Ok(())
 }
 
+/// Deserialize the XML in chunks and insert into the database.
+/// The input XML should already be filtered of references.
+///
+/// Me small computer. Me no ram.
+pub fn chunked_deserialize_insert(conn: &mut Connection, xml_str: &str) -> rusqlite::Result<()> {
+    const CHUNK_SIZE: usize = 1000;
+
+    // process large num of elements at a time
+    let chonker = crate::dataset::ChunkedXmlViewer::from_str(xml_str, CHUNK_SIZE);
+
+    let mut chunk_number = 0;
+    println!("");
+    for chunk in chonker {
+        print!("\rProcessed {} elements", chunk_number * CHUNK_SIZE);
+        std::io::stdout().flush().unwrap();
+        chunk_number += 1;
+
+        // let dblp: crate::dataset::xml_items::RawDblp = quick_xml::de::from_str(&chunk).unwrap();
+
+        // let (publications, persons): (Vec<DblpRecord>, Vec<PersonRecord>) = dblp.into();
+
+        // dump_into_database(conn, &publications, &persons)?;
+    }
+
+    println!();
+
+    Ok(())
+}
+
 #[cfg(test)]
 mod tests {
 
@@ -116,6 +155,7 @@ mod tests {
         let mut conn = rusqlite::Connection::open("./test.sqlite").unwrap();
         // let mut conn = rusqlite::Connection::open_in_memory().unwrap();
 
+        // let contents = std::fs::read_to_string("dblp_trunc.xml").unwrap();
         let contents = std::fs::read_to_string("dblp_trunc.xml").unwrap();
 
         let filtered = strip_references(&contents);
