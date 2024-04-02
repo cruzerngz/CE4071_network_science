@@ -15,6 +15,7 @@ use db::dump_into_database;
 use pyo3::{exceptions::PyTypeError, prelude::*};
 
 const DB_DEFAULT_PATH: &str = "dblp.sqlite";
+const GZIP_DEFAULT_PATH: &str = "dblp.xml.gz";
 
 static DB_PATH: OnceLock<String> = OnceLock::new();
 
@@ -22,8 +23,9 @@ static DB_PATH: OnceLock<String> = OnceLock::new();
 ///
 /// The file must be a gzipped xml file: `*.xml.gz`.
 #[pyfunction]
-pub fn init_from_xml(path: String) -> PyResult<()> {
-    let zipped_xml = fs::read(&path).map_err(|e| PyTypeError::new_err(e.to_string()))?;
+pub fn init_from_xml(path: Option<String>) -> PyResult<()> {
+    let zipped_xml = fs::read(path.as_deref().unwrap_or(GZIP_DEFAULT_PATH))
+        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
 
     let mut decoder = flate2::read::GzDecoder::new(zipped_xml.as_slice());
 
@@ -46,7 +48,7 @@ pub fn init_from_xml(path: String) -> PyResult<()> {
         .map_err(|e| PyTypeError::new_err(e.to_string()))?;
 
     // initialize the db path
-    DB_PATH.get_or_init(|| path);
+    DB_PATH.get_or_init(|| DB_DEFAULT_PATH.to_string());
 
     Ok(())
 }
