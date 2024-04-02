@@ -3,20 +3,12 @@
 mod dataset;
 mod db;
 
-use std::{
-    cell::OnceCell,
-    fs,
-    io::Read,
-    sync::{Arc, Once, OnceLock, RwLock},
-};
+use std::{fs, io::Read, sync::OnceLock};
 
-use dataset::xml_items::RawDblp;
-use db::{clear_tables, create_tables, dump_into_database};
 use pyo3::{exceptions::PyTypeError, prelude::*};
 
 const DB_DEFAULT_PATH: &str = "dblp.sqlite";
 const GZIP_DEFAULT_PATH: &str = "dblp.xml.gz";
-const XML_DEFAULT_PATH: &str = "dblp.xml";
 
 static DB_PATH: OnceLock<String> = OnceLock::new();
 
@@ -59,6 +51,8 @@ pub fn init_from_xml(path: Option<String>) -> PyResult<()> {
             filt_xml
         }
     };
+
+    drop(xml_file);
 
     let mut conn = rusqlite::Connection::open(DB_DEFAULT_PATH)
         .map_err(|e| PyTypeError::new_err(e.to_string()))?;
