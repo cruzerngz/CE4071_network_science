@@ -165,3 +165,4 @@ project.py
 *.txt
 *.xls
 *.html
+*.sqlite
