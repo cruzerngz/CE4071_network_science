@@ -109,6 +109,10 @@ impl DblpRecord {
             inner: slf.to_owned(),
         }
     }
+
+    pub fn __str__(&self) -> String {
+        format!("{:?}", self)
+    }
 }
 
 #[pymethods]
@@ -119,6 +123,10 @@ impl PersonRecord {
             inner: slf.to_owned(),
         }
     }
+
+    pub fn __str__(&self) -> String {
+        format!("{:?}", self)
+    }
 }
 
 #[pymethods]
@@ -127,7 +135,7 @@ impl DblpRecordIter {
         match slf.field {
             0 => {
                 slf.field += 1;
-                Some(("field".to_string(), Some(slf.inner.record.to_string())))
+                Some(("record".to_string(), Some(slf.inner.record.to_string())))
             }
             1 => {
                 slf.field += 1;
