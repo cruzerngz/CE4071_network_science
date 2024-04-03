@@ -233,8 +233,8 @@ macro_rules! try_into_dblp_record {
                                 }
 
                                 match c.chars().all(|c| !char::is_alphabetic(c)) {
-                                    true => Some(c),
-                                    false => None
+                                    true => None,
+                                    false => Some(c)
                                 }
                             })
                             .collect::<Vec<_>>()
