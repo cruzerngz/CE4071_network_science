@@ -5,6 +5,7 @@ mod db;
 
 use std::{fs, io::Read, sync::OnceLock};
 
+use dataset::db_items::{DblpRecord, PersonRecord};
 use pyo3::{exceptions::PyTypeError, prelude::*};
 
 const DB_DEFAULT_PATH: &str = "dblp.sqlite";
@@ -98,11 +99,34 @@ pub fn hello_world() -> PyResult<()> {
     Ok(())
 }
 
+/// Perform a raw query on the persons table.
+#[pyfunction]
+pub fn query_persons_table(constraints: String) -> PyResult<Vec<PersonRecord>> {
+    let conn = rusqlite::Connection::open(DB_PATH.get().unwrap())
+        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+
+    db::raw_persons_query(&conn, constraints).map_err(|e| PyTypeError::new_err(e.to_string()))
+}
+
+/// Perform a raw query on the publications table.
+#[pyfunction]
+pub fn query_publications_table(constraints: String) -> PyResult<Vec<DblpRecord>> {
+    let conn = rusqlite::Connection::open(DB_PATH.get().unwrap())
+        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+
+    db::raw_publications_query(&conn, constraints).map_err(|e| PyTypeError::new_err(e.to_string()))
+}
+
 /// dblp is a library for parsing and querying the DBLP XML file.
 #[pymodule]
 fn dblp(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(hello_world, m)?)?;
     m.add_function(wrap_pyfunction!(init_from_xml, m)?)?;
     m.add_function(wrap_pyfunction!(init_from_sqlite, m)?)?;
+    m.add_function(wrap_pyfunction!(query_persons_table, m)?)?;
+    m.add_function(wrap_pyfunction!(query_publications_table, m)?)?;
+    m.add_class::<dataset::db_items::DblpRecord>()?;
+    m.add_class::<dataset::db_items::PersonRecord>()?;
+    m.add_class::<dataset::db_items::PublicationRecord>()?;
     Ok(())
 }

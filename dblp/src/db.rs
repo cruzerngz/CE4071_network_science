@@ -1,12 +1,15 @@
 #![allow(unused)]
 
 use core::num;
-use std::io::Write;
+use std::{borrow::Borrow, io::Write, str::FromStr};
 
-use pyo3::Python;
+use pyo3::{ffi::vectorcallfunc, Python};
 use rusqlite::Connection;
 
-use crate::dataset::db_items::{DblpRecord, PersonRecord};
+use crate::dataset::{
+    db_items::{DblpRecord, PersonRecord, PublicationRecord},
+    xml_items::Person,
+};
 
 /// Checks if the database contains the necessary tables, and that they have stuff in them.
 pub fn check_database(conn: &Connection) -> rusqlite::Result<()> {
@@ -52,6 +55,38 @@ pub fn create_tables(conn: &Connection) -> rusqlite::Result<()> {
     )?;
 
     Ok(())
+}
+
+// only valid if all rows are returned! (SELECT * FROM ...)
+impl<'a, R: Borrow<rusqlite::Row<'a>>> From<R> for DblpRecord {
+    fn from(value: R) -> Self {
+        let row = value.borrow();
+
+        Self {
+            record: PublicationRecord::from_str(&row.get::<usize, String>(1).unwrap()).unwrap(),
+            key: row.get(2).unwrap(),
+            mdate: row.get(3).ok(),
+            publtype: row.get(4).ok(),
+            year: row.get(5).ok(),
+            authors: row.get(6).ok(),
+            citations: row.get(7).ok(),
+            publisher: row.get(8).ok(),
+            school: row.get(9).ok(),
+        }
+    }
+}
+
+// only valid if all rows are returned! (SELECT * FROM ...)
+impl<'a, R: Borrow<rusqlite::Row<'a>>> From<R> for PersonRecord {
+    fn from(value: R) -> Self {
+        let row = value.borrow();
+
+        Self {
+            name: row.get(1).unwrap(),
+            profile: row.get(2).unwrap(),
+            aliases: row.get(3).unwrap(),
+        }
+    }
 }
 
 /// Drops the tables in the database.
@@ -134,6 +169,71 @@ pub fn chunked_deserialize_insert(conn: &mut Connection, xml_str: &str) -> rusql
     println!();
 
     Ok(())
+}
+
+/// Raw query into the publications table, given a set of constraints.
+pub fn raw_publications_query(
+    conn: &Connection,
+    constraints: String,
+) -> rusqlite::Result<Vec<DblpRecord>> {
+    let mut stmt = conn.prepare(&format!("SELECT * FROM publications {};", constraints))?;
+
+    let mut rows = stmt.query_map((), |r| Ok(DblpRecord::from(r)))?;
+
+    Ok(rows.filter_map(|r| r.ok()).collect())
+}
+
+/// Raw query into persons table, given a set of constraints.
+pub fn raw_persons_query(
+    conn: &Connection,
+    constraints: String,
+) -> rusqlite::Result<Vec<PersonRecord>> {
+    let mut stmt = conn.prepare(&format!("SELECT * FROM persons {};", constraints))?;
+
+    let mut rows = stmt.query_map((), |r| Ok(PersonRecord::from(r)))?;
+
+    Ok(rows.filter_map(|r| r.ok()).collect())
+}
+
+/// Search for all records from a specific author
+pub fn query_author(
+    conn: &Connection,
+    author: String,
+    limit: Option<u32>,
+) -> rusqlite::Result<Vec<DblpRecord>> {
+    let records: Vec<DblpRecord> = match limit {
+        Some(l) => {
+            let mut stmt =
+                conn.prepare("SELECT * FROM publications WHERE author LIKE ? LIMIT ?")?;
+
+            let mut rows = stmt.query_map((author, l), |r| Ok(DblpRecord::from(r)))?;
+
+            rows.filter_map(|r| r.ok()).collect()
+        }
+        None => {
+            let mut stmt = conn.prepare("SELECT * FROM publications WHERE author LIKE ?")?;
+
+            let mut rows =
+                stmt.query_map(rusqlite::params![author], |r| Ok(DblpRecord::from(r)))?;
+
+            rows.filter_map(|r| r.ok()).collect()
+        }
+    };
+
+    Ok(records)
+}
+
+/// Query the database for a specific publication
+pub fn query_publication(conn: &Connection, key: String) -> rusqlite::Result<Option<DblpRecord>> {
+    let mut stmt = conn.prepare("SELECT * FROM publications WHERE key = ?")?;
+
+    let mut rows = stmt.query_map(rusqlite::params![key], |r| Ok(DblpRecord::from(r)))?;
+
+    // let record = rows.next().unwrap().map(|r| r.unwrap());
+
+    // Ok(record)
+
+    todo!()
 }
 
 #[cfg(test)]

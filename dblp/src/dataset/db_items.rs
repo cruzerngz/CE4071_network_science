@@ -5,6 +5,7 @@
 
 use std::{fmt::Display, fs::Permissions, str::FromStr};
 
+use pyo3::{pyclass, pymethods, types::PyString, IntoPy, PyAny, PyRef, PyRefMut};
 use rusqlite::{types::FromSql, Connection};
 use serde::{Deserialize, Serialize};
 
@@ -17,33 +18,52 @@ const SEPARATOR: &str = "::";
 /// Each publication type is squashed into the "record" field.
 ///
 /// Vectors are joined with double colons: "::"
-#[derive(Debug, Serialize, Deserialize)]
+#[pyclass]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct DblpRecord {
+    #[pyo3(get)]
     pub record: PublicationRecord,
 
     /// The key of the publication record.
     /// Can be a conference, journal, etc.
+    #[pyo3(get)]
     pub key: String,
+    #[pyo3(get)]
     pub mdate: Option<String>,
+    #[pyo3(get)]
     pub publtype: Option<String>,
 
+    #[pyo3(get)]
     pub year: Option<u32>,
 
     /// Authors are referenced by their profile.
+    #[pyo3(get)]
     pub authors: Option<String>,
 
     /// Other publications referenced by this publication.
     /// Publications are referenced by their key.
+    #[pyo3(get)]
     pub citations: Option<String>,
 
     /// Publisher of the publication.
+    #[pyo3(get)]
     pub publisher: Option<String>,
 
+    #[pyo3(get)]
     pub school: Option<String>,
 }
 
+/// Iterable so that [PublicationRecord] can be converted to a python dictionary
+#[pyclass]
+#[derive(Clone, Debug)]
+pub struct DblpRecordIter {
+    field: u8,
+    inner: DblpRecord,
+}
+
 /// The type of publication record in the database.
-#[derive(Debug, Serialize, Deserialize)]
+#[pyclass]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PublicationRecord {
     Article,
     InProceeding,
@@ -57,16 +77,115 @@ pub enum PublicationRecord {
 }
 
 /// A single person record. Usually the author of a publication.
-#[derive(Debug, Serialize, Deserialize)]
+#[pyclass]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PersonRecord {
+    #[pyo3(get)]
     pub name: String,
 
     /// This is unique across all person records.
     /// Used to distinguish between people.
+    #[pyo3(get)]
     pub profile: String,
 
     /// Other names the person is known by.
+    #[pyo3(get)]
     pub aliases: String,
+}
+
+/// Iterator for [PersonRecord]
+#[pyclass]
+#[derive(Clone, Debug)]
+pub struct PersonRecordIter {
+    field: u8,
+    inner: PersonRecord,
+}
+
+#[pymethods]
+impl DblpRecord {
+    pub fn __iter__(slf: PyRef<'_, Self>) -> DblpRecordIter {
+        DblpRecordIter {
+            field: 0,
+            inner: slf.to_owned(),
+        }
+    }
+}
+
+#[pymethods]
+impl PersonRecord {
+    pub fn __iter__(slf: PyRef<'_, Self>) -> PersonRecordIter {
+        PersonRecordIter {
+            field: 0,
+            inner: slf.to_owned(),
+        }
+    }
+}
+
+#[pymethods]
+impl DblpRecordIter {
+    pub fn __next__(mut slf: PyRefMut<'_, Self>) -> Option<(String, Option<String>)> {
+        match slf.field {
+            0 => {
+                slf.field += 1;
+                Some(("field".to_string(), Some(slf.inner.record.to_string())))
+            }
+            1 => {
+                slf.field += 1;
+                Some(("key".to_string(), Some(slf.inner.key.clone())))
+            }
+            2 => {
+                slf.field += 1;
+                Some(("mdate".to_string(), slf.inner.mdate.clone()))
+            }
+            3 => {
+                slf.field += 1;
+                Some(("publtype".to_string(), slf.inner.publtype.clone()))
+            }
+            4 => {
+                slf.field += 1;
+                Some(("year".to_string(), slf.inner.year.map(|y| y.to_string())))
+            }
+            5 => {
+                slf.field += 1;
+                Some(("authors".to_string(), slf.inner.authors.clone()))
+            }
+            6 => {
+                slf.field += 1;
+                Some(("citations".to_string(), slf.inner.citations.clone()))
+            }
+            7 => {
+                slf.field += 1;
+                Some(("publisher".to_string(), slf.inner.publisher.clone()))
+            }
+            8 => {
+                slf.field += 1;
+                Some(("school".to_string(), slf.inner.school.clone()))
+            }
+            _ => None,
+        }
+    }
+}
+
+#[pymethods]
+impl PersonRecordIter {
+    pub fn __next__(mut slf: PyRefMut<'_, Self>) -> Option<(String, Option<String>)> {
+        match slf.field {
+            0 => {
+                slf.field += 1;
+                Some(("name".to_string(), Some(slf.inner.name.clone())))
+            }
+            1 => {
+                slf.field += 1;
+                Some(("profile".to_string(), Some(slf.inner.profile.clone())))
+            }
+            2 => {
+                slf.field += 1;
+                Some(("aliases".to_string(), Some(slf.inner.aliases.clone())))
+            }
+
+            _ => None,
+        }
+    }
 }
 
 macro_rules! try_into_dblp_record {

@@ -1,19 +1,9 @@
-#![allow(unused)]
+//! This module contains the dataset ingest/processsing logic.
 
 pub mod db_items;
 pub mod xml_items;
 
-use std::{
-    fs,
-    io::{self, Read},
-    sync::OnceLock,
-    time::Duration,
-};
-
-use chrono::naive::serde::ts_seconds_option;
 use regex::Regex;
-
-const DBLP_FILE: &str = "dblp.xml.gz";
 
 /// Matcher for XML references
 /// They follow this format:
@@ -193,9 +183,9 @@ impl<'xml> ChunkedXmlViewer<'xml> {
 
 #[cfg(test)]
 mod tests {
-    use crate::db::{chunked_deserialize_insert, clear_tables, create_tables};
+    use std::fs;
 
-    use self::xml_items::RawDblp;
+    use crate::db::{chunked_deserialize_insert, clear_tables, create_tables};
 
     use super::*;
 
@@ -244,5 +234,7 @@ mod tests {
         create_tables(&conn).unwrap();
 
         chunked_deserialize_insert(&mut conn, &filtered).unwrap();
+
+        fs::remove_file("temp.sqlite").unwrap();
     }
 }
