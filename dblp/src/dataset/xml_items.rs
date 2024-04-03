@@ -2,8 +2,6 @@
 //!
 //! XML schema description found here: https://dblp.org/faq/16154937.html
 
-use std::{collections::HashMap, str::SplitTerminator};
-
 use serde::{Deserialize, Serialize};
 
 /// Raw data derserialized from the DBLP `xml` dataset.
@@ -197,18 +195,13 @@ mod tests {
         println!("num masters theses: {}", dblp.masters_theses.len());
         println!("num web pages: {}", dblp.web_pages.len());
 
-        // println!("{:#?}", dblp.inproceedings);
-        // println!("{:#?}", dblp.articles);
-
-        // println!("{:#?}", dblp.web_pages);
-
         let x = dblp
             .incollections
             .iter()
             .filter(|incol| incol.0.citations.len() != 0)
             .collect::<Vec<_>>();
 
-        // println!("{:#?}", x);
+        println!("{:#?}", x);
     }
 
     #[test]

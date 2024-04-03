@@ -3,10 +3,9 @@
 //! Basically, the data types defined in this module are filtered versions of
 //! the ones in [super::data_items].
 
-use std::{fmt::Display, fs::Permissions, str::FromStr};
+use std::{fmt::Display, str::FromStr};
 
-use pyo3::{pyclass, pymethods, types::PyString, IntoPy, PyAny, PyRef, PyRefMut};
-use rusqlite::{types::FromSql, Connection};
+use pyo3::{pyclass, pymethods, PyRef, PyRefMut};
 use serde::{Deserialize, Serialize};
 
 use super::xml_items::*;
@@ -222,8 +221,24 @@ macro_rules! try_into_dblp_record {
                             _ => Some(val)
                         }
                     },
+                    // citations have weird shit and need to be filtered out:
+                    // - blank strings
+                    // - elipses: ...
                     citations: {
-                        let val = value.0.citations.join(SEPARATOR);
+                        let val = value.0.citations
+                            .into_iter()
+                            .filter_map(|c| {
+                                if c.len() == 0 {
+                                    return None
+                                }
+
+                                match c.chars().all(|c| !char::is_alphabetic(c)) {
+                                    true => Some(c),
+                                    false => None
+                                }
+                            })
+                            .collect::<Vec<_>>()
+                            .join(SEPARATOR);
                         match val.len() {
                             0 => None,
                             _ => Some(val)
