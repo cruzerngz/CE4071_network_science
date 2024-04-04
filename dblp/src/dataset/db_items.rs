@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 use super::xml_items::*;
 
 /// The separator used to join vectors in the database.
-const SEPARATOR: &str = "::";
+pub const SEPARATOR: &str = "::";
 
 /// A single entry in the database.
 /// Each publication type is squashed into the "record" field.
@@ -112,6 +112,18 @@ impl DblpRecord {
     pub fn __str__(&self) -> String {
         format!("{:?}", self)
     }
+
+    pub fn authors(&self) -> Option<Vec<String>> {
+        let authors = self.authors.as_deref()?;
+
+        Some(
+            authors
+                .trim_end_matches(SEPARATOR)
+                .split(SEPARATOR)
+                .map(|a| a.to_string())
+                .collect(),
+        )
+    }
 }
 
 #[pymethods]
@@ -195,6 +207,17 @@ impl PersonRecordIter {
     }
 }
 
+/// Join a vector of strings.
+/// The separator is also placed at the start and end of the string.
+fn join_string_vec(vec: Vec<String>) -> String {
+    match vec.len() {
+        0 => String::new(),
+        _ => {
+            format!("{}{}{}", SEPARATOR, vec.join(SEPARATOR), SEPARATOR)
+        }
+    }
+}
+
 macro_rules! try_into_dblp_record {
     {$from_ty: ty, $rcrd: expr} => {
         impl TryFrom<$from_ty> for DblpRecord {
@@ -213,12 +236,11 @@ macro_rules! try_into_dblp_record {
                         .authors
                         .iter()
                         .map(|a| a.name.clone())
-                        .collect::<Vec<_>>()
-                        .join(SEPARATOR);
+                        .collect::<Vec<_>>();
 
                         match val.len() {
                             0 => None,
-                            _ => Some(val)
+                            _ => Some(join_string_vec(val))
                         }
                     },
                     // citations have weird shit and need to be filtered out:
@@ -237,25 +259,23 @@ macro_rules! try_into_dblp_record {
                                     false => Some(c)
                                 }
                             })
-                            .collect::<Vec<_>>()
-                            .join(SEPARATOR);
+                            .collect::<Vec<_>>();
+
                         match val.len() {
                             0 => None,
-                            _ => Some(val)
+                            _ => Some(join_string_vec(val))
                         }
                     },
                     publisher: {
-                        let val = value.0.publisher.join(SEPARATOR);
-                        match val.len() {
+                        match value.0.publisher.len() {
                             0 => None,
-                            _ => Some(val)
+                            _ => Some(join_string_vec(value.0.publisher))
                         }
                     },
                     school: {
-                        let val = value.0.school.join(SEPARATOR);
-                        match val.len() {
+                        match value.0.school.len() {
                             0 => None,
-                            _ => Some(val)
+                            _ => Some(join_string_vec(value.0.school))
                         }
                     },
                 })
@@ -310,13 +330,12 @@ impl TryFrom<WebPage> for PersonRecord {
             .iter()
             .skip(1)
             .map(|a| a.to_string())
-            .collect::<Vec<_>>()
-            .join(SEPARATOR);
+            .collect::<Vec<_>>();
 
         Ok(Self {
             name: author,
             profile: value.key,
-            aliases,
+            aliases: join_string_vec(aliases),
         })
     }
 }

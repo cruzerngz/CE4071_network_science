@@ -58,7 +58,6 @@ pub fn init_from_xml(path: Option<String>) -> PyResult<()> {
     let mut conn = rusqlite::Connection::open(DB_DEFAULT_PATH)
         .map_err(|e| PyTypeError::new_err(e.to_string()))?;
 
-    db::create_tables(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
     db::clear_tables(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
     db::create_tables(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
 

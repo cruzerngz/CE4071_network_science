@@ -1,20 +1,17 @@
-#![allow(unused)]
+//! All database-related items are defined here.
+//!
+//! That includes all SQL queries.
 
-use core::num;
 use std::{borrow::Borrow, io::Write, str::FromStr};
 
-use pyo3::{ffi::vectorcallfunc, Python};
 use rusqlite::Connection;
 
-use crate::dataset::{
-    db_items::{DblpRecord, PersonRecord, PublicationRecord},
-    xml_items::Person,
-};
+use crate::dataset::db_items::{DblpRecord, PersonRecord, PublicationRecord, SEPARATOR};
 
 /// Checks if the database contains the necessary tables, and that they have stuff in them.
 pub fn check_database(conn: &Connection) -> rusqlite::Result<()> {
     let mut stmt = conn.prepare("SELECT COUNT(name) from persons;")?;
-    let num_names = stmt.query(())?;
+    let _ = stmt.query(())?;
 
     let mut stmt = conn.prepare("SELECT COUNT(record) from publications;")?;
     let _ = stmt.query(())?;
@@ -26,7 +23,7 @@ pub fn check_database(conn: &Connection) -> rusqlite::Result<()> {
     Ok(())
 }
 
-/// Initializes the database tables.
+/// Initializes the database tables and drops all indexes.
 pub fn create_tables(conn: &Connection) -> rusqlite::Result<()> {
     conn.execute(
         "CREATE TABLE IF NOT EXISTS persons(
@@ -53,6 +50,42 @@ pub fn create_tables(conn: &Connection) -> rusqlite::Result<()> {
         )",
         (),
     )?;
+
+    Ok(())
+}
+
+fn create_all_indexes(conn: &Connection) -> rusqlite::Result<()> {
+    // this is the only guaranteed unique column in the database
+    conn.execute(
+        "CREATE UNIQUE INDEX IF NOT EXISTS idx_profile ON persons(profile)",
+        (),
+    )?;
+
+    conn.execute(
+        "CREATE INDEX IF NOT EXISTS idx_year ON publications(year)",
+        (),
+    )?;
+
+    conn.execute(
+        "CREATE INDEX IF NOT EXISTS idx_authors ON publications(authors)",
+        (),
+    )?;
+
+    conn.execute(
+        "CREATE INDEX IF NOT EXISTS idx_citations ON publications(citations)",
+        (),
+    )?;
+
+    Ok(())
+}
+
+/// Drops all indexes in the database.
+fn drop_all_indexes(conn: &Connection) -> rusqlite::Result<()> {
+    // drop all indexes
+    conn.execute("DROP INDEX IF EXISTS idx_profile", ())?;
+    conn.execute("DROP INDEX IF EXISTS idx_year", ())?;
+    conn.execute("DROP INDEX IF EXISTS idx_authors", ())?;
+    conn.execute("DROP INDEX IF EXISTS idx_citations", ())?;
 
     Ok(())
 }
@@ -91,9 +124,10 @@ impl<'a, R: Borrow<rusqlite::Row<'a>>> From<R> for PersonRecord {
 
 /// Drops the tables in the database.
 pub fn clear_tables(conn: &Connection) -> rusqlite::Result<()> {
-    conn.execute("DROP TABLE persons", ())?;
-    conn.execute("DROP TABLE publications", ())?;
+    conn.execute("DROP TABLE IF EXISTS persons", ())?;
+    conn.execute("DROP TABLE IF EXISTS publications", ())?;
 
+    drop_all_indexes(conn)?;
     Ok(())
 }
 
@@ -165,8 +199,9 @@ pub fn chunked_deserialize_insert(conn: &mut Connection, xml_str: &str) -> rusql
 
         dump_into_database(conn, &publications, &persons)?;
     }
-
     println!();
+    println!("creating index...");
+    create_all_indexes(conn)?;
 
     Ok(())
 }
@@ -178,7 +213,7 @@ pub fn raw_publications_query(
 ) -> rusqlite::Result<Vec<DblpRecord>> {
     let mut stmt = conn.prepare(&format!("SELECT * FROM publications {};", constraints))?;
 
-    let mut rows = stmt.query_map((), |r| Ok(DblpRecord::from(r)))?;
+    let rows = stmt.query_map((), |r| Ok(DblpRecord::from(r)))?;
 
     Ok(rows.filter_map(|r| r.ok()).collect())
 }
@@ -190,7 +225,7 @@ pub fn raw_persons_query(
 ) -> rusqlite::Result<Vec<PersonRecord>> {
     let mut stmt = conn.prepare(&format!("SELECT * FROM persons {};", constraints))?;
 
-    let mut rows = stmt.query_map((), |r| Ok(PersonRecord::from(r)))?;
+    let rows = stmt.query_map((), |r| Ok(PersonRecord::from(r)))?;
 
     Ok(rows.filter_map(|r| r.ok()).collect())
 }
@@ -201,20 +236,21 @@ pub fn query_author(
     author: String,
     limit: Option<u32>,
 ) -> rusqlite::Result<Vec<DblpRecord>> {
+    let q_author = format!("{}{}{}", SEPARATOR, author, SEPARATOR);
+
     let records: Vec<DblpRecord> = match limit {
         Some(l) => {
             let mut stmt =
                 conn.prepare("SELECT * FROM publications WHERE author LIKE ? LIMIT ?")?;
 
-            let mut rows = stmt.query_map((author, l), |r| Ok(DblpRecord::from(r)))?;
+            let rows = stmt.query_map((q_author, l), |r| Ok(DblpRecord::from(r)))?;
 
             rows.filter_map(|r| r.ok()).collect()
         }
         None => {
             let mut stmt = conn.prepare("SELECT * FROM publications WHERE author LIKE ?")?;
 
-            let mut rows =
-                stmt.query_map(rusqlite::params![author], |r| Ok(DblpRecord::from(r)))?;
+            let rows = stmt.query_map(rusqlite::params![q_author], |r| Ok(DblpRecord::from(r)))?;
 
             rows.filter_map(|r| r.ok()).collect()
         }
@@ -227,7 +263,7 @@ pub fn query_author(
 pub fn query_publication(conn: &Connection, key: String) -> rusqlite::Result<Option<DblpRecord>> {
     let mut stmt = conn.prepare("SELECT * FROM publications WHERE key = ?")?;
 
-    let mut rows = stmt.query_map(rusqlite::params![key], |r| Ok(DblpRecord::from(r)))?;
+    let rows = stmt.query_map(rusqlite::params![key], |r| Ok(DblpRecord::from(r)))?;
 
     // let record = rows.next().unwrap().map(|r| r.unwrap());
 
