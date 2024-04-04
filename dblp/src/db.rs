@@ -76,6 +76,11 @@ fn create_all_indexes(conn: &Connection) -> rusqlite::Result<()> {
         (),
     )?;
 
+    conn.execute(
+        "CREATE INDEX IF NOT EXISTS idx_author_name ON persons(name)",
+        (),
+    )?;
+
     Ok(())
 }
 
@@ -86,6 +91,7 @@ fn drop_all_indexes(conn: &Connection) -> rusqlite::Result<()> {
     conn.execute("DROP INDEX IF EXISTS idx_year", ())?;
     conn.execute("DROP INDEX IF EXISTS idx_authors", ())?;
     conn.execute("DROP INDEX IF EXISTS idx_citations", ())?;
+    conn.execute("DROP INDEX IF EXISTS idx_author_name", ())?;
 
     Ok(())
 }
