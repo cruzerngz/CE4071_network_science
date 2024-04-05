@@ -1,0 +1,11 @@
+# typst hayagriva biblography format
+
+dblp-rate-limits:
+  type: Web
+  title: Am I allowed to crawl the dblp website?
+  url: https://dblp.org/faq/Am+I+allowed+to+crawl+the+dblp+website.html
+
+dblp-dataset-online:
+  type: Web
+  title: How can I download the whole dblp dataset?
+  url: https://dblp.org/faq/How+can+I+download+the+whole+dblp+dataset.html
