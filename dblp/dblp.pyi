@@ -17,8 +17,8 @@ class DblpRecord(object):
     publisher: typing.Optional[str]
     school: typing.Optional[str]
 
-    # def __repr__(self):
-    #     dict(self)
+    def authors(self) -> list[str]:
+        """Return the list of authors associated with this publication."""
 
 class PersonRecord(object):
     """Record of a person in the database."""
@@ -26,9 +26,6 @@ class PersonRecord(object):
     name: str
     profile: str
     aliases: str
-
-    # def __repr__(self):
-    #     dict(self)
 
 class DblpRecordIter(object): ...
 class PersonRecordIter(object): ...
@@ -48,7 +45,29 @@ def init_from_xml(path: str = None):
     """
 
 def query_persons_table(constraints: str) -> list[PersonRecord]:
-    """Query the persons table with the given constraints."""
+    """Perform a raw query on the persons table with the given constraints.
+
+    E.g. `WHERE true = true` to get all records.
+
+    E.g. `LIMIT 10` to get the first 10 records.
+    """
 
 def query_publications_table(constraints: str) -> list[DblpRecord]:
-    """Query the publications table with the given constraints."""
+    """Perform a raw query on the publications table with the given constraints.
+
+    E.g. `WHERE true = true` to get all records.
+
+    E.g. `LIMIT 10` to get the first 10 records.
+    """
+
+def query_person(name: str, limit: int = None) -> list[PersonRecord]:
+    """Query the persons table with the given name.
+
+    If an exact match is not found, a search over aliases is performed.
+    """
+
+def query_publication(name: str, limit: int = None) -> list[DblpRecord]:
+    """Query the publications table with the given name."""
+
+def query_person_publications(name: str, max_year: int = None, limit: int = None):
+    """Search for all publications from a specific author."""

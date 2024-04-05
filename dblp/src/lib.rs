@@ -116,6 +116,41 @@ pub fn query_publications_table(constraints: String) -> PyResult<Vec<DblpRecord>
     db::raw_publications_query(&conn, constraints).map_err(|e| PyTypeError::new_err(e.to_string()))
 }
 
+/// Search for an author in the database.
+#[pyfunction]
+pub fn query_person(name: String, limit: Option<u32>) -> PyResult<Vec<PersonRecord>> {
+    let conn = rusqlite::Connection::open(DB_PATH.get().unwrap())
+        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+
+    db::query_author(&conn, name, limit).map_err(|e| PyTypeError::new_err(e.to_string()))
+}
+
+/// Search for a publication in the database.
+#[pyfunction]
+pub fn query_publication(title: String, limit: Option<u32>) -> PyResult<Vec<DblpRecord>> {
+    let conn = rusqlite::Connection::open(DB_PATH.get().unwrap())
+        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+
+    db::query_publication(&conn, title, limit).map_err(|e| PyTypeError::new_err(e.to_string()))
+}
+
+/// Search for all publications from a specific author.
+///
+/// The `limit` parameter can be used to limit the number of results.
+/// The `max_year` parameter can be used to limit the results up to a specific year.
+#[pyfunction]
+pub fn query_person_publications(
+    name: String,
+    max_year: Option<u32>,
+    limit: Option<u32>,
+) -> PyResult<Vec<DblpRecord>> {
+    let conn = rusqlite::Connection::open(DB_PATH.get().unwrap())
+        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+
+    db::query_author_publications(&conn, name, max_year, limit)
+        .map_err(|e| PyTypeError::new_err(e.to_string()))
+}
+
 /// dblp is a library for parsing and querying the DBLP XML file.
 #[pymodule]
 fn dblp(m: &Bound<'_, PyModule>) -> PyResult<()> {
@@ -124,6 +159,8 @@ fn dblp(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(init_from_sqlite, m)?)?;
     m.add_function(wrap_pyfunction!(query_persons_table, m)?)?;
     m.add_function(wrap_pyfunction!(query_publications_table, m)?)?;
+    m.add_function(wrap_pyfunction!(query_person, m)?)?;
+    m.add_function(wrap_pyfunction!(query_person_publications, m)?)?;
     m.add_class::<dataset::db_items::DblpRecord>()?;
     m.add_class::<dataset::db_items::PersonRecord>()?;
     m.add_class::<dataset::db_items::PublicationRecord>()?;

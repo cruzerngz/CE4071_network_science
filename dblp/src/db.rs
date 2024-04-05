@@ -4,7 +4,7 @@
 
 use std::{borrow::Borrow, io::Write, str::FromStr};
 
-use rusqlite::Connection;
+use rusqlite::{Connection, ToSql};
 
 use crate::dataset::db_items::{DblpRecord, PersonRecord, PublicationRecord, SEPARATOR};
 
@@ -99,7 +99,7 @@ fn drop_all_indexes(conn: &Connection) -> rusqlite::Result<()> {
 // only valid if all rows are returned! (SELECT * FROM ...)
 impl<'a, R: Borrow<rusqlite::Row<'a>>> From<R> for DblpRecord {
     fn from(value: R) -> Self {
-        let row = value.borrow();
+        let row: &rusqlite::Row = value.borrow();
 
         Self {
             record: PublicationRecord::from_str(&row.get::<usize, String>(1).unwrap()).unwrap(),
@@ -237,45 +237,107 @@ pub fn raw_persons_query(
 }
 
 /// Search for all records from a specific author
+pub fn query_author_publications(
+    conn: &Connection,
+    author: String,
+    max_year: Option<u32>,
+    limit: Option<u32>,
+) -> rusqlite::Result<Vec<DblpRecord>> {
+    let q_author = format!("%{}{}{}%", SEPARATOR, author, SEPARATOR);
+
+    let mut box_q_params: Vec<Box<dyn ToSql>> = vec![Box::new(q_author)];
+
+    let mut q_string = format!("SELECT * FROM publications WHERE authors LIKE ? ");
+
+    if let Some(year) = max_year {
+        q_string.push_str("AND year <= ? ");
+        box_q_params.push(Box::new(year))
+    }
+
+    if let Some(l) = limit {
+        q_string.push_str("LIMIT ?");
+        box_q_params.push(Box::new(l))
+    }
+
+    // convert to Vec<&dyn ToSql>
+    let q_params: Vec<&dyn ToSql> = box_q_params.iter().map(|b| b.borrow()).collect::<Vec<_>>();
+
+    let mut stmt = conn.prepare(&q_string)?;
+
+    let rows = stmt.query_map(q_params.as_slice(), |r| Ok(DblpRecord::from(r)))?;
+
+    Ok(rows.filter_map(|r| r.ok()).collect())
+}
+
+/// Query the database for a specific author.
+///
+/// If there is no match from author name, a search through aliases is performed.
 pub fn query_author(
     conn: &Connection,
     author: String,
     limit: Option<u32>,
-) -> rusqlite::Result<Vec<DblpRecord>> {
-    let q_author = format!("{}{}{}", SEPARATOR, author, SEPARATOR);
+) -> rusqlite::Result<Vec<PersonRecord>> {
+    let mut box_q_params: Vec<Box<dyn ToSql>> = vec![Box::new(&author)];
 
-    let records: Vec<DblpRecord> = match limit {
-        Some(l) => {
-            let mut stmt =
-                conn.prepare("SELECT * FROM publications WHERE author LIKE ? LIMIT ?")?;
+    let mut q_string = format!("SELECT * FROM persons WHERE name = ? ");
 
-            let rows = stmt.query_map((q_author, l), |r| Ok(DblpRecord::from(r)))?;
+    if let Some(l) = limit {
+        q_string.push_str("LIMIT ?");
+        box_q_params.push(Box::new(l))
+    }
 
-            rows.filter_map(|r| r.ok()).collect()
-        }
-        None => {
-            let mut stmt = conn.prepare("SELECT * FROM publications WHERE author LIKE ?")?;
+    // convert to Vec<&dyn ToSql>
+    let q_params: Vec<&dyn ToSql> = box_q_params.iter().map(|b| b.borrow()).collect::<Vec<_>>();
+    let mut stmt = conn.prepare(&q_string)?;
+    let rows = stmt.query_map(q_params.as_slice(), |r| Ok(PersonRecord::from(r)))?;
 
-            let rows = stmt.query_map(rusqlite::params![q_author], |r| Ok(DblpRecord::from(r)))?;
+    // if matches found, return
+    let initial_results = rows.filter_map(|r| r.ok()).collect::<Vec<_>>();
+    match initial_results.len() {
+        0 => (),
+        _ => return Ok(initial_results),
+    }
 
-            rows.filter_map(|r| r.ok()).collect()
-        }
-    };
+    // search thru aliases if no exact match found
+    let mut q_string = format!("SELECT * FROM persons WHERE aliases LIKE ? ");
+    let mut box_q_params: Vec<Box<dyn ToSql>> = vec![Box::new(format!("%{}%", author))];
 
-    Ok(records)
+    if let Some(l) = limit {
+        q_string.push_str("LIMIT ?");
+        box_q_params.push(Box::new(l))
+    }
+
+    // convert to Vec<&dyn ToSql>
+    let q_params: Vec<&dyn ToSql> = box_q_params.iter().map(|b| b.borrow()).collect::<Vec<_>>();
+    let mut stmt = conn.prepare(&q_string)?;
+    let rows = stmt.query_map(q_params.as_slice(), |r| Ok(PersonRecord::from(r)))?;
+
+    Ok(rows.filter_map(|r| r.ok()).collect())
 }
 
 /// Query the database for a specific publication
-pub fn query_publication(conn: &Connection, key: String) -> rusqlite::Result<Option<DblpRecord>> {
-    let mut stmt = conn.prepare("SELECT * FROM publications WHERE key = ?")?;
+pub fn query_publication(
+    conn: &Connection,
+    key: String,
+    limit: Option<u32>,
+) -> rusqlite::Result<Vec<DblpRecord>> {
+    let mut box_q_params: Vec<Box<dyn ToSql>> = vec![Box::new(key)];
 
-    let rows = stmt.query_map(rusqlite::params![key], |r| Ok(DblpRecord::from(r)))?;
+    let mut q_string = format!("SELECT * FROM persons WHERE aliases LIKE ? ");
 
-    // let record = rows.next().unwrap().map(|r| r.unwrap());
+    if let Some(l) = limit {
+        q_string.push_str("LIMIT ?");
+        box_q_params.push(Box::new(l))
+    }
 
-    // Ok(record)
+    // convert to Vec<&dyn ToSql>
+    let q_params: Vec<&dyn ToSql> = box_q_params.iter().map(|b| b.borrow()).collect::<Vec<_>>();
 
-    todo!()
+    let mut stmt = conn.prepare(&q_string)?;
+
+    let rows = stmt.query_map(q_params.as_slice(), |r| Ok(DblpRecord::from(r)))?;
+
+    Ok(rows.filter_map(|r| r.ok()).collect())
 }
 
 #[cfg(test)]
