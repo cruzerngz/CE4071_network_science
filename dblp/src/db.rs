@@ -4,9 +4,14 @@
 
 use std::{borrow::Borrow, io::Write, str::FromStr};
 
+use r2d2::PooledConnection;
+use r2d2_sqlite::SqliteConnectionManager;
 use rusqlite::{Connection, ToSql};
 
 use crate::dataset::db_items::{DblpRecord, PersonRecord, PublicationRecord, SEPARATOR};
+
+// type DbConnectionPool = Pool<SqliteConnectionManager>;
+type DbConnection = PooledConnection<SqliteConnectionManager>;
 
 /// Checks if the database contains the necessary tables, and that they have stuff in them.
 pub fn check_database(conn: &Connection) -> rusqlite::Result<()> {
@@ -24,7 +29,7 @@ pub fn check_database(conn: &Connection) -> rusqlite::Result<()> {
 }
 
 /// Initializes the database tables and drops all indexes.
-pub fn create_tables(conn: &Connection) -> rusqlite::Result<()> {
+pub fn create_tables(conn: &DbConnection) -> rusqlite::Result<()> {
     conn.execute(
         "CREATE TABLE IF NOT EXISTS persons(
             id INTEGER PRIMARY KEY,
@@ -54,7 +59,7 @@ pub fn create_tables(conn: &Connection) -> rusqlite::Result<()> {
     Ok(())
 }
 
-fn create_all_indexes(conn: &Connection) -> rusqlite::Result<()> {
+fn create_all_indexes(conn: &DbConnection) -> rusqlite::Result<()> {
     // this is the only guaranteed unique column in the database
     conn.execute(
         "CREATE UNIQUE INDEX IF NOT EXISTS idx_profile ON persons(profile)",
@@ -85,7 +90,7 @@ fn create_all_indexes(conn: &Connection) -> rusqlite::Result<()> {
 }
 
 /// Drops all indexes in the database.
-fn drop_all_indexes(conn: &Connection) -> rusqlite::Result<()> {
+fn drop_all_indexes(conn: &DbConnection) -> rusqlite::Result<()> {
     // drop all indexes
     conn.execute("DROP INDEX IF EXISTS idx_profile", ())?;
     conn.execute("DROP INDEX IF EXISTS idx_year", ())?;
@@ -129,17 +134,19 @@ impl<'a, R: Borrow<rusqlite::Row<'a>>> From<R> for PersonRecord {
 }
 
 /// Drops the tables in the database.
-pub fn clear_tables(conn: &Connection) -> rusqlite::Result<()> {
+pub fn clear_tables(conn: &DbConnection) -> rusqlite::Result<()> {
+    // let c = conn.get().unwrap();
+
     conn.execute("DROP TABLE IF EXISTS persons", ())?;
     conn.execute("DROP TABLE IF EXISTS publications", ())?;
 
-    drop_all_indexes(conn)?;
+    drop_all_indexes(&conn)?;
     Ok(())
 }
 
 /// Inserts the given records into the database.
 pub fn dump_into_database(
-    conn: &mut Connection,
+    conn: &mut DbConnection,
     records: &[DblpRecord],
     persons: &[PersonRecord],
 ) -> rusqlite::Result<()> {
@@ -186,7 +193,7 @@ pub fn dump_into_database(
 /// The input XML should already be filtered of references.
 ///
 /// Me small computer. Me no ram.
-pub fn chunked_deserialize_insert(conn: &mut Connection, xml_str: &str) -> rusqlite::Result<()> {
+pub fn chunked_deserialize_insert(conn: &mut DbConnection, xml_str: &str) -> rusqlite::Result<()> {
     const CHUNK_SIZE: usize = 1000;
 
     // process large num of elements at a time
@@ -277,9 +284,10 @@ pub fn query_author(
     author: String,
     limit: Option<u32>,
 ) -> rusqlite::Result<Vec<PersonRecord>> {
-    let mut box_q_params: Vec<Box<dyn ToSql>> = vec![Box::new(&author)];
+    let mod_author = capitalize_wildcard(&author);
+    let mut box_q_params: Vec<Box<dyn ToSql>> = vec![Box::new(&mod_author)];
 
-    let mut q_string = format!("SELECT * FROM persons WHERE name = ? ");
+    let mut q_string = format!("SELECT * FROM persons WHERE name LIKE ? ");
 
     if let Some(l) = limit {
         q_string.push_str("LIMIT ?");
@@ -340,6 +348,21 @@ pub fn query_publication(
     Ok(rows.filter_map(|r| r.ok()).collect())
 }
 
+/// Capitalize the first letter of a name and insert the '%' wildcard in spaces.
+fn capitalize_wildcard(input: &str) -> String {
+    input
+        .split_whitespace()
+        .map(|n| {
+            let mut chars = n.chars();
+            match chars.next() {
+                Some(f) => f.to_uppercase().chain(chars).collect::<String>(),
+                None => String::new(),
+            }
+        })
+        .collect::<Vec<_>>()
+        .join("%")
+}
+
 #[cfg(test)]
 mod tests {
 
@@ -350,14 +373,18 @@ mod tests {
     #[test]
     fn test_init_database() {
         // let conn = rusqlite::Connection::open("./test.sqlite").unwrap();
-        let conn = rusqlite::Connection::open_in_memory().unwrap();
-        create_tables(&conn).unwrap();
+        let conn = r2d2_sqlite::SqliteConnectionManager::memory();
+        let pool = r2d2::Pool::new(conn).unwrap();
+        let c = pool.get().unwrap();
+
+        create_tables(&c).unwrap();
     }
 
     #[test]
     fn test_push_to_database() {
-        let mut conn = rusqlite::Connection::open("./test.sqlite").unwrap();
-        // let mut conn = rusqlite::Connection::open_in_memory().unwrap();
+        let conn = r2d2_sqlite::SqliteConnectionManager::memory();
+        let pool = r2d2::Pool::new(conn).unwrap();
+        let mut c = pool.get().unwrap();
 
         // let contents = std::fs::read_to_string("dblp_trunc.xml").unwrap();
         let contents = std::fs::read_to_string("dblp_trunc.xml").unwrap();
@@ -368,7 +395,14 @@ mod tests {
 
         let (publications, persons): (Vec<DblpRecord>, Vec<PersonRecord>) = dblp.into();
 
-        create_tables(&conn).unwrap();
-        dump_into_database(&mut conn, &publications, &persons).unwrap();
+        create_tables(&c).unwrap();
+        dump_into_database(&mut c, &publications, &persons).unwrap();
+    }
+
+    #[test]
+    fn test_capitalize_wildcard() {
+        let input = "john doe";
+        let expected = "John%Doe";
+        assert_eq!(capitalize_wildcard(input), expected);
     }
 }

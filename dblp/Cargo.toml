@@ -20,3 +20,5 @@ flate2 = "1"
 regex = "1"
 log = "0.4"
 rusqlite = { version = "0", features = ["bundled"] }
+r2d2 = "0"
+r2d2_sqlite = "0"

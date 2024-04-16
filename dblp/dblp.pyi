@@ -12,13 +12,17 @@ class DblpRecord(object):
     mdate: typing.Optional[str]
     publtype: typing.Optional[str]
     year: typing.Optional[int]
-    authors: typing.Optional[str]
+    # access authors through the `authors` method
+    # authors: typing.Optional[str]
     citations: typing.Optional[str]
     publisher: typing.Optional[str]
     school: typing.Optional[str]
 
     def authors(self) -> list[str]:
         """Return the list of authors associated with this publication."""
+
+    # def x(self) -> bool:
+    #     init_from_sqlite()
 
 class PersonRecord(object):
     """Record of a person in the database."""
@@ -41,7 +45,7 @@ def init_from_sqlite(path: str = None):
 def init_from_xml(path: str = None):
     """initialize the database from the given xml file.
 
-    If no file is provided, then `dblp.xml.gz` is used.
+    If no file is provided, then `dblp.xml` or `dblp.xml.gz` is used.
     """
 
 def query_persons_table(constraints: str) -> list[PersonRecord]:
@@ -69,5 +73,5 @@ def query_person(name: str, limit: int = None) -> list[PersonRecord]:
 def query_publication(name: str, limit: int = None) -> list[DblpRecord]:
     """Query the publications table with the given name."""
 
-def query_person_publications(name: str, max_year: int = None, limit: int = None):
+def query_person_publications(name: str, max_year: int = None, limit: int = None) -> list[DblpRecord]:
     """Search for all publications from a specific author."""

@@ -36,7 +36,7 @@ pub struct DblpRecord {
     pub year: Option<u32>,
 
     /// Authors are referenced by their profile.
-    #[pyo3(get)]
+    // #[pyo3(get)]
     pub authors: Option<String>,
 
     /// Other publications referenced by this publication.
@@ -118,7 +118,7 @@ impl DblpRecord {
 
         Some(
             authors
-                .trim_end_matches(SEPARATOR)
+                .trim_matches(SEPARATOR.chars().collect::<Vec<_>>().as_slice())
                 .split(SEPARATOR)
                 .map(|a| a.to_string())
                 .collect(),

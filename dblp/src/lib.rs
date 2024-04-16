@@ -7,11 +7,38 @@ use std::{fs, io::Read, sync::OnceLock};
 
 use dataset::db_items::{DblpRecord, PersonRecord};
 use pyo3::{exceptions::PyTypeError, prelude::*};
+use r2d2::{Pool, PooledConnection};
+use r2d2_sqlite::SqliteConnectionManager;
 
 const DB_DEFAULT_PATH: &str = "dblp.sqlite";
-const GZIP_DEFAULT_PATH: &str = "dblp.xml.gz";
+const XML_GZ_PATH: &str = "dblp.xml.gz";
+const XML_PATH: &str = "dblp.xml";
 
 static DB_PATH: OnceLock<String> = OnceLock::new();
+
+/// Connection pool to the database
+pub static DB_CONN_POOL: OnceLock<Pool<SqliteConnectionManager>> = OnceLock::new();
+
+/// Initialize the connection pool and get a connection.
+fn get_init_conn_pool() -> PooledConnection<SqliteConnectionManager> {
+    match DB_CONN_POOL.get() {
+        Some(p) => p.get().unwrap(),
+        None => {
+            DB_CONN_POOL.get_or_init(|| {
+                let manager = SqliteConnectionManager::file(
+                    DB_PATH.get().expect("database path not initialized"),
+                );
+                r2d2::Pool::new(manager).expect("failed to create connection pool")
+            });
+
+            DB_CONN_POOL
+                .get()
+                .expect("connection pool should be initialized")
+                .get()
+                .unwrap()
+        }
+    }
+}
 
 /// Initialize the DBLP database from a local file.
 ///
@@ -20,13 +47,20 @@ static DB_PATH: OnceLock<String> = OnceLock::new();
 /// If no file is specified, the default gzipped file `dblp.xml.gz` is used.
 #[pyfunction]
 pub fn init_from_xml(path: Option<String>) -> PyResult<()> {
-    let actual_path = path.as_deref().unwrap_or(GZIP_DEFAULT_PATH);
+    let actual_path = match path.as_deref() {
+        Some(p) => p,
+        None => match (fs::metadata(XML_GZ_PATH), fs::metadata(XML_PATH)) {
+            (_, Ok(_)) => XML_PATH,
+            (Ok(_), Err(_)) => XML_GZ_PATH,
+            (Err(_), Err(_)) => return Err(PyTypeError::new_err("No XML file found")),
+        },
+    };
 
     let xml_file = fs::read(actual_path).map_err(PyTypeError::new_err)?;
 
     let xml_data = match actual_path.ends_with(".gz") {
         true => {
-            println!("Decompressing the gzipped file");
+            println!("Reading gzip file");
 
             let mut xml_bytes = Vec::new();
             let mut decoder = flate2::read::GzDecoder::new(xml_file.as_slice());
@@ -46,17 +80,15 @@ pub fn init_from_xml(path: Option<String>) -> PyResult<()> {
             let raw_xml = std::str::from_utf8(&xml_file).map_err(PyTypeError::new_err)?;
             let filt_xml = dataset::strip_references(raw_xml);
 
-            // filter out the references
-            // fs::write(actual_path, &filt_xml).map_err(PyTypeError::new_err)?;
-
             filt_xml
         }
     };
 
     drop(xml_file);
 
-    let mut conn = rusqlite::Connection::open(DB_DEFAULT_PATH)
-        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+    let mut conn = get_init_conn_pool();
+    // rusqlite::Connection::open(DB_DEFAULT_PATH)
+    // .map_err(|e| PyTypeError::new_err(e.to_string()))?;
 
     db::clear_tables(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
     db::create_tables(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
@@ -76,16 +108,11 @@ pub fn init_from_xml(path: Option<String>) -> PyResult<()> {
 /// If no path is provided, the default path `dblp.sqlite` is used.
 #[pyfunction]
 pub fn init_from_sqlite(path: Option<String>) -> PyResult<()> {
-    let conn = match &path {
-        Some(path) => rusqlite::Connection::open(path),
-        None => rusqlite::Connection::open(DB_DEFAULT_PATH),
-    }
-    .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+    DB_PATH.get_or_init(|| path.unwrap_or(DB_DEFAULT_PATH.to_string()));
+
+    let conn = get_init_conn_pool();
 
     db::check_database(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
-
-    // initialize the db path
-    DB_PATH.get_or_init(|| path.unwrap_or(DB_DEFAULT_PATH.to_string()));
 
     Ok(())
 }
@@ -101,8 +128,7 @@ pub fn hello_world() -> PyResult<()> {
 /// Perform a raw query on the persons table.
 #[pyfunction]
 pub fn query_persons_table(constraints: String) -> PyResult<Vec<PersonRecord>> {
-    let conn = rusqlite::Connection::open(DB_PATH.get().unwrap())
-        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+    let conn = get_init_conn_pool();
 
     db::raw_persons_query(&conn, constraints).map_err(|e| PyTypeError::new_err(e.to_string()))
 }
@@ -110,26 +136,25 @@ pub fn query_persons_table(constraints: String) -> PyResult<Vec<PersonRecord>> {
 /// Perform a raw query on the publications table.
 #[pyfunction]
 pub fn query_publications_table(constraints: String) -> PyResult<Vec<DblpRecord>> {
-    let conn = rusqlite::Connection::open(DB_PATH.get().unwrap())
-        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+    let conn = get_init_conn_pool();
 
     db::raw_publications_query(&conn, constraints).map_err(|e| PyTypeError::new_err(e.to_string()))
 }
 
 /// Search for an author in the database.
+///
+/// If looking for an exact match, set `exact` to `true`.
 #[pyfunction]
-pub fn query_person(name: String, limit: Option<u32>) -> PyResult<Vec<PersonRecord>> {
-    let conn = rusqlite::Connection::open(DB_PATH.get().unwrap())
-        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
-
+#[pyo3(signature = (name, exact=false, limit=None))]
+pub fn query_person(name: String, exact: bool, limit: Option<u32>) -> PyResult<Vec<PersonRecord>> {
+    let conn = get_init_conn_pool();
     db::query_author(&conn, name, limit).map_err(|e| PyTypeError::new_err(e.to_string()))
 }
 
 /// Search for a publication in the database.
 #[pyfunction]
 pub fn query_publication(title: String, limit: Option<u32>) -> PyResult<Vec<DblpRecord>> {
-    let conn = rusqlite::Connection::open(DB_PATH.get().unwrap())
-        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+    let conn = get_init_conn_pool();
 
     db::query_publication(&conn, title, limit).map_err(|e| PyTypeError::new_err(e.to_string()))
 }
@@ -144,8 +169,7 @@ pub fn query_person_publications(
     max_year: Option<u32>,
     limit: Option<u32>,
 ) -> PyResult<Vec<DblpRecord>> {
-    let conn = rusqlite::Connection::open(DB_PATH.get().unwrap())
-        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+    let conn = get_init_conn_pool();
 
     db::query_author_publications(&conn, name, max_year, limit)
         .map_err(|e| PyTypeError::new_err(e.to_string()))

@@ -228,7 +228,13 @@ mod tests {
         let filtered = strip_references(&xml_file);
         drop(xml_file);
 
-        let mut conn = rusqlite::Connection::open("temp.sqlite").unwrap();
+        // let mut conn = rusqlite::Connection::open("temp.sqlite").unwrap();
+
+        let manager = r2d2_sqlite::SqliteConnectionManager::file("temp.sqlite");
+        let pool: r2d2::Pool<r2d2_sqlite::SqliteConnectionManager> =
+            r2d2::Pool::new(manager).unwrap();
+        let mut conn = pool.get().unwrap();
+
         create_tables(&conn).unwrap();
         clear_tables(&conn).unwrap();
         create_tables(&conn).unwrap();
