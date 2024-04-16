@@ -31,6 +31,9 @@ class PersonRecord(object):
     profile: str
     aliases: str
 
+    def coauthors(self) -> list[str]:
+        """Return the list of coauthors associated with this person."""
+
 class DblpRecordIter(object): ...
 class PersonRecordIter(object): ...
 

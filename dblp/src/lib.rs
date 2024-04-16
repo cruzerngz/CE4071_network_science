@@ -148,7 +148,7 @@ pub fn query_publications_table(constraints: String) -> PyResult<Vec<DblpRecord>
 #[pyo3(signature = (name, exact=false, limit=None))]
 pub fn query_person(name: String, exact: bool, limit: Option<u32>) -> PyResult<Vec<PersonRecord>> {
     let conn = get_init_conn_pool();
-    db::query_author(&conn, name, limit).map_err(|e| PyTypeError::new_err(e.to_string()))
+    db::query_author(&conn, name, exact, limit).map_err(|e| PyTypeError::new_err(e.to_string()))
 }
 
 /// Search for a publication in the database.

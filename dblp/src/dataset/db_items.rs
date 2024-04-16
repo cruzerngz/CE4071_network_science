@@ -3,10 +3,12 @@
 //! Basically, the data types defined in this module are filtered versions of
 //! the ones in [super::data_items].
 
-use std::{fmt::Display, str::FromStr};
+use std::{collections::HashSet, fmt::Display, str::FromStr};
 
-use pyo3::{pyclass, pymethods, PyRef, PyRefMut};
+use pyo3::{exceptions::PyTypeError, pyclass, pymethods, PyRef, PyRefMut, PyResult};
 use serde::{Deserialize, Serialize};
+
+use crate::{db, get_init_conn_pool};
 
 use super::xml_items::*;
 
@@ -137,6 +139,56 @@ impl PersonRecord {
 
     pub fn __str__(&self) -> String {
         format!("{:?}", self)
+    }
+
+    /// Returns a list of coauthors for the person.
+    pub fn coauthors(&self) -> PyResult<Vec<String>> {
+        let conn = get_init_conn_pool();
+
+        let publications =
+            db::raw_publications_query(&conn, format!("WHERE authors like '%::{}::%'", self.name))
+                .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+
+        // println!("publications found: {}", publications.len());
+
+        let co_auth_names = publications
+            .iter()
+            .map(|p| {
+                p.authors
+                    .as_ref()
+                    .and_then(|a| Some(a.as_str()))
+                    .unwrap_or("")
+                    .trim_end_matches(':')
+                    .split("::")
+                    .map(|name| name)
+            })
+            .flatten()
+            .collect::<HashSet<_>>();
+
+        // println!("co-authors found: {}", co_auth_names.len());
+
+        // let co_auths: Vec<_> = co_auth_names
+        //     .iter()
+        //     .filter_map(|n| match db::query_author_exact(&conn, n) {
+        //         Ok(a) => {
+        //             // since these names already exist, there should be no errors
+        //             if a.len() != 0 {
+        //                 Some(a[0].clone())
+        //             } else {
+        //                 None
+        //             }
+        //         }
+        //         Err(_) => None,
+        //     })
+        //     .collect();
+
+        Ok(co_auth_names
+            .iter()
+            .filter_map(|n| match n.len() {
+                0 => None,
+                _ => Some(n.to_string()),
+            })
+            .collect())
     }
 }
 

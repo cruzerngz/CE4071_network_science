@@ -280,14 +280,25 @@ pub fn query_author_publications(
 ///
 /// If there is no match from author name, a search through aliases is performed.
 pub fn query_author(
-    conn: &Connection,
+    conn: &DbConnection,
     author: String,
+    exact: bool,
     limit: Option<u32>,
 ) -> rusqlite::Result<Vec<PersonRecord>> {
-    let mod_author = capitalize_wildcard(&author);
-    let mut box_q_params: Vec<Box<dyn ToSql>> = vec![Box::new(&mod_author)];
+    if exact {
+        return query_author_exact(conn, &author);
+    }
 
-    let mut q_string = format!("SELECT * FROM persons WHERE name LIKE ? ");
+    // some author names have a serial number at the end, like this:
+    // - "John Doe 0001"
+    // so we query for that as well
+
+    let mod_author = capitalize_wildcard(&author);
+    let mod_author_serial = format!("{} ____", mod_author);
+    let mut box_q_params: Vec<Box<dyn ToSql>> =
+        vec![Box::new(&mod_author), Box::new(mod_author_serial)];
+
+    let mut q_string = format!("SELECT * FROM persons WHERE name LIKE ? OR name LIKE ?");
 
     if let Some(l) = limit {
         q_string.push_str("LIMIT ?");
@@ -321,6 +332,14 @@ pub fn query_author(
     let rows = stmt.query_map(q_params.as_slice(), |r| Ok(PersonRecord::from(r)))?;
 
     Ok(rows.filter_map(|r| r.ok()).collect())
+}
+
+/// Run the query with an exact match
+pub fn query_author_exact(conn: &DbConnection, author: &str) -> rusqlite::Result<Vec<PersonRecord>> {
+    let mut stmt = conn.prepare("SELECT * FROM persons WHERE name = ?")?;
+
+    let rows = stmt.query_map(&[&format!("::{}::", author)], |r| Ok(PersonRecord::from(r)))?;
+    Ok(rows.filter_map(|r| r.ok()).collect::<Vec<_>>())
 }
 
 /// Query the database for a specific publication
