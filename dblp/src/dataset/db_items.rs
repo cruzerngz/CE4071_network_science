@@ -3,7 +3,7 @@
 //! Basically, the data types defined in this module are filtered versions of
 //! the ones in [super::data_items].
 
-use std::{collections::HashSet, fmt::Display, str::FromStr};
+use std::{borrow::Borrow, collections::HashSet, fmt::Display, str::FromStr};
 
 use pyo3::{exceptions::PyTypeError, pyclass, pymethods, PyRef, PyRefMut, PyResult};
 use serde::{Deserialize, Serialize};
@@ -121,6 +121,23 @@ pub struct PersonTemporalRelation {
     pub coauthor_years: Vec<HashSet<String>>,
 }
 
+/// Used in the creation of [PersonTemporalRelation]
+struct AssociatedAuthorYear {
+    year: u32,
+    authors: String,
+}
+
+impl<'a, R: Borrow<rusqlite::Row<'a>>> From<R> for AssociatedAuthorYear {
+    fn from(value: R) -> Self {
+        let row = value.borrow();
+
+        Self {
+            year: row.get(0).unwrap(),
+            authors: row.get(1).unwrap(),
+        }
+    }
+}
+
 #[pymethods]
 impl DblpRecord {
     pub fn __iter__(slf: PyRef<'_, Self>) -> DblpRecordIter {
@@ -213,38 +230,67 @@ impl PersonRecord {
         };
         let conn = get_init_conn_pool();
 
-        // inclusive range
-        for _ in start..=end {
-            let mut stmt = conn.prepare(&format!(
-                "
-                SELECT publications.authors
-                FROM persons
-                JOIN publications ON publications.authors LIKE '%::' || persons.name  || '::%'
-                WHERE publications.year = 2020
-                AND persons.id = ?
+        let mut stmt = conn.prepare(&format!(
             "
-            ))?;
+            SELECT publications.year, publications.authors
+            FROM persons
+            JOIN publications ON publications.authors LIKE '%::' || persons.name  || '::%'
+            WHERE publications.year >= ? AND publications.year <= ?
+            AND persons.id = ?
+            ORDER BY publications.year ASC
+        "
+        ))?;
 
-            let rows = stmt.query_map(rusqlite::params![self.id], |r| r.get::<usize, String>(0))?;
+        let rows = stmt.query_map(rusqlite::params![start, end, self.id], |r| {
+            Ok(AssociatedAuthorYear::from(r))
+        })?;
 
-            let co_auth = rows
-                .filter_map(|r| match r {
-                    Ok(co) => Some(
-                        co.split(SEPARATOR)
-                            .map(|c| c.to_string())
-                            .collect::<HashSet<_>>(),
-                    ),
-                    Err(_) => None,
-                })
-                .flatten()
-                .filter_map(|n| match n.len() {
-                    0 => None,
-                    _ => Some(n),
-                })
-                .collect::<HashSet<_>>();
+        let a = rows.filter_map(|r| r.ok()).collect::<Vec<_>>();
+        let mut co_authors = HashSet::new();
 
-            relation.coauthor_years.push(co_auth);
+        for yr in start..=end {
+            let mut co_auth = HashSet::new();
+
+            for assoc in a.iter().filter(|a| a.year == yr) {
+                co_auth.extend(
+                    assoc.authors
+                        .trim_end_matches(SEPARATOR)
+                        .split(SEPARATOR)
+                        .map(|c| c.to_string())
+                        .collect::<HashSet<_>>(),
+                );
+            }
+
+            co_authors.extend(co_auth);
+            co_authors.remove(&self.name); // remove self from coauthors
+            relation.coauthor_years.push(co_authors.clone());
         }
+
+        // inclusive range
+        // for _ in start..=end {
+
+        //     let rows = stmt.query_map(rusqlite::params![start, end, self.id], |r| {
+        //         r.get::<usize, String>(0)
+        //     })?;
+
+        //     let co_auth = rows
+        //         .filter_map(|r| match r {
+        //             Ok(co) => Some(
+        //                 co.split(SEPARATOR)
+        //                     .map(|c| c.to_string())
+        //                     .collect::<HashSet<_>>(),
+        //             ),
+        //             Err(_) => None,
+        //         })
+        //         .flatten()
+        //         .filter_map(|n| match n.len() {
+        //             0 => None,
+        //             _ => Some(n),
+        //         })
+        //         .collect::<HashSet<_>>();
+
+        //     relation.coauthor_years.push(co_auth);
+        // }
 
         Ok(relation)
     }
@@ -340,6 +386,13 @@ impl PersonTemporalRelation {
         // incrementally combine the sets from each year
         let mut row = Vec::new();
         row.push(self.author.to_owned());
+
+        // row.extend(self.coauthor_years.iter().map(|c| {
+        //     c.iter()
+        //         .map(|c| c.to_string())
+        //         .collect::<Vec<_>>()
+        //         .join(SEPARATOR)
+        // }));
 
         for limit in 1..=self.coauthor_years.len() {
             let mut coauthors = HashSet::new();

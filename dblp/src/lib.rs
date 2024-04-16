@@ -6,7 +6,7 @@ mod db;
 use std::{
     fs,
     io::Read,
-    sync::{Mutex, OnceLock},
+    sync::{Arc, Mutex, OnceLock},
 };
 
 use chrono::Datelike;
@@ -15,6 +15,7 @@ use pyo3::{exceptions::PyTypeError, prelude::*};
 use r2d2::{Pool, PooledConnection};
 use r2d2_sqlite::SqliteConnectionManager;
 use rayon::iter::{IndexedParallelIterator, IntoParallelRefIterator, ParallelIterator};
+use scheduled_thread_pool::ScheduledThreadPool;
 
 const DB_DEFAULT_PATH: &str = "dblp.sqlite";
 const XML_GZ_PATH: &str = "dblp.xml.gz";
@@ -34,7 +35,12 @@ fn get_init_conn_pool() -> PooledConnection<SqliteConnectionManager> {
                 let manager = SqliteConnectionManager::file(
                     DB_PATH.get().expect("database path not initialized"),
                 );
-                r2d2::Pool::new(manager).expect("failed to create connection pool")
+                // thread pool over all available cores
+                r2d2::Pool::builder()
+                    .max_size(50)
+                    .thread_pool(Arc::new(ScheduledThreadPool::new(num_cpus::get() * 2)))
+                    .build(manager)
+                    .expect("failed to create connection pool")
             });
 
             DB_CONN_POOL
@@ -194,14 +200,7 @@ pub fn temporal_relation(
     verbose: bool,
 ) -> Vec<PersonTemporalRelation> {
     // pre-allocate
-    let results = Mutex::new(vec![
-        PersonTemporalRelation {
-            author: "".to_string(),
-            years: (0, 0),
-            coauthor_years: vec![]
-        };
-        persons.len()
-    ]);
+    let mut results = vec![];
 
     let (tx, rx) = std::sync::mpsc::channel::<()>();
     let total = persons.len();
@@ -215,28 +214,92 @@ pub fn temporal_relation(
         }
     });
 
-    persons.par_iter().enumerate().for_each(|(idx, person)| {
-        let rel = match person.to_relations(
-            year_start,
-            year_end.unwrap_or(chrono::Local::now().year() as u32),
-        ) {
-            Ok(r) => r,
-            Err(e) => {
-                // if verbose {
-                eprintln!("Error: {}", e);
-                // }
-                return;
-            }
-        };
-        tx.send(()).expect("send failed");
-        // println!("constructed: {:?}", rel);
-        results.lock().unwrap()[idx] = rel;
-    });
+    // parallelize in chunks
+
+    for chunk in persons.chunks(3) {
+        let res = Mutex::new(vec![
+            PersonTemporalRelation {
+                author: "".to_string(),
+                years: (0, 0),
+                coauthor_years: vec![]
+            };
+            chunk.len()
+        ]);
+
+        chunk.par_iter().enumerate().for_each(|(idx, person)| {
+            let rel = match person.to_relations(
+                year_start,
+                year_end.unwrap_or(chrono::Local::now().year() as u32),
+            ) {
+                Ok(r) => r,
+                Err(e) => {
+                    // if verbose {
+                    eprintln!("Error: {}", e);
+                    // }
+                    return;
+                }
+            };
+            tx.send(()).expect("send failed");
+            // println!("constructed: {:?}", rel);
+            res.lock().unwrap()[idx] = rel;
+        });
+
+        results.extend(res.into_inner().unwrap());
+    }
+
+    // let _ = persons.chunks(3).map(|chunk| {
+    //     let res = Mutex::new(vec![
+    //         PersonTemporalRelation {
+    //             author: "".to_string(),
+    //             years: (0, 0),
+    //             coauthor_years: vec![]
+    //         };
+    //         chunk.len()
+    //     ]);
+
+    //     chunk.par_iter().enumerate().for_each(|(idx, person)| {
+    //         let rel = match person.to_relations(
+    //             year_start,
+    //             year_end.unwrap_or(chrono::Local::now().year() as u32),
+    //         ) {
+    //             Ok(r) => r,
+    //             Err(e) => {
+    //                 // if verbose {
+    //                 eprintln!("Error: {}", e);
+    //                 // }
+    //                 return;
+    //             }
+    //         };
+    //         tx.send(()).expect("send failed");
+    //         // println!("constructed: {:?}", rel);
+    //         res.lock().unwrap()[idx] = rel;
+    //     });
+
+    //     results.extend(res.into_inner().unwrap());
+    // });
+
+    // persons.par_iter().enumerate().for_each(|(idx, person)| {
+    //     let rel = match person.to_relations(
+    //         year_start,
+    //         year_end.unwrap_or(chrono::Local::now().year() as u32),
+    //     ) {
+    //         Ok(r) => r,
+    //         Err(e) => {
+    //             // if verbose {
+    //             eprintln!("Error: {}", e);
+    //             // }
+    //             return;
+    //         }
+    //     };
+    //     tx.send(()).expect("send failed");
+    //     // println!("constructed: {:?}", rel);
+    //     results.lock().unwrap()[idx] = rel;
+    // });
 
     drop(tx);
     handle.join().unwrap();
 
-    results.into_inner().unwrap()
+    results
 }
 
 /// Write the temporal relations to a csv file.
