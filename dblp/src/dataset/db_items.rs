@@ -81,6 +81,9 @@ pub enum PublicationRecord {
 #[pyclass]
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PersonRecord {
+    /// Primary key
+    pub id: u32,
+
     #[pyo3(get)]
     pub name: String,
 
@@ -100,6 +103,22 @@ pub struct PersonRecord {
 pub struct PersonRecordIter {
     field: u8,
     inner: PersonRecord,
+}
+
+/// Coauthor relations of a particular author over time
+///
+/// This isn't a DB item (not a row in table) but is composed of other items in the database.
+#[pyclass]
+#[derive(Clone, Debug)]
+pub struct PersonTemporalRelation {
+    pub author: String,
+
+    /// Year start and end range, inclusive, for validation
+    pub years: (u32, u32),
+
+    /// Coauthors with this author on a particular year
+    /// The index of the vector corresponds to the year, not inclusive of offset in `years`.
+    pub coauthor_years: Vec<HashSet<String>>,
 }
 
 #[pymethods]
@@ -145,6 +164,7 @@ impl PersonRecord {
     pub fn coauthors(&self) -> PyResult<Vec<String>> {
         let conn = get_init_conn_pool();
 
+        // optim step: select only the authors field and collect into a set
         let publications =
             db::raw_publications_query(&conn, format!("WHERE authors like '%::{}::%'", self.name))
                 .map_err(|e| PyTypeError::new_err(e.to_string()))?;
@@ -158,29 +178,12 @@ impl PersonRecord {
                     .as_ref()
                     .and_then(|a| Some(a.as_str()))
                     .unwrap_or("")
-                    .trim_end_matches(':')
-                    .split("::")
+                    .trim_end_matches(SEPARATOR)
+                    .split(SEPARATOR)
                     .map(|name| name)
             })
             .flatten()
             .collect::<HashSet<_>>();
-
-        // println!("co-authors found: {}", co_auth_names.len());
-
-        // let co_auths: Vec<_> = co_auth_names
-        //     .iter()
-        //     .filter_map(|n| match db::query_author_exact(&conn, n) {
-        //         Ok(a) => {
-        //             // since these names already exist, there should be no errors
-        //             if a.len() != 0 {
-        //                 Some(a[0].clone())
-        //             } else {
-        //                 None
-        //             }
-        //         }
-        //         Err(_) => None,
-        //     })
-        //     .collect();
 
         Ok(co_auth_names
             .iter()
@@ -256,6 +259,50 @@ impl PersonRecordIter {
 
             _ => None,
         }
+    }
+}
+
+#[pymethods]
+impl PersonTemporalRelation {
+    pub fn __str__(&self) -> String {
+        format!("{:?}", self)
+    }
+
+    /// From internal metadata, generate the csv headers (variable, depending on the year range)
+    pub(crate) fn to_csv_headers(&self) -> Vec<String> {
+        let mut headers = Vec::new();
+        headers.push("author".to_string());
+
+        for year in self.years.0..=self.years.1 {
+            headers.push(year.to_string());
+        }
+
+        headers
+    }
+
+    /// Generate the data for csv row
+    pub(crate) fn to_csv_row(&self) -> Vec<String> {
+        // incrementally combine the sets from each year
+        let mut row = Vec::new();
+        row.push(self.author.to_owned());
+
+        for limit in 1..=self.coauthor_years.len() {
+            let mut coauthors = HashSet::new();
+
+            for i in 0..limit {
+                coauthors.extend(self.coauthor_years[i].iter().cloned());
+            }
+
+            row.push(
+                coauthors
+                    .iter()
+                    .map(|c| c.to_string())
+                    .collect::<Vec<_>>()
+                    .join(SEPARATOR),
+            );
+        }
+
+        row
     }
 }
 
@@ -385,6 +432,9 @@ impl TryFrom<WebPage> for PersonRecord {
             .collect::<Vec<_>>();
 
         Ok(Self {
+            // it is safe to set this to 0 as instances
+            // of this struct will not use this field.
+            id: 0,
             name: author,
             profile: value.key,
             aliases: join_string_vec(aliases),
@@ -478,5 +528,20 @@ mod tests {
 
         println!("num articles: {}", publications.len());
         println!("num persons: {}", persons.len());
+    }
+
+    #[test]
+    fn test_serialize_temporal_relation() {
+        let x = PersonTemporalRelation {
+            author: "jeff".to_string(),
+            years: (2000, 2001),
+            coauthor_years: vec![
+                HashSet::from(["coauthor".to_string(), "coauthor2".to_string()]),
+                HashSet::from(["coauthor".to_string(), "new_coauthor".to_string()]),
+            ],
+        };
+
+        println!("{:?}", x.to_csv_headers());
+        println!("{:?}", x.to_csv_row());
     }
 }

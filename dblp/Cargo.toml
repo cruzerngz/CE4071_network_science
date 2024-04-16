@@ -22,3 +22,7 @@ log = "0.4"
 rusqlite = { version = "0", features = ["bundled"] }
 r2d2 = "0"
 r2d2_sqlite = "0"
+csv = "1"
+
+[profile.release]
+lto = true

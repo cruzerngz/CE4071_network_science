@@ -5,7 +5,7 @@ mod db;
 
 use std::{fs, io::Read, sync::OnceLock};
 
-use dataset::db_items::{DblpRecord, PersonRecord};
+use dataset::db_items::{DblpRecord, PersonRecord, PersonTemporalRelation};
 use pyo3::{exceptions::PyTypeError, prelude::*};
 use r2d2::{Pool, PooledConnection};
 use r2d2_sqlite::SqliteConnectionManager;
@@ -175,6 +175,58 @@ pub fn query_person_publications(
         .map_err(|e| PyTypeError::new_err(e.to_string()))
 }
 
+/// Transform [PersonRecord] vectors to [PersonTemporalRelation] vectors.
+///
+/// Specify the start and end year ranges (optional).
+/// By default, the starting year is 2000, and the end year is the current year.
+#[pyfunction]
+#[pyo3(signature = (persons, year_start=2000, year_end=None, verbose=false))]
+pub fn temporal_relation(
+    persons: Vec<PersonRecord>,
+    year_start: u32,
+    year_end: Option<u32>,
+    verbose: bool,
+) -> Vec<PersonTemporalRelation> {
+    todo!()
+}
+
+/// Write the temporal relations to a csv file.
+#[pyfunction]
+pub fn save_temporal_relation(
+    relation: Vec<PersonTemporalRelation>,
+    target: String,
+) -> PyResult<()> {
+    if relation.len() == 0 {
+        return Ok(());
+    }
+
+    let first = relation[0].years;
+    if !relation.iter().all(|r| r.years == first) {
+        return Err(PyTypeError::new_err(
+            "records do not all share the same year range",
+        ));
+    }
+
+    let mut writer =
+        csv::Writer::from_path(&target).map_err(|e| PyTypeError::new_err(e.to_string()))?;
+
+    writer
+        .write_record(relation[0].to_csv_headers())
+        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+
+    for rec in relation.iter() {
+        writer
+            .write_record(rec.to_csv_row())
+            .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+    }
+
+    writer
+        .flush()
+        .map_err(|e| PyTypeError::new_err(e.to_string()))?;
+
+    Ok(())
+}
+
 /// dblp is a library for parsing and querying the DBLP XML file.
 #[pymodule]
 fn dblp(m: &Bound<'_, PyModule>) -> PyResult<()> {
@@ -185,8 +237,11 @@ fn dblp(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(query_publications_table, m)?)?;
     m.add_function(wrap_pyfunction!(query_person, m)?)?;
     m.add_function(wrap_pyfunction!(query_person_publications, m)?)?;
+    m.add_function(wrap_pyfunction!(temporal_relation, m)?)?;
+    m.add_function(wrap_pyfunction!(save_temporal_relation, m)?)?;
     m.add_class::<dataset::db_items::DblpRecord>()?;
     m.add_class::<dataset::db_items::PersonRecord>()?;
     m.add_class::<dataset::db_items::PublicationRecord>()?;
+    m.add_class::<dataset::db_items::PersonTemporalRelation>()?;
     Ok(())
 }

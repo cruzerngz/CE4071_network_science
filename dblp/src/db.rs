@@ -1,6 +1,6 @@
 //! All database-related items are defined here.
 //!
-//! That includes all SQL queries.
+//! That includes all (most) SQL queries.
 
 use std::{borrow::Borrow, io::Write, str::FromStr};
 
@@ -126,6 +126,7 @@ impl<'a, R: Borrow<rusqlite::Row<'a>>> From<R> for PersonRecord {
         let row = value.borrow();
 
         Self {
+            id: row.get(0).unwrap(),
             name: row.get(1).unwrap(),
             profile: row.get(2).unwrap(),
             aliases: row.get(3).unwrap(),
@@ -335,7 +336,10 @@ pub fn query_author(
 }
 
 /// Run the query with an exact match
-pub fn query_author_exact(conn: &DbConnection, author: &str) -> rusqlite::Result<Vec<PersonRecord>> {
+pub fn query_author_exact(
+    conn: &DbConnection,
+    author: &str,
+) -> rusqlite::Result<Vec<PersonRecord>> {
     let mut stmt = conn.prepare("SELECT * FROM persons WHERE name = ?")?;
 
     let rows = stmt.query_map(&[&format!("::{}::", author)], |r| Ok(PersonRecord::from(r)))?;
