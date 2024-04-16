@@ -34,6 +34,9 @@ class PersonRecord(object):
     def coauthors(self) -> list[str]:
         """Return the list of coauthors associated with this person."""
 
+class PersonTemporalRelation(object):
+    """Temporal relation of an author to their coauthors."""
+
 class DblpRecordIter(object): ...
 class PersonRecordIter(object): ...
 
@@ -78,3 +81,17 @@ def query_publication(name: str, limit: int = None) -> list[DblpRecord]:
 
 def query_person_publications(name: str, max_year: int = None, limit: int = None) -> list[DblpRecord]:
     """Search for all publications from a specific author."""
+
+def temporal_relation(
+    persons: list[PersonRecord],
+    year_start: int = 2000,
+    year_end: int = None,
+    verbose: bool = False,
+):
+    """Transform [PersonRecord] vectors to [PersonTemporalRelation] vectors."""
+
+def save_temporal_relation(
+    relation: list[PersonTemporalRelation],
+    target: str
+):
+    """"""

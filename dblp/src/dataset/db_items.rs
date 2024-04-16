@@ -195,6 +195,61 @@ impl PersonRecord {
     }
 }
 
+impl PersonRecord {
+    /// Construct the temporal relations of the person with their coauthors.
+    ///
+    /// This is the only way to construct a [PersonTemporalRelation].
+    ///
+    /// TODO: optimize to one query, then do post-processing
+    pub(crate) fn to_relations(
+        &self,
+        start: u32,
+        end: u32,
+    ) -> rusqlite::Result<PersonTemporalRelation> {
+        let mut relation = PersonTemporalRelation {
+            author: self.name.to_string(),
+            years: (start, end),
+            coauthor_years: vec![],
+        };
+        let conn = get_init_conn_pool();
+
+        // inclusive range
+        for _ in start..=end {
+            let mut stmt = conn.prepare(&format!(
+                "
+                SELECT publications.authors
+                FROM persons
+                JOIN publications ON publications.authors LIKE '%::' || persons.name  || '::%'
+                WHERE publications.year = 2020
+                AND persons.id = ?
+            "
+            ))?;
+
+            let rows = stmt.query_map(rusqlite::params![self.id], |r| r.get::<usize, String>(0))?;
+
+            let co_auth = rows
+                .filter_map(|r| match r {
+                    Ok(co) => Some(
+                        co.split(SEPARATOR)
+                            .map(|c| c.to_string())
+                            .collect::<HashSet<_>>(),
+                    ),
+                    Err(_) => None,
+                })
+                .flatten()
+                .filter_map(|n| match n.len() {
+                    0 => None,
+                    _ => Some(n),
+                })
+                .collect::<HashSet<_>>();
+
+            relation.coauthor_years.push(co_auth);
+        }
+
+        Ok(relation)
+    }
+}
+
 #[pymethods]
 impl DblpRecordIter {
     pub fn __next__(mut slf: PyRefMut<'_, Self>) -> Option<(String, Option<String>)> {

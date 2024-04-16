@@ -3,12 +3,18 @@
 mod dataset;
 mod db;
 
-use std::{fs, io::Read, sync::OnceLock};
+use std::{
+    fs,
+    io::Read,
+    sync::{Mutex, OnceLock},
+};
 
+use chrono::Datelike;
 use dataset::db_items::{DblpRecord, PersonRecord, PersonTemporalRelation};
 use pyo3::{exceptions::PyTypeError, prelude::*};
 use r2d2::{Pool, PooledConnection};
 use r2d2_sqlite::SqliteConnectionManager;
+use rayon::iter::{IndexedParallelIterator, IntoParallelRefIterator, ParallelIterator};
 
 const DB_DEFAULT_PATH: &str = "dblp.sqlite";
 const XML_GZ_PATH: &str = "dblp.xml.gz";
@@ -187,7 +193,50 @@ pub fn temporal_relation(
     year_end: Option<u32>,
     verbose: bool,
 ) -> Vec<PersonTemporalRelation> {
-    todo!()
+    // pre-allocate
+    let results = Mutex::new(vec![
+        PersonTemporalRelation {
+            author: "".to_string(),
+            years: (0, 0),
+            coauthor_years: vec![]
+        };
+        persons.len()
+    ]);
+
+    let (tx, rx) = std::sync::mpsc::channel::<()>();
+    let total = persons.len();
+    println!();
+
+    let handle = std::thread::spawn(move || {
+        let mut count = 0;
+        while let Ok(_) = rx.recv() {
+            count += 1;
+            print!("\rprocessed: {}/{}", count, total);
+        }
+    });
+
+    persons.par_iter().enumerate().for_each(|(idx, person)| {
+        let rel = match person.to_relations(
+            year_start,
+            year_end.unwrap_or(chrono::Local::now().year() as u32),
+        ) {
+            Ok(r) => r,
+            Err(e) => {
+                // if verbose {
+                eprintln!("Error: {}", e);
+                // }
+                return;
+            }
+        };
+        tx.send(()).expect("send failed");
+        // println!("constructed: {:?}", rel);
+        results.lock().unwrap()[idx] = rel;
+    });
+
+    drop(tx);
+    handle.join().unwrap();
+
+    results.into_inner().unwrap()
 }
 
 /// Write the temporal relations to a csv file.
