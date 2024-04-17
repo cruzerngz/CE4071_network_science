@@ -17,6 +17,8 @@ use r2d2_sqlite::SqliteConnectionManager;
 use rayon::iter::{IndexedParallelIterator, IntoParallelRefIterator, ParallelIterator};
 use scheduled_thread_pool::ScheduledThreadPool;
 
+use crate::db::create_subset_database;
+
 const DB_DEFAULT_PATH: &str = "dblp.sqlite";
 const XML_GZ_PATH: &str = "dblp.xml.gz";
 const XML_PATH: &str = "dblp.xml";
@@ -29,7 +31,7 @@ pub static DB_CONN_POOL: OnceLock<Pool<SqliteConnectionManager>> = OnceLock::new
 /// Initialize the connection pool and get a connection.
 fn get_init_conn_pool() -> PooledConnection<SqliteConnectionManager> {
     match DB_CONN_POOL.get() {
-        Some(p) => p.get().unwrap(),
+        Some(p) => p.get().expect("database path not initialized"),
         None => {
             DB_CONN_POOL.get_or_init(|| {
                 let manager = SqliteConnectionManager::file(
@@ -191,6 +193,8 @@ pub fn query_person_publications(
 ///
 /// Specify the start and end year ranges (optional).
 /// By default, the starting year is 2000, and the end year is the current year.
+///
+/// TODO: create an in-memory subset database, then perform the query.
 #[pyfunction]
 #[pyo3(signature = (persons, year_start=2000, year_end=None, verbose=false))]
 pub fn temporal_relation(
@@ -199,7 +203,19 @@ pub fn temporal_relation(
     year_end: Option<u32>,
     verbose: bool,
 ) -> Vec<PersonTemporalRelation> {
-    // pre-allocate
+    // partitioning didnt make a diff it seems
+    // let conn = get_init_conn_pool();
+    // // create subset db
+    // let subset_pool = create_subset_database(
+    //     &conn,
+    //     &persons,
+    //     year_start,
+    //     year_end.unwrap_or(chrono::Local::now().year() as u32),
+    // )
+    // .expect("failed to create subset database");
+    // // temp return point
+    // return vec![];
+
     let mut results = vec![];
 
     let (tx, rx) = std::sync::mpsc::channel::<()>();
@@ -215,8 +231,7 @@ pub fn temporal_relation(
     });
 
     // parallelize in chunks
-
-    for chunk in persons.chunks(3) {
+    for chunk in persons.chunks(2) {
         let res = Mutex::new(vec![
             PersonTemporalRelation {
                 author: "".to_string(),
@@ -246,55 +261,6 @@ pub fn temporal_relation(
 
         results.extend(res.into_inner().unwrap());
     }
-
-    // let _ = persons.chunks(3).map(|chunk| {
-    //     let res = Mutex::new(vec![
-    //         PersonTemporalRelation {
-    //             author: "".to_string(),
-    //             years: (0, 0),
-    //             coauthor_years: vec![]
-    //         };
-    //         chunk.len()
-    //     ]);
-
-    //     chunk.par_iter().enumerate().for_each(|(idx, person)| {
-    //         let rel = match person.to_relations(
-    //             year_start,
-    //             year_end.unwrap_or(chrono::Local::now().year() as u32),
-    //         ) {
-    //             Ok(r) => r,
-    //             Err(e) => {
-    //                 // if verbose {
-    //                 eprintln!("Error: {}", e);
-    //                 // }
-    //                 return;
-    //             }
-    //         };
-    //         tx.send(()).expect("send failed");
-    //         // println!("constructed: {:?}", rel);
-    //         res.lock().unwrap()[idx] = rel;
-    //     });
-
-    //     results.extend(res.into_inner().unwrap());
-    // });
-
-    // persons.par_iter().enumerate().for_each(|(idx, person)| {
-    //     let rel = match person.to_relations(
-    //         year_start,
-    //         year_end.unwrap_or(chrono::Local::now().year() as u32),
-    //     ) {
-    //         Ok(r) => r,
-    //         Err(e) => {
-    //             // if verbose {
-    //             eprintln!("Error: {}", e);
-    //             // }
-    //             return;
-    //         }
-    //     };
-    //     tx.send(()).expect("send failed");
-    //     // println!("constructed: {:?}", rel);
-    //     results.lock().unwrap()[idx] = rel;
-    // });
 
     drop(tx);
     handle.join().unwrap();

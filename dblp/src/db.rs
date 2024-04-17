@@ -2,9 +2,9 @@
 //!
 //! That includes all (most) SQL queries.
 
-use std::{borrow::Borrow, io::Write, str::FromStr};
+use std::{borrow::Borrow, collections::HashSet, io::Write, str::FromStr, sync::mpsc};
 
-use r2d2::PooledConnection;
+use r2d2::{Pool, PooledConnection};
 use r2d2_sqlite::SqliteConnectionManager;
 use rusqlite::{Connection, ToSql};
 
@@ -107,6 +107,7 @@ impl<'a, R: Borrow<rusqlite::Row<'a>>> From<R> for DblpRecord {
         let row: &rusqlite::Row = value.borrow();
 
         Self {
+            id: row.get(0).unwrap(),
             record: PublicationRecord::from_str(&row.get::<usize, String>(1).unwrap()).unwrap(),
             key: row.get(2).unwrap(),
             mdate: row.get(3).ok(),
@@ -371,6 +372,120 @@ pub fn query_publication(
     Ok(rows.filter_map(|r| r.ok()).collect())
 }
 
+/// Create an in-memory subset of the database, where the publications
+/// are filtered by coauthors and year range.
+///
+/// Returns the connection pool to the subset database.
+#[allow(unused)]
+pub fn create_subset_database(
+    conn: &DbConnection,
+    authors: &[PersonRecord],
+    start: u32,
+    end: u32,
+) -> rusqlite::Result<Pool<SqliteConnectionManager>> {
+    let mgr = SqliteConnectionManager::file("subset.sqlite"); // temp file
+    let pool = Pool::new(mgr).unwrap();
+
+    let s_conn = pool.get().unwrap();
+
+    clear_tables(&s_conn)?;
+    create_tables(&s_conn)?;
+
+    // author task
+    let (a_tx, a_rx) = mpsc::channel::<PersonRecord>();
+    let p_h1 = pool.clone();
+    let h1 = std::thread::spawn(move || {
+        let mut conn = p_h1.get().unwrap();
+
+        let transaction = conn.transaction().expect("failed to create transaction");
+        let mut stmt = transaction
+            .prepare(
+                "INSERT INTO persons
+            (name, profile, aliases)
+            VALUES (?, ?, ?)",
+            )
+            .expect("failed to create prepare statement");
+
+        while let Ok(data) = a_rx.recv() {
+            stmt.execute((
+                data.name.to_owned(),
+                data.profile.to_owned(),
+                data.aliases.to_owned(),
+            ))
+            .expect("failed to insert data");
+        }
+
+        drop(stmt);
+        transaction.finish().expect("failed to ocmmit transaction");
+    });
+
+    // publication task
+    let (p_tx, p_rx) = mpsc::channel::<DblpRecord>();
+    let p_h2 = pool.clone();
+    let h2 = std::thread::spawn(move || {
+        let mut conn = p_h2.get().unwrap();
+
+        let transaction = conn.transaction().expect("failed to create transaction");
+
+        let mut stmt = transaction
+            .prepare(
+                "INSERT INTO publications
+            (record, key, mdate, publtype, year, authors, citations, publisher, school)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            )
+            .expect("failed to create prepare statement");
+
+        while let Ok(data) = p_rx.recv() {
+            stmt.execute((
+                data.record.to_string(),
+                data.key.to_owned(),
+                data.mdate.to_owned(),
+                data.publtype.to_owned(),
+                data.year.to_owned(),
+                data.authors.to_owned(),
+                data.citations.to_owned(),
+                data.publisher.to_owned(),
+                data.school.to_owned(),
+            ))
+            .expect("failed to insert data");
+        }
+
+        drop(stmt);
+        transaction.finish().expect("failed to commit transaction");
+    });
+
+    let mut insert_set = HashSet::<u32>::new();
+
+    for author in authors {
+        let x = query_author_publications(&conn, author.name.clone(), Some(end), None)?;
+
+        let insert = x
+            .into_iter()
+            .filter_map(|record| match insert_set.contains(&record.id) {
+                true => None,
+                false => {
+                    insert_set.insert(record.id);
+                    Some(record)
+                }
+            });
+
+        for record in insert {
+            p_tx.send(record).expect("failed to send data");
+        }
+    }
+
+    for a in authors {
+        a_tx.send(a.clone()).expect("failed to send data");
+    }
+
+    drop(a_tx);
+    drop(p_tx);
+    h1.join();
+    h2.join();
+
+    Ok(pool)
+}
+
 /// Capitalize the first letter of a name and insert the '%' wildcard in spaces.
 fn capitalize_wildcard(input: &str) -> String {
     input
@@ -389,7 +504,10 @@ fn capitalize_wildcard(input: &str) -> String {
 #[cfg(test)]
 mod tests {
 
-    use crate::dataset::{strip_references, xml_items::RawDblp};
+    use crate::{
+        dataset::{strip_references, xml_items::RawDblp},
+        get_init_conn_pool, DB_PATH,
+    };
 
     use super::*;
 
@@ -427,5 +545,38 @@ mod tests {
         let input = "john doe";
         let expected = "John%Doe";
         assert_eq!(capitalize_wildcard(input), expected);
+    }
+
+    /// Test if rusqlite can copy data from one db to another.
+    /// Does not work
+    #[test]
+    fn test_database_copy() -> rusqlite::Result<()> {
+        let mgr = SqliteConnectionManager::file("subset.sqlite");
+        let pool = Pool::new(mgr).unwrap();
+
+        // clear_tables(conn)
+        create_tables(&pool.get().unwrap())?;
+
+        // init og database
+        DB_PATH.get_or_init(|| "../dblp.sqlite".to_string());
+
+        let conn = get_init_conn_pool();
+
+        let res = conn.query_row("SELECT * FROM persons LIMIT 10", (), |r| {
+            r.get::<usize, String>(1)
+        })?;
+        // assert_eq!(res, 10);
+        println!("{}", res);
+
+        let res = conn.execute(
+            "ATTACH DATABASE 'subset.sqlite' AS subset_db;
+        INSERT INTO subset_db.persons SELECT * FROM persons",
+            (),
+        )?;
+        // let res = conn.execute("INSERT INTO subset_db.persons SELECT * FROM persons", ())?;
+
+        // create_tables(conn)
+
+        Ok(())
     }
 }

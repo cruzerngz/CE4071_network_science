@@ -22,6 +22,9 @@ pub const SEPARATOR: &str = "::";
 #[pyclass]
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct DblpRecord {
+    /// Primary key
+    pub id: u32,
+
     #[pyo3(get)]
     pub record: PublicationRecord,
 
@@ -234,11 +237,10 @@ impl PersonRecord {
             "
             SELECT publications.year, publications.authors
             FROM persons
-            JOIN publications ON publications.authors LIKE '%::' || persons.name  || '::%'
+            JOIN publications ON publications.authors LIKE '%::' || persons.name || '::%'
             WHERE publications.year >= ? AND publications.year <= ?
             AND persons.id = ?
-            ORDER BY publications.year ASC
-        "
+        " // ORDER BY publications.year ASC
         ))?;
 
         let rows = stmt.query_map(rusqlite::params![start, end, self.id], |r| {
@@ -253,7 +255,8 @@ impl PersonRecord {
 
             for assoc in a.iter().filter(|a| a.year == yr) {
                 co_auth.extend(
-                    assoc.authors
+                    assoc
+                        .authors
                         .trim_end_matches(SEPARATOR)
                         .split(SEPARATOR)
                         .map(|c| c.to_string())
@@ -432,6 +435,7 @@ macro_rules! try_into_dblp_record {
 
             fn try_from(value: $from_ty) -> Result<Self, Self::Error> {
                 Ok(Self {
+                    id: 0, // valid only if struct was fetched from db
                     record: $rcrd,
                     key: value.0.key,
                     mdate: value.0.mdate.and_then(|d| Some(d.to_string())),
