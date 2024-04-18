@@ -7,5 +7,8 @@ venv:
 install:
 	pip3 install -r requierements.txt
 
-bundle:
+bundle: clean
 	pinliner networkscience -o project.py
+
+clean:
+	rm -f project.py

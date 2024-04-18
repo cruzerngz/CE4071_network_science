@@ -11,3 +11,4 @@ networkx
 xlrd # for reading excel files
 requests
 beautifulsoup4
+maturin # for compiling the rust query lib
