@@ -34,6 +34,10 @@ class PersonRecord(object):
     def coauthors(self) -> list[str]:
         """Return the list of coauthors associated with this person."""
 
+    @staticmethod
+    def from_dicts(dicts: list[dict]) -> list[PersonRecord]:
+        """Convert a list of PersonRecord from a list of dictionaries."""
+
 class PersonTemporalRelation(object):
     """Temporal relation of an author to their coauthors."""
 
@@ -87,11 +91,11 @@ def temporal_relation(
     year_start: int = 2000,
     year_end: int = None,
     verbose: bool = False,
-):
+) -> list[PersonTemporalRelation]:
     """Transform [PersonRecord] vectors to [PersonTemporalRelation] vectors."""
 
 def save_temporal_relation(
     relation: list[PersonTemporalRelation],
     target: str
 ):
-    """"""
+    """Save the temporal relation to a csv file."""

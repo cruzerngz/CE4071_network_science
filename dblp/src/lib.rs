@@ -4,6 +4,7 @@ mod dataset;
 mod db;
 
 use std::{
+    collections::HashSet,
     fs,
     io::Read,
     sync::{Arc, Mutex, OnceLock},
@@ -230,6 +231,11 @@ pub fn temporal_relation(
         }
     });
 
+    let constraints = persons
+        .iter()
+        .map(|p| p.name.clone())
+        .collect::<HashSet<_>>();
+
     // parallelize in chunks
     for chunk in persons.chunks(2) {
         let res = Mutex::new(vec![
@@ -245,6 +251,7 @@ pub fn temporal_relation(
             let rel = match person.to_relations(
                 year_start,
                 year_end.unwrap_or(chrono::Local::now().year() as u32),
+                &constraints,
             ) {
                 Ok(r) => r,
                 Err(e) => {

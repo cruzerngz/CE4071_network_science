@@ -295,12 +295,21 @@ pub fn query_author(
     // - "John Doe 0001"
     // so we query for that as well
 
-    let mod_author = capitalize_wildcard(&author);
-    let mod_author_serial = format!("{} ____", mod_author);
-    let mut box_q_params: Vec<Box<dyn ToSql>> =
-        vec![Box::new(&mod_author), Box::new(mod_author_serial)];
+    let (mod_author_a, mod_author_b) = capitalize_wildcard(&author);
+    let mod_author_serial = format!("{} ____", mod_author_b);
+    let mut box_q_params: Vec<Box<dyn ToSql>> = vec![
+        // Box::new(&mod_author_a),
+        Box::new(mod_author_b),
+        Box::new(mod_author_serial),
+    ];
 
-    let mut q_string = format!("SELECT * FROM persons WHERE name LIKE ? OR name LIKE ?");
+    // sqlite shoukd short-circuit the search
+    let mut q_string = format!(
+        "SELECT * FROM persons
+        WHERE name LIKE ?
+        -- OR name LIKE ?
+        OR name LIKE ?"
+    );
 
     if let Some(l) = limit {
         q_string.push_str("LIMIT ?");
@@ -486,9 +495,10 @@ pub fn create_subset_database(
     Ok(pool)
 }
 
-/// Capitalize the first letter of a name and insert the '%' wildcard in spaces.
-fn capitalize_wildcard(input: &str) -> String {
-    input
+/// Capitalize the first letter of a name and insert the '%' wildcard in spaces,
+/// returns one string with spaces in between and another with '%' in between spaces
+fn capitalize_wildcard(input: &str) -> (String, String) {
+    let iter = input
         .split_whitespace()
         .map(|n| {
             let mut chars = n.chars();
@@ -497,8 +507,9 @@ fn capitalize_wildcard(input: &str) -> String {
                 None => String::new(),
             }
         })
-        .collect::<Vec<_>>()
-        .join("%")
+        .collect::<Vec<_>>();
+
+    (iter.join(" "), iter.join("%"))
 }
 
 #[cfg(test)]
@@ -543,8 +554,10 @@ mod tests {
     #[test]
     fn test_capitalize_wildcard() {
         let input = "john doe";
-        let expected = "John%Doe";
-        assert_eq!(capitalize_wildcard(input), expected);
+        assert_eq!(
+            capitalize_wildcard(input),
+            ("John Doe".to_string(), "John%Doe".to_string())
+        );
     }
 
     /// Test if rusqlite can copy data from one db to another.

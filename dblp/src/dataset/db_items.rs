@@ -5,7 +5,10 @@
 
 use std::{borrow::Borrow, collections::HashSet, fmt::Display, str::FromStr};
 
-use pyo3::{exceptions::PyTypeError, pyclass, pymethods, PyRef, PyRefMut, PyResult};
+use pyo3::{
+    exceptions::PyTypeError, pyclass, pymethods, types::PyDict, FromPyObject, PyAny, PyObject,
+    PyRef, PyRefMut, PyResult,
+};
 use serde::{Deserialize, Serialize};
 
 use crate::{db, get_init_conn_pool};
@@ -85,6 +88,7 @@ pub enum PublicationRecord {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PersonRecord {
     /// Primary key
+    // #[pyo3(get)]
     pub id: u32,
 
     #[pyo3(get)]
@@ -213,10 +217,43 @@ impl PersonRecord {
             })
             .collect())
     }
+
+    /// Construct a vector of `Self` from a vector of dictionaries.
+    /// ```py
+    /// df = pd.DataFrame('')
+    /// dict_arr = df.to_dict(orient='records')
+    /// records = PersonRecord.from_dicts(dict_arr)
+    /// ```
+    #[staticmethod]
+    pub fn from_dicts(dicts: Vec<&PyAny>) -> PyResult<Vec<Self>> {
+        let self_v: PyResult<Vec<Self>> = dicts
+            .into_iter()
+            .map(|obj| -> PyResult<Self> {
+                Ok(Self {
+                    id: obj.get_item("id")?.extract().expect("failed to extract id"),
+                    name: obj
+                        .get_item("name")?
+                        .extract()
+                        .expect("failed to extract name"),
+                    profile: obj
+                        .get_item("profile")?
+                        .extract()
+                        .expect("failed to extract profile"),
+                    aliases: obj
+                        .get_item("aliases")?
+                        .extract()
+                        .expect("failed to extract aliases"),
+                })
+            })
+            .collect();
+
+        self_v
+    }
 }
 
 impl PersonRecord {
     /// Construct the temporal relations of the person with their coauthors.
+    /// The constraint set excludes any author that does not appear in the set.
     ///
     /// This is the only way to construct a [PersonTemporalRelation].
     ///
@@ -225,6 +262,7 @@ impl PersonRecord {
         &self,
         start: u32,
         end: u32,
+        constraints: &HashSet<String>,
     ) -> rusqlite::Result<PersonTemporalRelation> {
         let mut relation = PersonTemporalRelation {
             author: self.name.to_string(),
@@ -266,6 +304,7 @@ impl PersonRecord {
 
             co_authors.extend(co_auth);
             co_authors.remove(&self.name); // remove self from coauthors
+            co_authors.retain(|item| constraints.contains(item));
             relation.coauthor_years.push(co_authors.clone());
         }
 
@@ -350,13 +389,17 @@ impl PersonRecordIter {
         match slf.field {
             0 => {
                 slf.field += 1;
-                Some(("name".to_string(), Some(slf.inner.name.clone())))
+                Some(("id".to_string(), Some(slf.inner.id.to_string())))
             }
             1 => {
                 slf.field += 1;
-                Some(("profile".to_string(), Some(slf.inner.profile.clone())))
+                Some(("name".to_string(), Some(slf.inner.name.clone())))
             }
             2 => {
+                slf.field += 1;
+                Some(("profile".to_string(), Some(slf.inner.profile.clone())))
+            }
+            3 => {
                 slf.field += 1;
                 Some(("aliases".to_string(), Some(slf.inner.aliases.clone())))
             }
@@ -404,10 +447,14 @@ impl PersonTemporalRelation {
                 coauthors.extend(self.coauthor_years[i].iter().cloned());
             }
 
+            // remove empty strings
             row.push(
                 coauthors
                     .iter()
-                    .map(|c| c.to_string())
+                    .filter_map(|c| match c.len() {
+                        0 => None,
+                        _ => Some(c.to_string()),
+                    })
                     .collect::<Vec<_>>()
                     .join(SEPARATOR),
             );
