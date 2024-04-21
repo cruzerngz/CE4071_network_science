@@ -113,7 +113,9 @@ def main():
         gamma = visuals.plot_degree_distribution(g, year, args.file_prefix)
         graph_prog_stats.append(gamma)
 
-        if year == int(args.year_start) or year == int(args.year_end):
+        if year == int(args.year_start) \
+            or year == int(args.year_end) \
+            or year == (int(args.year_start) + int(args.year_end)) // 2:
             visuals.plot_degree_heatmap(g, year, args.file_prefix)
 
     # print("Gammas for each year:", graph_prog_stats)

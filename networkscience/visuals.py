@@ -123,7 +123,7 @@ def plot_graph_prog_statistics(graphs: list[nx.Graph], years: list[int], prefix:
     ax2.set_ylabel("Connections", color=line2_col)
     ax1.set_xlabel("Year")
 
-    skip = int(len(years) / 10)
+    skip = int(len(years) / 8)
     if skip == 0:
         skip = 1
 
