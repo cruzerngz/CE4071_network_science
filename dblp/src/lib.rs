@@ -6,7 +6,7 @@ mod db;
 use std::{
     collections::HashSet,
     fs,
-    io::Read,
+    io::{self, Read, Write},
     sync::{Arc, Mutex, OnceLock},
 };
 
@@ -99,15 +99,15 @@ pub fn init_from_xml(path: Option<String>) -> PyResult<()> {
 
     drop(xml_file);
 
+    // initialize the db path
+    DB_PATH.get_or_init(|| DB_DEFAULT_PATH.to_string());
+
     let mut conn = get_init_conn_pool();
     // rusqlite::Connection::open(DB_DEFAULT_PATH)
     // .map_err(|e| PyTypeError::new_err(e.to_string()))?;
 
     db::clear_tables(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
     db::create_tables(&conn).map_err(|e| PyTypeError::new_err(e.to_string()))?;
-
-    // initialize the db path
-    DB_PATH.get_or_init(|| DB_DEFAULT_PATH.to_string());
 
     println!("writing chunks to: {}", DB_PATH.get().unwrap());
     db::chunked_deserialize_insert(&mut conn, &xml_data)
@@ -191,15 +191,17 @@ pub fn query_person_publications(
 /// Transform [PersonRecord] vectors to [PersonTemporalRelation] vectors.
 ///
 /// Specify the start and end year ranges (optional).
-/// By default, the starting year is 2000, and the end year is the current year.
+/// By default, the starting year is 1961 (oldest DBLP entry year), and the end year is the current year.
 ///
 /// TODO: create an in-memory subset database, then perform the query.
 #[pyfunction]
-#[pyo3(signature = (persons, year_start=2000, year_end=None, verbose=false))]
+#[pyo3(signature = (persons, year_start=1961, year_end=chrono::Local::now().year() as u32, verbose=false))]
 pub fn temporal_relation(
     persons: Vec<PersonRecord>,
     year_start: u32,
-    year_end: Option<u32>,
+    year_end: u32,
+
+    #[allow(unused)]
     verbose: bool,
 ) -> Vec<PersonTemporalRelation> {
     // partitioning didnt make a diff it seems
@@ -226,6 +228,7 @@ pub fn temporal_relation(
         while let Ok(_) = rx.recv() {
             count += 1;
             print!("\rprocessed: {}/{}", count, total);
+            io::stdout().flush().unwrap();
         }
     });
 
@@ -246,11 +249,7 @@ pub fn temporal_relation(
         ]);
 
         chunk.par_iter().enumerate().for_each(|(idx, person)| {
-            let rel = match person.to_relations(
-                year_start,
-                year_end.unwrap_or(chrono::Local::now().year() as u32),
-                &constraints,
-            ) {
+            let rel = match person.to_relations(year_start, year_end, &constraints) {
                 Ok(r) => r,
                 Err(e) => {
                     // if verbose {

@@ -88,7 +88,7 @@ def query_person_publications(name: str, max_year: int = None, limit: int = None
 
 def temporal_relation(
     persons: list[PersonRecord],
-    year_start: int = 2000,
+    year_start: int = None,
     year_end: int = None,
     verbose: bool = False,
 ) -> list[PersonTemporalRelation]:

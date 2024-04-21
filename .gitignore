@@ -167,3 +167,4 @@ project.py
 *.html
 *.sqlite
 *.sqlite-journal
+*.png

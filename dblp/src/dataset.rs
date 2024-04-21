@@ -182,6 +182,7 @@ impl<'xml> ChunkedXmlViewer<'xml> {
 }
 
 #[cfg(test)]
+#[allow(unused)]
 mod tests {
     use std::fs;
 

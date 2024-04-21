@@ -295,7 +295,7 @@ pub fn query_author(
     // - "John Doe 0001"
     // so we query for that as well
 
-    let (mod_author_a, mod_author_b) = capitalize_wildcard(&author);
+    let (_mod_author_a, mod_author_b) = capitalize_wildcard(&author);
     let mod_author_serial = format!("{} ____", mod_author_b);
     let mut box_q_params: Vec<Box<dyn ToSql>> = vec![
         // Box::new(&mod_author_a),
@@ -581,7 +581,7 @@ mod tests {
         // assert_eq!(res, 10);
         println!("{}", res);
 
-        let res = conn.execute(
+        let _ = conn.execute(
             "ATTACH DATABASE 'subset.sqlite' AS subset_db;
         INSERT INTO subset_db.persons SELECT * FROM persons",
             (),
