@@ -49,20 +49,18 @@ Due to the way the bundler works, all top-level strings must be delimited with d
 7. Run the program. Each stage writes some output to disk so that execution can resume from that save point
     ```sh
     # stage 1: convert xml data to sqlite database
-    python3 project.py --xml dblp.xml.gz # other flags required. use --help to view them
+    python3 project.py --xml dblp.xml.gz # other flags required. use --help
 
-    # stage 1.5: use existing sqlite database. Defaults to 'dblp.sqlite' if not set
+    # stage 2: use existing sqlite database. Defaults to 'dblp.sqlite' if not set
     python3 project.py --sqlite dblp.sqlite
 
-    # stage 2: associate raw input data to authors in database
-    # the following 2 lines are equivalent
+    # stage 3: associate raw input data to authors in database
     python3 project.py --xls DataScientists.xls
-    python3 project.py --sqlite dblp.sqlite --xls DataScientists.xls
 
-    # stage 3: generate the temporal relations between filtered authors (this takes a while)
+    # stage 4: generate the temporal relations between filtered authors (this takes a while)
     python3 project.py --csv filtered.csv
 
-    # stage 4: generate visualisations (with optional output prefix for all generated files)
+    # stage 5: generate visualisations (with optional output prefix for all generated files)
     python3 project.py --relations temporal_rels.csv --file-prefix "output/run_1"
     ```
 
