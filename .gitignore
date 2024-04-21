@@ -153,6 +153,7 @@ cython_debug/
 
 # my stuff
 project.py
+project/
 
 *.pdf
 

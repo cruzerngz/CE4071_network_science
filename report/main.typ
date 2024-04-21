@@ -139,7 +139,7 @@ Additional modifications to the dataset are described in the table below.
 )
 
 == Query Library
-A query library, built on top of SQLite, is created to address the needs of this project.
+A query library (`dblp`) built on top of SQLite, is created to address the needs of this project.
 This library provides query abstractions for:
 - Author search with alias matching
 - Author-publication searches
@@ -186,14 +186,23 @@ The program performs the following operations in sequence, with each stage build
     [3], [Construct temporal relations between authors and their collaborators], [sqlite database, filtered authors file], [temporal relations file],
     [4], [Construct author collaboration network and visualizations], [temporal relations file], [visualizations],
   )
-)
+) <staged_execution>
+
+= Output data
+The program outputs files as described in @staged_execution.
+The final output before data visualization is the temporal relations of every author against every other author they have collaborated with over time.
+
+This data is represented as a csv file, with the first column containing authors, and every subsequent column containing the range of years that are specified when the program is run. By default, this range is from 1961 to the current year.
+
+Each cell contains the collaborators for a particular author up to and including the year specified in the column header.
+This data does not take into account authors that publish works without any collaborators (@author_network_limitation).
 
 = Analysis
 For the sample input file, all analysis is performed within the date range of 2000 to 2024.
 
 The author collaboration network appears to grow linearly in size with the number of authors, and the number of edges grows quadratically with the number of authors.
+Almost all authors are connected in one giant component, with only a few disconnected components.
 
-// insert growth chart
 #figure(
   caption: [Growth of author collaboration network from 2000 to 2024],
   image(
@@ -224,7 +233,7 @@ On inspection of the network for 2024, the network is determined to be slightly 
 This suggests that over time, new papers are more likely to be published by authors with other authors that have a similarly large number of collaborators, than authors with a small number of collaborators.
 
 #figure(
-  caption: [Scatter plot and heatmap of degree correlation for 2012 and 2024],
+  caption: [Scatterplot-heatmap of degree correlation for 2012 and 2024],
   stack(
     dir: ltr,
     image(
@@ -237,6 +246,11 @@ This suggests that over time, new papers are more likely to be published by auth
     )
   )
 )
+
+== Comparison with a random network
+When compared to a random network with the same number of nodes, edges and average degree, the author collaboration network will have a higher clustering coefficient and a lower diameter, assuming that each link between authors has the same path length.
+
+The probability of selecting an author with a very high degree is also higher in the author collaboration network. The degree distribution of a random network will more closely resemble a binomial distribution (when $10^2 <= N <= 10^3$, $N approx.eq 700$), while the author collaboration network will resemble a power law distribution.
 
 = Transformation
 The next section details pseudocode for transforming the given author network to one that contains a smaller giant component and a larger number of disconnected components, along with a configurable maximum number of collaborators per author.
@@ -256,19 +270,65 @@ The dataset does not contain accurate information that can enable the constructi
   )
 )
 
-#algo(
+An algorithm for transforming the author collaboration network is outlined below.
+
+During each iteration of the algorithm, a random edge is selected from the network, and the importance of the authors on the edge is calculated.
+
+As high-degree nodes are more likely to be selected, the giant component will shrink over time, and the number of disconnected components will increase.
+
+the importance of an author is calculated as the composite of it's degree, the inverse percentages of authors from the same country, institution, and expertise; with respect to the total number of authors in the network.
+The importance of each author on the selected edge is compared, and the author with the lower importance has a random edge disconnected.
+
+The algorithm terminates once the network's maximum degree is less than or equal to the specified target.
+
+#figure(
+  caption: [Algorithm for iteratively transforming the author collaboration network],
+  algo(
   title: "TransformNetwork",
-  parameters: ("CollaborationNetwork",),
+  parameters: ("CollaborationNetwork","KMax",),
   block-align: horizon,
   radius: 2pt,
 )[
-  while MAX(g.node_degrees()) > K_max:#i\
+  #comment([iterate until K_max is satisfied])
+  while MAX(CollaborationNetwork.degrees()) > KMax:#i\
 
+    let edge $<-$ CollaborationNetwork.edges().random()\
+    let author1, author2 $<-$ edge.endpoints()\
 
+    #comment([author importance calculation])
+    let importance1 $<-$ author1.importance()\
+    let importance2 $<-$ author2.importance()\
+
+    if importance1 > importance2:#i\
+      author2.remove_edge(author2.edges().random())#d\
+    else:#i\
+      author1.remove_edge(author1.edges().random())#d\
 
   #d\
+])
 
-]
+#figure(
+  caption: [Algorithm for determining author importance],
+  algo(
+  title: "AuthorImportance",
+  parameters: ("Author",),
+  block-align: horizon,
+  radius: 2pt,
+)[
+  let importance $<-$ 0.0\
+  importance += Log10(Author.degrees().size())\
+
+  #comment([authors that are less represented are more important])
+  let imp_diversity $<-$ Author.graph().size() / Author.graph().count(Author.country)\
+
+  let imp_institution $<-$ Author.graph().size() / Author.graph().count(Author.institution)\
+
+  let imp_expertise $<-$ Author.graph().size() / Author.graph().count(Author.expertise)\
+
+  importance += imp_diversity + imp_institution + imp_expertise\
+
+  return importance\
+])
 
 = Limitations
 
@@ -295,7 +355,7 @@ This is a one-time cost for every new input `.xls` file, as the relations are st
 
 However, once constructed, the temporal relations of the given set of authors can be queried and visualized very quickly.
 
-== Author network
+== Author network <author_network_limitation>
 Authors are not added to the network if they do not have any collaborators.
 This is a limitation in the way the temporal relation network is constructed, as it does not differentiate between authors with no collaborators and authors with no published works.
 
@@ -306,6 +366,19 @@ This restricts the minimum connections an author can have to 1, which may not be
 498,Luciano Timb Barbosa,,,,,,,,,,,,,,,,,,,,,,,,,
 ```
 
+= Notes
+
+== Detailed run guide
+A more detailed guide on how to run the program is located in `README.md`.
+
+== Python bundling
+The main program (`project.py`) is executable as a single file when all dependencies have been installed.
+However, the file is bundled from multiple python source files in a way that makes it less readable.
+
+The original source of the python program is located in the unzipped file in: `/code/networkscience/`.
+
+== Pre-generated relations file
+A pre-generated relations file from the sample input file is provided in the zip file: `temporal_rels.csv`.
+
 #pagebreak()
 #bibliography(("bib.bib","bib.yaml"))
-

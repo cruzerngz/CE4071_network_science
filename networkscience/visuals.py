@@ -114,12 +114,19 @@ def plot_graph_prog_statistics(graphs: list[nx.Graph], years: list[int], prefix:
     fig = plt.figure(figsize=(6, 6))
     # plot a line each for nodes and edges, with the left y-axis for nodes and right y-axis for edges
     ax1 = fig.add_subplot(111)
-    sb.lineplot(x=years, y=[s[0] for s in stats], color=line1_col, alpha=0.8, linestyle=line1_style, ax=ax1)
+    sb.lineplot(x=years, y=[s[0] for s in stats], color=line1_col, alpha=1, linestyle=line1_style, ax=ax1)
 
     ax2 = ax1.twinx()
     sb.lineplot(x=years, y=[s[1] for s in stats], color=line2_col, alpha=0.8, linestyle=line2_style, ax=ax2)
 
-    ax1.set_ylabel("Authors", color=line1_col)
+    giants = [
+        len(max(nx.connected_components(graph), key=len))
+        for graph in graphs
+    ]
+    # use the same axis for the number of nodes
+    sb.lineplot(x=years, y=giants, color="black", alpha=0.8, linestyle=":", ax=ax1)
+
+    ax1.set_ylabel("Authors, Giant Component", color=line1_col)
     ax2.set_ylabel("Connections", color=line2_col)
     ax1.set_xlabel("Year")
 
