@@ -2,6 +2,8 @@
 #set heading(numbering: "1.1.")
 #set par(justify: true)
 
+#import "@preview/algo:0.3.3": algo, i, d, comment, code
+
 // table style - I want to emulate the look seen in papers
 #set table(
   stroke: (x, y) => (
@@ -19,6 +21,9 @@
 //     width: 100%
 //   )[#text(size: 0.9em)[#code]]
 // }
+#let h_link(target, label) = {
+  link(target)[#(underline(text(label, fill: blue), stroke: blue))]
+}
 
 // cover page
 #align(center, text(size: 1.5em, weight: "bold")[
@@ -72,8 +77,8 @@ However, the data is not queryable in this format, and it has to be transformed.
 
 In this project, I have decided to parse the XML data and transform it into an SQLite database, which enables quick queries to be made when constructing the collaboration network.
 
-== Parsing and Querying
-The XML dataset is `3GB` in size when unzipped. When parsed and deserialized into it's in-memory representation in Rust, memory usage can peak at over `15GB`.
+== Parsing and Querying <parse_query>
+The XML dataset #cite(label("10.14778/1687553.1687577")) is `3GB` in size when unzipped. When parsed and deserialized into it's in-memory representation in Rust, memory usage can peak at over `15GB`.
 
 To reduce memory usage, the dataset has to be parsed in chunks of `1000` XML top-level elements at a time. This process takes about 3 minutes to complete.
 
@@ -141,7 +146,7 @@ The dataset can be queried directly using SQL, if the query library does not pro
 
 = Input data
 
-== Input filtering and Association
+== Input filtering and Association <input_filt>
 The main program (`project.py`) will operate on some input data, which is a dirty subset of the DBLP dataset.
 Inside this subset, the following operations are performed to clean the data:
 
@@ -158,10 +163,98 @@ This search takes advantage of the following:
 - Input name sections are ordered the same way as names in the dataset
 - Input names may have certain sections missing in between name segments, but never at start or end (e.g. middle name/other initials)
 - Colliding names in the dataset are assigned a 0-padded 4-digit monotonically increasing suffix (e.g. John Doe 0001)
-- Authors can have aliases, which are also searched for in the dataset when the first search fails
+- Authors aliases are also searched for in the dataset when the first search fails
 
 Using the sample input file as a reference, this search method successfully matches $95%$ of input names to names in the dataset. (1024 of 1079 entries, after deduplication from 1220 entries)
 
+== Staged execution
+The program performs the following operations in sequence, with each stage building on the previous. Execution can resume from any stage, as long as the required files are present.
+
+#figure(
+  caption: [Staged execution of the program and their outputs],
+  table(
+    align: left,
+    columns: (auto, auto, auto, auto),
+    [*stage*], [*description*], [*required files*], [*output*],
+    [1], [Parse XML dataset], [none], [sqlite database file],
+    [2], [Filter input data and associate authors with dataset], [sqlite database, input xls file], [filtered authors file],
+    [3], [Construct temporal relations between authors and their collaborators], [sqlite database, filtered authors file], [temporal relations file],
+    [4], [Construct author collaboration network and visualizations], [temporal relations file], [visualizations],
+  )
+)
+
+= Analysis
+For the sample input file, all analysis is performed within the date range of 2000 to 2024.
+
+The author collaboration network appears to grow linearly in size with the number of authors, and the number of edges grows quadratically with the number of authors.
+
+// insert growth chart
+
+
+= Transformation
+The next section details pseudocode for transforming the given author network to one that contains a smaller giant component and a larger number of disconnected components, along with a configurable maximum number of collaborators per author.
+The diversity of authors is also be equal to or greater than the original network.
+
+The dataset does not contain accurate information that can enable the construction of such a network, so no implementation will be provided.
+
+#figure(
+  caption: [Additional author fields required to transform the author-collaborator network],
+  table(
+    columns: (auto, auto),
+    align: left,
+    [*field*], [*note*],
+    [country],[Not explicitly given for each author in the dataset],
+    [institution], [Available for some authors only],
+    [expertise], [Randomly assigned to authors from the input file]
+  )
+)
+
+#algo(
+  title: "TransformNetwork",
+  parameters: ("CollaborationNetwork",),
+  block-align: horizon,
+  radius: 2pt,
+)[
+  while MAX(g.node_degrees()) > K_max:#i\
+
+
+
+  #d\
+
+]
+
+
+= Limitations
+
+== Author matching
+During the author association phase (@input_filt), `dblp` will not be able to match author names with non-ascii characters, as characters with ligatures have been transformed to the nearest ascii equivalents.
+
+In the raw XML dataset, these characters are represented as XML references taken from the #h_link("https://dblp.uni-trier.de/xml/dblp.dtd", "dblp data type definition"), and as such are not supported by the xml parser.
+
+```rs
+/// Matcher for XML references
+/// They follow this format:
+/// &xxxxx;
+const XML_REF_REGEX: &str = "&[[:alpha:]]+;";
+```
+
+For example, the name "zsolt istvan" (Zsolt István) exists in the DBLP dataset as "`zsolt istv&aacute;n`", so it will not be matched by this search algorithm.
+
+As the fraction of authors containing references in the dataset  is small, the impact of this limitation is minimal.
+
+== Author relation construction
+Due to the large size of the dataset, the temporal relations construction phase takes a substantial amount of time (~4s per author).
+Using the sample input file as a reference, the program takes approximately 1.5 hours to construct this data.
+This is a one-time cost for every new author subset, as the relations are stored in a csv file.
+
+However, once constructed, the temporal relations of the given set of authors can be queried and visualized very quickly.
+
+== Author network
+Authors are not added to the network if they do not have any collaborators.
+This is a limitation to the way the temporal relation network is constructed, as it does not differentiate between authors with no collaborators and authors with no published works.
+
+This restricts the minimum connections an author can have to 1, which may not be representative of the actual network.
+
 #pagebreak()
-#bibliography("bib.yaml")
+#bibliography(("bib.bib","bib.yaml"))
 

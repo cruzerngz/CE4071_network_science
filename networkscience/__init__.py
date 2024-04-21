@@ -8,6 +8,7 @@ from networkscience import visuals
 import networkx as nx
 import pandas as pd
 import numpy as np
+import seaborn as sb
 import argparse
 import dblp
 
@@ -50,10 +51,11 @@ def main():
             dblp.init_from_sqlite()
 
         case (xml, None):
-            dblp.init_from_xml(xml)
+            print(f"creating database from: {xml}")
+            dblp.init_from_xml(str(xml))
 
         case (_, sqlite):
-            dblp.init_from_xml(sqlite)
+            dblp.init_from_sqlite(str(sqlite))
 
     # can be initialized in various ways
     rel_csv: pd.DataFrame
@@ -69,8 +71,9 @@ def main():
             authors = parsing.filter_raw_xls(xls)
             relations = parsing.generate_temporal_relations(
                 authors,
-                args.year_start,
-                args.year_end
+                prefix=args.file_prefix
+                # int(args.year_start),
+                # int(args.year_end)
             )
 
         case (_, csv, None):
@@ -81,8 +84,9 @@ def main():
             authors = dblp.PersonRecord.from_dicts(authors_d)
             relations = parsing.generate_temporal_relations(
                 authors,
-                args.year_start,
-                args.year_end
+                prefix = args.file_prefix
+                # int(args.year_start),
+                # int(args.year_end)
             )
 
             if args.file_prefix is not None:
@@ -99,14 +103,31 @@ def main():
             exit(1)
 
     # process temporal relations from here
-    gammas = []
+    graph_prog_stats = []
+    graphs= []
     for year in range(int(args.year_start), int(args.year_end) + 1):
         mapping = visuals.graph_mapping(rel_csv, year)
+        g = nx.Graph(mapping)
+        graphs.append(g)
         # mappings.append(mapping)
-        gamma = visuals.plot_degree_distribution(nx.Graph(mapping), year, args.file_prefix)
-        gammas.append(gamma)
+        gamma = visuals.plot_degree_distribution(g, year, args.file_prefix)
+        graph_prog_stats.append(gamma)
 
-    print("Gammas for each year:", gammas)
+        if year == int(args.year_start) or year == int(args.year_end):
+            visuals.plot_degree_heatmap(g, year, args.file_prefix)
+
+    # print("Gammas for each year:", graph_prog_stats)
+    visuals.plot_gamma_progression(
+        [year for year in range(int(args.year_start), int(args.year_end) + 1)],
+        [stats[2] for stats in graph_prog_stats],
+        args.file_prefix
+    )
+
+    visuals.plot_graph_prog_statistics(
+        graphs,
+        [year for year in range(int(args.year_start), int(args.year_end) + 1)],
+        args.file_prefix
+    )
 
 if __name__ == "__main__":
     main()
