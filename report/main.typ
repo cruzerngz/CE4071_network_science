@@ -21,6 +21,7 @@
 //     width: 100%
 //   )[#text(size: 0.9em)[#code]]
 // }
+
 #let h_link(target, label) = {
   link(target)[#(underline(text(label, fill: blue), stroke: blue))]
 }
@@ -65,6 +66,10 @@
 
 #pagebreak()
 = Overview
+In hindsight, I have spent much more time on transforming the dataset and constructing the author collaboration network than I have on the analysis of the network.
+On the bright side, this dataset can be used for future analysis, and the network can be queried for various metrics.
+
+Feel free to reuse or modify the code for your own analysis.
 
 = Dataset
 As this project requires parsing of some input data and forming connections through records in the DBLP dataset, performing queries on the dataset over the network is unfeasible, due to rate limits imposed by the DBLP API @dblp-rate-limits.
@@ -123,7 +128,7 @@ Additional modifications to the dataset are described in the table below.
     [discard data],[
       Data that is not used for this project is not included in the final dataset.
       This includes, but is not limited to:
-      - Web pages that are not author home pages
+      - Web pages that are not author home pages @dblp-homepage-record
       - editors
       - addresses
       - volume number, pages, and other publication metadata
@@ -134,7 +139,7 @@ Additional modifications to the dataset are described in the table below.
 )
 
 == Query Library
-A simple query library, built on top of SQLite, is created to address the needs of this project.
+A query library, built on top of SQLite, is created to address the needs of this project.
 This library provides query abstractions for:
 - Author search with alias matching
 - Author-publication searches
@@ -189,7 +194,49 @@ For the sample input file, all analysis is performed within the date range of 20
 The author collaboration network appears to grow linearly in size with the number of authors, and the number of edges grows quadratically with the number of authors.
 
 // insert growth chart
+#figure(
+  caption: [Growth of author collaboration network from 2000 to 2024],
+  image(
+    "./media/report_connections_2000-2024.png",
+    width: 75%
+  )
+)
 
+The network closely resembles a scale-free network, with a few authors having a large number of collaborators, and most authors having a small number of collaborators.
+In 2024, the power law exponent $gamma = 1.3$.
+
+#figure(
+  caption: [Power law fit of the author collaboration network in 2000 and 2024],
+  stack(
+    dir: ltr,
+    image(
+      "./media/report_degree_dist_2000.png",
+      width: 55%
+    ),
+    image(
+      "./media/report_degree_dist_2024.png",
+      width: 55%
+    )
+  )
+)
+
+On inspection of the network for 2024, the network is determined to be slightly assortative, with a value of $0.2$ in 2024. The degree correlation over time increases slightly.
+This suggests that over time, new papers are more likely to be published by authors with other authors that have a similarly large number of collaborators, than authors with a small number of collaborators.
+
+#figure(
+  caption: [Scatter plot and heatmap of degree correlation for 2012 and 2024],
+  stack(
+    dir: ltr,
+    image(
+      "./media/report_degree_heatmap_2012.png",
+      width: 55%
+    ),
+    image(
+      "./media/report_degree_heatmap_2024.png",
+      width: 55%
+    )
+  )
+)
 
 = Transformation
 The next section details pseudocode for transforming the given author network to one that contains a smaller giant component and a larger number of disconnected components, along with a configurable maximum number of collaborators per author.
@@ -223,7 +270,6 @@ The dataset does not contain accurate information that can enable the constructi
 
 ]
 
-
 = Limitations
 
 == Author matching
@@ -245,15 +291,20 @@ As the fraction of authors containing references in the dataset  is small, the i
 == Author relation construction
 Due to the large size of the dataset, the temporal relations construction phase takes a substantial amount of time (~4s per author).
 Using the sample input file as a reference, the program takes approximately 1.5 hours to construct this data.
-This is a one-time cost for every new author subset, as the relations are stored in a csv file.
+This is a one-time cost for every new input `.xls` file, as the relations are stored in a separate csv file.
 
 However, once constructed, the temporal relations of the given set of authors can be queried and visualized very quickly.
 
 == Author network
 Authors are not added to the network if they do not have any collaborators.
-This is a limitation to the way the temporal relation network is constructed, as it does not differentiate between authors with no collaborators and authors with no published works.
+This is a limitation in the way the temporal relation network is constructed, as it does not differentiate between authors with no collaborators and authors with no published works.
 
-This restricts the minimum connections an author can have to 1, which may not be representative of the actual network.
+This restricts the minimum connections an author can have to 1, which may not be representative of the actual network as authors can publish papers with no collaborators.
+
+```csv
+# an author with no collaborators from the temporal relations file
+498,Luciano Timb Barbosa,,,,,,,,,,,,,,,,,,,,,,,,,
+```
 
 #pagebreak()
 #bibliography(("bib.bib","bib.yaml"))

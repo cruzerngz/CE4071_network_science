@@ -9,3 +9,8 @@ dblp-dataset-online:
   type: Web
   title: How can I download the whole dblp dataset?
   url: https://dblp.org/faq/How+can+I+download+the+whole+dblp+dataset.html
+
+dblp-homepage-record:
+  type: Web
+  title: What is the meaning of these www-Home-Page records?
+  url: https://dblp.org/faq/1474690.html

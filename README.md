@@ -2,9 +2,9 @@
 
 ## Prerequisites
 - python >= 3.10
-<!-- - venv -->
-<!-- - [venv dependencies](./requirements.txt) -->
 - [cargo](https://rustup.rs)
+- [pygraphviz](https://pygraphviz.github.io/documentation/stable/install.html)
+- [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or a unix system
 
 ## Bundling
 ```sh
@@ -32,12 +32,16 @@ Due to the way the bundler works, all top-level strings must be delimited with d
     ```sh
     cd dblp/
     maturin develop --release
+
+    # unix
+    make dblp-lib
     ```
 
 5. Bundle python package into a single file
     ```sh
-    # if you can't run this makefile,
-    # copy and paste target commands from the makefile.
+    python3 -m pinliner networkscience -o project.py
+
+    # unix
     make
     ```
 
@@ -45,7 +49,7 @@ Due to the way the bundler works, all top-level strings must be delimited with d
 7. Run the program. Each stage writes some output to disk so that execution can resume from that save point
     ```sh
     # stage 1: convert xml data to sqlite database
-    python3 project.py --xml dblp.xml.gz
+    python3 project.py --xml dblp.xml.gz # other flags required. use --help
 
     # stage 2: use existing sqlite database. Defaults to 'dblp.sqlite' if not set
     python3 project.py --sqlite dblp.sqlite
@@ -56,8 +60,8 @@ Due to the way the bundler works, all top-level strings must be delimited with d
     # stage 4: generate the temporal relations between filtered authors (this takes a while)
     python3 project.py --csv filtered.csv
 
-    # stage 5: generate visualisations
-    python3 project.py --relations temporal_rels.csv
+    # stage 5: generate visualisations (with optional output prefix for all generated files)
+    python3 project.py --relations temporal_rels.csv --file-prefix "output/run_1"
     ```
 
 ## Python3 interpreter not found (windows)
