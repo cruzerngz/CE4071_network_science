@@ -18,8 +18,6 @@ use r2d2_sqlite::SqliteConnectionManager;
 use rayon::iter::{IndexedParallelIterator, IntoParallelRefIterator, ParallelIterator};
 use scheduled_thread_pool::ScheduledThreadPool;
 
-use crate::db::create_subset_database;
-
 const DB_DEFAULT_PATH: &str = "dblp.sqlite";
 const XML_GZ_PATH: &str = "dblp.xml.gz";
 const XML_PATH: &str = "dblp.xml";
@@ -50,7 +48,7 @@ fn get_init_conn_pool() -> PooledConnection<SqliteConnectionManager> {
                 .get()
                 .expect("connection pool should be initialized")
                 .get()
-                .unwrap()
+                .expect("failed to get connection from pool")
         }
     }
 }
