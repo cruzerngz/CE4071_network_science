@@ -8,6 +8,10 @@ seaborn
 numpy
 matplotlib
 networkx
+scipy
+# requires external dependency for some reason
+pygraphviz
+
 xlrd # for reading excel files
 requests
 beautifulsoup4

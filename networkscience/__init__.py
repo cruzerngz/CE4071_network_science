@@ -3,7 +3,9 @@
 
 from networkscience import args
 from networkscience import parsing
+from networkscience import visuals
 
+import networkx as nx
 import pandas as pd
 import numpy as np
 import argparse
@@ -26,6 +28,12 @@ parser = argparse.ArgumentParser("CE4071 DBLP collaboration network program")
 # - filtered csv to relations     (required arg: path to dblp.xls)\n
 # - graph construction            (required arg: path to relations.csv)\n
 # """
+
+parser.add_argument("--year-start", help="start year for the temporal relations", required=True)
+parser.add_argument("--year-end", help="end year for the temporal relations", required=True)
+
+parser.add_argument("--file-prefix", help="additional prefix for output files", metavar="PFX", default=None)
+
 parser.add_argument("--xml", help="dblp xml file path")
 parser.add_argument("--sqlite", help="sqlite file path")
 parser.add_argument("--xls", help="xls input file")
@@ -47,6 +55,9 @@ def main():
         case (_, sqlite):
             dblp.init_from_xml(sqlite)
 
+    # can be initialized in various ways
+    rel_csv: pd.DataFrame
+
     # data parsing from checkpoints
     match (args.xls, args.csv, args.relations):
         case (None, None, None):
@@ -56,8 +67,11 @@ def main():
         case (xls, None, None):
             # print("Parsing xls file")
             authors = parsing.filter_raw_xls(xls)
-            relations = parsing.generate_temporal_relations(authors)
-
+            relations = parsing.generate_temporal_relations(
+                authors,
+                args.year_start,
+                args.year_end
+            )
 
         case (_, csv, None):
             df_csv = pd.read_csv(csv)
@@ -65,18 +79,34 @@ def main():
             authors_d = df_csv.to_dict(orient="records")
 
             authors = dblp.PersonRecord.from_dicts(authors_d)
-            relations = parsing.generate_temporal_relations(authors)
+            relations = parsing.generate_temporal_relations(
+                authors,
+                args.year_start,
+                args.year_end
+            )
 
+            if args.file_prefix is not None:
+                rel_csv = pd.read_csv(f"{args.file_prefix}_{parsing.TEMPORAL_RELATIONS_PATH}")
+            else:
+                rel_csv = pd.read_csv(parsing.TEMPORAL_RELATIONS_PATH)
 
         case (_, _, rel):
-            print("rel matched")
+            rel_csv = pd.read_csv(rel)
             pass
 
         case _:
-            print("unmatched case")
+            print("unmatched case, exiting")
+            exit(1)
 
+    # process temporal relations from here
+    gammas = []
+    for year in range(int(args.year_start), int(args.year_end) + 1):
+        mapping = visuals.graph_mapping(rel_csv, year)
+        # mappings.append(mapping)
+        gamma = visuals.plot_degree_distribution(nx.Graph(mapping), year, args.file_prefix)
+        gammas.append(gamma)
 
-    # print("Hello World")
+    print("Gammas for each year:", gammas)
 
 if __name__ == "__main__":
     main()

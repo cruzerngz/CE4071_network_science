@@ -47,16 +47,24 @@ def filter_raw_xls(xls_path: str) -> list[dblp.PersonRecord]:
 
     return db_authors
 
-def generate_temporal_relations(authors: list[dblp.PersonRecord]) -> list[dblp.PersonTemporalRelation]:
+def generate_temporal_relations(
+    authors: list[dblp.PersonRecord],
+    year_start: int = 2000,
+    year_end: int = None,
+    prefix: str = None) -> list[dblp.PersonTemporalRelation]:
     """Generate the temporal relations between selected authors and save the results"""
 
     print(f"Generating temporal relations. Estimated time: {len(authors) * 4} seconds.")
     s = time.time()
-    relations = dblp.temporal_relation(authors)
+    relations = dblp.temporal_relation(authors, year_start=year_start, year_end=year_end)
     e = time.time()
 
     print(f"\nTime taken: {e - s} seconds")
     print(f"Saving relations to: {TEMPORAL_RELATIONS_PATH}")
-    dblp.save_temporal_relation(relations, TEMPORAL_RELATIONS_PATH)
+
+    if prefix is not None:
+        dblp.save_temporal_relation(relations, f"{prefix}_{TEMPORAL_RELATIONS_PATH}")
+    else:
+        dblp.save_temporal_relation(relations, TEMPORAL_RELATIONS_PATH)
 
     return relations

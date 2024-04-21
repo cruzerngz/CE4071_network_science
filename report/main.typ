@@ -128,25 +128,39 @@ Additional modifications to the dataset are described in the table below.
   )
 )
 
-== Querying library
-A simple query library, built on top of SQLite, is customized for the needs of this project.
+== Query Library
+A simple query library, built on top of SQLite, is created to address the needs of this project.
 This library provides query abstractions for:
 - Author search with alias matching
 - Author-publication searches
+- Author-collaborator matching with yearly granularity
+
+This library also provides objects (`DblpRecord`, `PersonRecord`) for each table in the dataset so that queries and their results can be retrieved in a type-safe manner.
 
 The dataset can be queried directly using SQL, if the query library does not provide the necessary functionality.
 
 = Input data
 
-== Input filtering
+== Input filtering and Association
 The main program (`project.py`) will operate on some input data, which is a dirty subset of the DBLP dataset.
 Inside this subset, the following operations are performed to clean the data:
 
-// change ot table
 - Deduplication of entries
-- Author validation and assignment assignment to database
+- Author name lookup and matching to dataset
+// - Temporal relation generation of author-collaborators
 
+Entries are deduplicated by removing matching DBLP homepage paths.
 
+As stated in the assignment, names in the input file do not directly match with names in the dataset.
+To address this, a 2-stage search is used to find the closest matching author name in the dataset.
+
+This search takes advantage of the following:
+- Input name sections are ordered the same way as names in the dataset
+- Input names may have certain sections missing in between name segments, but never at start or end (e.g. middle name/other initials)
+- Colliding names in the dataset are assigned a 0-padded 4-digit monotonically increasing suffix (e.g. John Doe 0001)
+- Authors can have aliases, which are also searched for in the dataset when the first search fails
+
+Using the sample input file as a reference, this search method successfully matches $95%$ of input names to names in the dataset. (1024 of 1079 entries, after deduplication from 1220 entries)
 
 #pagebreak()
 #bibliography("bib.yaml")
